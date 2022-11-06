@@ -6,7 +6,7 @@ export default {
   },
   ssr: false,
   env: {
-    server_URL: '192.168.109.58:3001',
+    server_URL: 'localhost:3001',
   },
   loading: {
     color: '#a7211b',
