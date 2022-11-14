@@ -51,7 +51,6 @@
 }
 
 .AdminPageChartBoxs .AdminPageChartBox .TitleBox .IconBox {
-  background-color: #ff9f431f;
   overflow: hidden;
   border-radius: 50%;
   width: 46px;
@@ -59,10 +58,7 @@
   display: grid;
   justify-content: center;
   align-items: center;
-}
-
-.AdminPageChartBoxs .AdminPageChartBox .TitleBox .IconBox svg path {
-  fill: #ff9f43;
+  /* opacity: 0.5; */
 }
 
 .AdminPageChartBoxs .AdminPageChartBox .TitleBox .TitleTextBox {

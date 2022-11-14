@@ -86,6 +86,14 @@
   .UploadAdvertisingImagesBox
   .UploadAdvertisingImagesSubBox
   .UploadImagesBox
+  > input {
+  display: none;
+}
+
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  .UploadImagesBox
   img {
   width: 100%;
 }
@@ -263,6 +271,24 @@
   align-items: center;
   column-gap: 10px;
   grid-template-columns: 30% 40px auto;
+}
+
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  .InformationAdvertisingSubBox
+  .InformationInsertDataBox
+  .TitleInformationInsertDataBox {
+  border-radius: 7px;
+  color: rgba(112, 112, 112, 0.8);
+  background-color: #ffffff;
+  font-size: 14px;
+  font-family: var(--BaseFontFamily);
+  border: 1px solid;
+  padding: 4px 15px;
+  outline: none;
+  border-color: #252525;
+  width: 100%;
+  transition: border 0.3s;
 }
 
 .SubmitAdvertisingContentBox

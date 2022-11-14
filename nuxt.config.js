@@ -33,6 +33,7 @@ export default {
     '@/static/js/fontawesome.min.js',
     '@/static/js/duotone.min.js',
     // '@/static/js/apexchart.js',
+    '@/node_modules/vue-apexcharts/src/index.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,6 +47,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     // 'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/pwa
+    // 'vue-apexchart',
     '@nuxtjs/pwa',
   ],
 
