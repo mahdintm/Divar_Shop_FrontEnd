@@ -1,0 +1,31 @@
+.SiteMapBox {
+  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.AdvertisingContentBox .SiteMapBox {
+  margin: unset;
+}
+
+.SiteMapBox span {
+  color: #707070;
+  font-size: 0.8vw;
+  line-height: 24px;
+  font-family: var(--BaseFontFamily);
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.SiteMapBox span:hover {
+  color: #a62626;
+  transition: color 0.2s;
+}
+
+.SiteMapBox span:last-child {
+  color: #bbbbbb;
+}

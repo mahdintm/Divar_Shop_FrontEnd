@@ -1,0 +1,300 @@
+.AdvertisingContentBox {
+  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 100px 26px;
+  display: grid;
+  justify-content: center;
+  column-gap: 100px;
+  grid-template-areas:
+    "SiteMap SiteMap"
+    "RightPanel LeftPanel";
+}
+
+.AdvertisingContentBox .SiteMapBox {
+  grid-area: SiteMap;
+  margin-bottom: 40px;
+}
+
+.AdvertisingContentBox .RightPanel {
+  grid-area: RightPanel;
+}
+
+.AdvertisingContentBox .LeftPanel {
+  grid-area: LeftPanel;
+  max-width: 400px;
+}
+
+.AdvertisingContentBox .AdvertisingBox {
+  width: auto;
+}
+
+.AdvertisingBox .AdvertisingTitle {
+  color: #252525;
+  font-size: 1.7vw;
+  text-align: right;
+  max-width: 440px;
+}
+
+.AdvertisingBox .AdvertisingCreateTime {
+  color: #707070;
+  font-size: 0.9vw;
+  text-align: right;
+  margin-top: 15px;
+  font-weight: 100;
+}
+
+.AdvertisingBox .AdvertisingButtonBox {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.AdvertisingBox .AdvertisingButtonBox .SubmitAdvertisingButton,
+.AdvertisingBox .AdvertisingButtonBox .SaveAdvertisingButton {
+  background: #a62626;
+  border-radius: 5px;
+  width: fit-content;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 30px;
+  font-family: var(--BaseFontFamily);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1vw;
+  margin-left: 10px;
+  max-width: 150px;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  transition: box-shadow, background-color 0.8s;
+}
+
+.AdvertisingBox .AdvertisingButtonBox .SaveAdvertisingButton {
+  background: unset;
+  border: 1px solid #707070;
+  color: #707070;
+}
+
+.AdvertisingBox .AdvertisingButtonBox .SubmitAdvertisingButton:hover {
+  box-shadow: 0 8px 15px -8px #a62626;
+  transition: box-shadow 0.8s;
+}
+
+.AdvertisingBox .AdvertisingButtonBox .SaveAdvertisingButton:hover {
+  border-color: #ffffff;
+  transition: background-color 0.8s;
+  background-color: #707070;
+  color: #ffffff;
+}
+
+.AdvertisingBox .AdvertisingButtonBox .ShareIconAdvertisingBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.AdvertisingBox .AdvertisingButtonBox .ShareIconAdvertisingBox > * {
+  cursor: pointer;
+}
+
+.AdvertisingBox .AdvertisingInformationBox {
+  margin-top: 20px;
+}
+
+.AdvertisingBox .AdvertisingInformationBox .AdvertisingInformationSubBox {
+  border-bottom: 0.5px solid #bbbbbb;
+  padding: 10px 1px 15px;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: auto auto;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.AdvertisingBox .AdvertisingInformationBox .AdvertisingInformationSubBox:last-child {
+  border: unset;
+}
+
+.AdvertisingBox .AdvertisingInformationBox div:first-child {
+  color: #707070;
+  text-align: right;
+}
+
+.AdvertisingBox .AdvertisingInformationBox div:last-child {
+  color: #252525;
+  text-align: left;
+}
+
+.AdvertisingBox .AdvertisingDescriptionBox {
+  width: 440px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #252525;
+}
+
+.AdvertisingBox .AdvertisingDescriptionBox > span {
+  font-weight: bold;
+}
+
+.AdvertisingBox .AdvertisingDescriptionBox > p {
+  font-weight: 100;
+}
+
+.AdvertisingContentBox .BigImageBox {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s;
+}
+
+.AdvertisingContentBox .BigImageBox:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s;
+}
+
+.AdvertisingContentBox .BigImageBox img {
+  width: 100%;
+}
+
+.BigImageBox .IndexImageIDBox {
+  position: absolute;
+  bottom: 7px;
+  display: grid;
+  column-gap: 8px;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.BigImageBox .IndexImageIDBox .IndexImageIDSubBox {
+  border-radius: 5px;
+  background-color: #ffffff;
+  opacity: 0.5;
+  width: 22px;
+  height: 4px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.BigImageBox .IndexImageIDBox .IndexImageIDSubBox:hover {
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.BigImageBox .IndexImageIDBox .IndexImageIDSubBox.SelectedImageID {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.AdvertisingContentBox .SmallImageBox {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.AdvertisingContentBox .SmallImageBox .SmallImageSubBox {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  max-height: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.AdvertisingContentBox .SmallImageBox .SmallImageSubBox:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.AdvertisingContentBox .SmallImageBox .SmallImageSubBox.SelectedImage::before {
+  background-color: unset;
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  background-color: #707070;
+  opacity: 0.5;
+  top: 0px;
+  left: 0px;
+  transition: 0.3s;
+}
+
+.AdvertisingContentBox .SmallImageBox .SmallImageSubBox img {
+  width: 100%;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertising {
+  margin-top: 25px;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto;
+  align-items: center;
+  border-bottom: 0.5px solid #bbbbbb;
+  padding: 7px 1px 11px;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox:last-child {
+  border: unset;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox {
+  display: flex;
+  gap: 10px;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .AvatarClientBox {
+  border-radius: 5px;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .AvatarClientBox img {
+  width: 100%;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .ClientInfoBox {
+  font-size: 14px;
+  color: #707070;
+  text-align: right;
+  font-weight: 400;
+}
+
+.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .RateValueBox {
+  font-size: 12px;
+  color: #bbbbbb;
+  text-align: right;
+  font-weight: 400;
+}
+
+.RateOrderOfAdvertising .RateOrderOfAdvertisingDateTime {
+  font-size: 12px;
+  color: #bbbbbb;
+  text-align: right;
+  font-weight: 400;
+}

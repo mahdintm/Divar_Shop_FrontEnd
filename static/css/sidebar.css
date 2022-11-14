@@ -1,0 +1,144 @@
+.D_Wrapper .D_SideBar {
+  position: fixed;
+  max-height: calc(var(--MaxHeightSideBar) - var(--HeaderHeight) - 20px);
+  width: var(--WidthSideBar);
+  top: calc(var(--HeaderHeight) + 20px);
+  right: 16px;
+  border-radius: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0px 18px 80px;
+  background-color: #ffffff;
+  z-index: 150;
+  text-align: right;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+}
+
+.D_Wrapper .D_SideBar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.D_SideBar .D_SideBarSubBoxTitle {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: right;
+  color: #252525;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin-top: 28px;
+  padding: 3px 8px;
+  user-select: none;
+}
+
+.D_SideBar .D_SideBarSubBoxItems {
+  margin-top: 12px;
+}
+
+.D_SideBar .D_SideBarSubBox .D_Topmenu .D_SideBarSubItem {
+  margin: 8px 0px;
+  padding: 8px 8px;
+}
+
+.D_SideBar .D_SideBarSubItem {
+  user-select: none;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 28px;
+  color: #707070;
+  cursor: pointer;
+  order: 0;
+  border-radius: 5px;
+  margin: 4px 0px;
+  padding: 4px 8px;
+  transition: 0.3s;
+}
+
+.D_SideBar .D_SideBarSubItem:hover {
+  background-color: #f0f0f1;
+  transition: 0.3s;
+}
+
+.D_SideBar .D_SideBarSubItem svg:nth-child(1) {
+  width: 16px;
+  height: 16px;
+  transform: translateY(25%);
+  margin-left: 4px;
+}
+
+.D_SideBar .D_SideBarSubItem svg:nth-child(3) {
+  transform: translateY(50%);
+  float: left;
+  margin-left: 15px;
+  transition: 0.3s;
+}
+
+.D_SideBar .D_SideBarSubItem:hover svg:nth-child(3) {
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.D_SideBar .SideBarNotifictionAlarm {
+  padding: 0px 8px;
+  line-height: normal;
+  transform: translateY(25%);
+  float: left;
+  background: #a62626;
+  border-radius: 4px;
+  font-weight: 100;
+  color: #ffffff;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.D_SideBar .D_SideBarSubBox .ListOfSubItems {
+  overflow: hidden;
+  user-select: none;
+  transform: scaleY(0);
+  transform-origin: top;
+  height: 0px;
+  transition: height 0.25s, transform 0.25s;
+}
+
+.D_SideBar .D_SideBarSubBox .OpenAnotherItems ~ .ListOfSubItems {
+  height: auto;
+  transform: scaleY(1);
+}
+
+.D_SideBar .D_SideBarSubBox .ListOfSubItems span {
+  display: block;
+  cursor: pointer;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 28px;
+  color: #707070;
+  order: 0;
+  border-radius: 5px;
+  margin-top: 2px;
+  padding: 6px 8px;
+}
+
+.D_SideBar .D_SideBarSubBox .ListOfSubItems span:hover {
+  background-color: #f0f0f1;
+  transition: 0.3s;
+}
+
+.D_SideBar .OpenAnotherItems svg:nth-child(3) {
+  transform: translateY(50%) rotate(-90deg);
+  transition: 0.3s;
+  margin-left: 10px;
+}
+
+.D_Wrapper .D_SideBarSubBox {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 2;
+}

@@ -1,0 +1,57 @@
+@font-face {
+  font-family: IRANSans;
+  src: url("../fonts/IRANSans.ttf");
+}
+
+:root {
+  --HeaderHeight: 64px;
+  --WidthSideBar: 260px;
+  --WidthSideBarAdmin: 350px;
+  --MaxHeightSideBar: 95vh;
+  --WidthBoxItem: 450px;
+  --HeightBoxItem: 168px;
+  --FontSizeBoxItem: 18px;
+  --BaseFontFamily: IRANSans;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+table,
+th,
+td {
+  text-align: center;
+  border-spacing: 0px;
+}
+
+body {
+  font-family: var(--BaseFontFamily), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  background-color: #f3f4f6;
+}
+
+html {
+  direction: rtl;
+}
+
+.BoxLoading {
+  background: linear-gradient(60deg, #eeeeee 0%, #eeeeee 35%, #dddddd 45%, #dddddd 55%, #eeeeee 65%, #eeeeee 100%);
+  background-size: 400%;
+  animation: BoxLoading 1.5s infinite;
+}
+
+@keyframes BoxLoading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.D_Wrapper {
+  width: 100%;
+  position: relative;
+}

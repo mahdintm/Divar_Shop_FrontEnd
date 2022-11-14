@@ -1,0 +1,233 @@
+.SubmitAdvertisingContentBox {
+  margin: calc(20px + var(--HeaderHeight)) calc(40px + 26px + var(--WidthSideBarAdmin)) 100px 26px;
+  display: grid;
+  column-gap: 35px;
+  grid-template-areas:
+    "TitlePageBox TitlePageBox TitlePageBox TitlePageBox TitlePageBox"
+    "UploadImageBox UploadImageBox InformationAdBox InformationAdBox InformationAdBox"
+    "DescriptionBox DescriptionBox InformationAdBox InformationAdBox InformationAdBox";
+}
+
+.SubmitAdvertisingContentBox .TitlePage {
+  grid-area: TitlePageBox;
+  display: block;
+}
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox {
+  grid-area: UploadImageBox;
+  margin-top: 40px;
+}
+.SubmitAdvertisingContentBox .DescriptionAdvertisingBox {
+  grid-area: DescriptionBox;
+}
+.SubmitAdvertisingContentBox .InformationAdvertisingBox {
+  grid-area: InformationAdBox;
+  margin-top: 40px;
+}
+
+.SubmitAdvertisingContentBox .TitlePage {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox > span {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox {
+  border-radius: 15px;
+  border: 1px #000000;
+  border-style: dashed;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 120px 0px;
+  text-align: center;
+  color: #707070;
+  width: 100%;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox > span:nth-child(2) {
+  color: rgba(112, 112, 112, 0.5);
+  font-size: 12px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox img {
+  width: 100%;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox > div {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox > .AddPathImageButton {
+  border: 1px solid rgba(112, 112, 112, 0.25);
+  cursor: pointer;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox {
+  text-align: right;
+  position: relative;
+  height: 170px;
+  padding: 20px;
+  display: grid;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 25px;
+  min-width: max-content;
+  width: 100%;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox > span {
+  display: block;
+  padding-left: 140px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox .UploadImageBigBox {
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  border-radius: 15px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox .UploadImageBigBox img {
+  width: 100%;
+}
+
+.SubmitAdvertisingContentBox .DescriptionAdvertisingBox {
+  margin-top: 32px;
+}
+
+.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox > span {
+  color: rgba(37, 37, 37, 0.8);
+}
+
+.SubmitAdvertisingContentBox .DescriptionAdvertisingBox span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: rgba(37, 37, 37, 0.8);
+  display: block;
+}
+
+.SubmitAdvertisingContentBox .DescriptionAdvertisingBox textarea {
+  resize: vertical;
+  width: 100%;
+  background-color: #ffffff;
+  border: unset;
+  outline: unset;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+  font: 14px var(--BaseFontFamily);
+  line-height: 28px;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox > span {
+  margin: 20px 0px 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: rgba(37, 37, 37, 0.8);
+  display: block;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox > span:first-child {
+  margin-top: unset;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input,
+.SubmitAdvertisingContentBox .InformationAdvertisingBox select {
+  border-radius: 7px;
+  color: #252525;
+  font-size: 14px;
+  font-family: var(--BaseFontFamily);
+  border: 1px solid;
+  padding: 4px 15px;
+  outline: none;
+  border-color: #252525;
+  width: 100%;
+  transition: border 0.3s;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox select:focus > option:hover {
+  background: rgba(112, 112, 112, 0.2) !important;
+  cursor: pointer;
+}
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera, Firefox */
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input::-webkit-outer-spin-button,
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input::-webkit-inner-spin-button,
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input:focus,
+.SubmitAdvertisingContentBox .InformationAdvertisingBox select:focus,
+.SubmitAdvertisingContentBox .DescriptionAdvertisingBox textarea:focus {
+  border: 1px solid;
+  border-color: #a62626;
+  transition: border 0.3s;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox {
+  padding: 10px 0px;
+  display: grid;
+  row-gap: 15px;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox .InformationInsertDataBox {
+  display: grid;
+  align-items: center;
+  column-gap: 10px;
+  grid-template-columns: 30% 40px auto;
+}
+
+.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox .InformationInsertDataBox .VerticalLineInformationInsertData {
+  border-bottom: 2px solid #707070;
+  height: 0px;
+  margin: auto;
+  width: 10px;
+}

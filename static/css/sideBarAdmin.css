@@ -1,0 +1,165 @@
+.D_AdminBox {
+  position: fixed;
+  width: var(--WidthSideBarAdmin);
+  height: 534px;
+  top: calc(var(--HeaderHeight) + 20px);
+  right: 16px;
+  border-radius: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  z-index: 150;
+  text-align: right;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.D_AdminBox .HeaderBox {
+  width: 100%;
+  height: 100px;
+  background: #707070;
+  opacity: 0.5;
+}
+
+.D_AdminBox .AvatarBox {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: -50px auto 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.14);
+}
+.D_AdminBox .AvatarBox img {
+  width: 90px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.D_AdminBox .UserInfo {
+  text-align: center;
+  color: #475569;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.D_AdminBox .RankInfoBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 8px;
+  gap: 12px;
+  width: 51px;
+  height: 18px;
+  margin: 10px auto 0px;
+  background: rgba(112, 112, 112, 0.5);
+  border-radius: 4px;
+  color: #252525;
+  font-size: 12px;
+}
+
+.D_AdminBox .AddAdvertisingBox {
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+  width: 200px;
+  height: 32px;
+  cursor: pointer;
+  background: #a62626;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 6px;
+  margin: 20px auto 0px;
+}
+
+.D_AdminBox .AdvertisingInfoBox {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  text-align: center;
+  margin: 20px auto 0px;
+  padding: 20px 0px;
+  position: relative;
+  border-bottom: 2px solid #94a3b8;
+}
+.D_AdminBox .AdvertisingInfoBox div:nth-child(2) {
+  position: absolute;
+  width: 60px;
+  height: 0px;
+  border: 0.5px solid #94a3b8;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0px) rotate(-90deg);
+}
+
+.D_AdminBox .AdvertisingInfoSubBox span {
+  font-size: 20px;
+  line-height: 28px;
+  color: #1e293b;
+}
+
+.D_AdminBox .AdvertisingInfoSubBox span:nth-child(1) {
+  font-family: var(--BaseFontFamily);
+}
+
+.D_AdminBox .AdvertisingInfoSubBox span:nth-child(3) {
+  font-size: 14px;
+  line-height: 20px;
+  color: #707070;
+}
+
+.D_AdminBox .AdminBoxDetails {
+  margin: 20px auto 0px;
+  padding: 0px 10px;
+  width: 100%;
+}
+
+.D_AdminBox .AdminBoxSubDetails {
+  padding: 2px 0px;
+  position: relative;
+}
+
+.D_AdminBox .AdminBoxSubDetails span {
+  font-size: 11px;
+  line-height: 20px;
+  color: #707070;
+  text-align: right;
+}
+
+.D_AdminBox .AdminBoxSubDetails span:nth-child(1) {
+  color: #252525;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: right;
+}
+
+.D_AdminBox .AdminBoxSubDetails div {
+  background: #a62626;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 0px 6px;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  transform: translateY(-50%);
+}

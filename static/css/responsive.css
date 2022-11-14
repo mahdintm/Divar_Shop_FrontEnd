@@ -1,0 +1,13 @@
+@media only screen and (max-width: 768px) {
+  /*Tablet*/
+  :root {
+    /* --WidthSideBar: 140px;
+      --WidthBoxItem: 240px;
+      --HeightBoxItem: 120px;
+      --FontSizeBoxItem: 14px; */
+  }
+  .D_ItemSlotBox {
+    /* width: 28px;
+      height: 28px; */
+  }
+}

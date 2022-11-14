@@ -1,0 +1,385 @@
+.AdminPageChartItemsBox {
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin-right: 385px;
+  margin-top: calc(var(--HeaderHeight) + 20px);
+  user-select: none;
+  cursor: default;
+}
+.AdminPageChartItemsBox::-webkit-scrollbar {
+  height: 5px;
+}
+.AdminPageChartItemsBox::-webkit-scrollbar-thumb {
+  background-color: #a62626;
+  border-radius: 5px;
+}
+.AdminPageChartItemsBox::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+.AdminPageChartItemsBox .AdminPageChartBoxs {
+  margin-left: 16px;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  width: max-content;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox {
+  background-color: #ffffff;
+  display: inline-block;
+  width: 290px;
+  margin-right: 10px;
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 15px;
+  text-align: right;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+  scroll-snap-align: start;
+}
+.AdminPageChartBoxs .AdminPageChartBox:first-child {
+  margin-right: unset;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .TitleBox {
+  width: 100%;
+  padding: 20px;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .TitleBox .IconBox {
+  background-color: #ff9f431f;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .TitleBox .IconBox svg path {
+  fill: #ff9f43;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .TitleBox .TitleTextBox {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: right;
+  color: #252525;
+  margin-top: 10px;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .TitleBox .DescriptionTextBox {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 10px;
+  text-align: right;
+  color: #707070;
+}
+
+.AdminPageChartBoxs .AdminPageChartBox .ChartBox {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+}
+
+.AdminPageContentInfoBox {
+  margin: 20px 385px 40px 20px;
+  user-select: none;
+  cursor: default;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox {
+  height: 500px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+  border-radius: 15px;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartIconSettingBox {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox {
+  padding: 20px;
+  text-align: right;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox > span {
+  color: #252525;
+  font-size: 18px;
+  line-height: 20px;
+  display: block;
+  font-family: var(--BaseFontFamily);
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox .AdminPageBigChartSubTitleBox {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox .FirstElementInBigChart {
+  margin-left: 30px;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox .AdminPageBigChartSubTitleBox > span {
+  color: #707070;
+  font-size: 14px;
+  line-height: 21px;
+  display: block;
+  font-family: var(--BaseFontFamily);
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox .AdminPageBigChartSubTitleBox > span:last-child {
+  font-size: 21px;
+  line-height: 21px;
+  font-family: var(--BaseFontFamily);
+  margin-top: 5px;
+}
+
+.AdminPageContentInfoBox .AdminPageBigChartBox .AdminPageBigChartTitleBox .FirstElementInBigChart > span:last-child {
+  color: #a62626;
+}
+
+.AdminPageBigChartBox .AdminPageBigChartSeriesBox {
+  width: 100%;
+}
+
+.AdminPageBigChartSeriesBox .AdminPageApexChartsLabels,
+.AdminPageBigChartSeriesBox .apexcharts-text tspan {
+  font-family: var(--BaseFontFamily) !important;
+  font-size: 16px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox {
+  height: 500px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0px 0px 30px -20px rgb(0 0 0 / 25%);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table {
+  width: 100%;
+  height: 100%;
+  font-family: var(--BaseFontFamily);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 21px;
+  font-weight: 700;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table thead {
+  background-color: rgba(112, 112, 112, 0.15);
+  color: #252525;
+  height: 40px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot {
+  height: 50px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr {
+  background: #ffffff;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr:hover {
+  background: rgba(112, 112, 112, 0.15);
+  transition: background 0.3s;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr td {
+  border-bottom: 2px solid #dddce0;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr td:first-child {
+  color: #a62626;
+  width: 50px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage {
+  text-align: right;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage > div {
+  display: grid;
+  grid-template-columns: 40px auto;
+  justify-content: right;
+  align-items: center;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage .AvatarInUserTableAdminPage {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage .AvatarInUserTableAdminPage img {
+  width: 100%;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage .ClientUsernameBoxInAdminPage {
+  color: #6e6b7b;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserInformationBoxTableAdminPage .ClientContactInfoInAdminBox {
+  color: #b9b9c3;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 100;
+  font-family: var(--BaseFontFamily);
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .UserBuyInformationBoxTableAdminPage {
+  color: #6e6b7b;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .OfflineClientShowInAdminPage {
+  padding: 1px 12px;
+  font-size: 14px;
+  border-radius: 17px;
+  color: #a62626;
+  background: rgba(166, 38, 38, 0.12);
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tbody tr .OnlineClientShowInAdminPage {
+  padding: 1px 12px;
+  font-size: 14px;
+  border-radius: 17px;
+  color: #28c76f;
+  background: rgba(40, 199, 111, 0.12);
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot {
+  position: relative;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td:first-child {
+  width: calc(100% - 260px);
+  height: 100%;
+  position: absolute;
+  display: grid;
+  justify-content: right;
+  align-items: center;
+  top: 0px;
+  right: 0px;
+  grid-template-columns: 80%;
+  padding-right: 20px;
+  transition: 0.3s;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td:first-child:has(.UserTableAdminPageSearchBox input:focus) {
+  grid-template-columns: 100%;
+  transition: 0.3s;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td:last-child {
+  position: absolute;
+  width: 260px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: unset;
+  grid-template-columns: 30px 150px 30px;
+  gap: 4px;
+  padding: 0px 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td div {
+  background: rgba(112, 112, 112, 0.15);
+  border-radius: 16px;
+  height: 28px;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .UserTableAdminPageSearchBox {
+  display: grid;
+  justify-content: right;
+  align-items: center;
+  grid-template-columns: 20px calc(100% - 20px);
+  overflow: hidden;
+  padding: 2px 14px 2px 0px;
+  cursor: pointer;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .UserTableAdminPageSearchBox input {
+  background-color: unset;
+  border: unset;
+  outline: unset;
+  width: 100%;
+  height: 100%;
+  font-family: var(--BaseFontFamily);
+  font-size: 16px;
+  color: #252525;
+  transition: width 0.3s;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .SlideButtonAdminPage {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .SlideButtonAdminPage svg path {
+  fill: #a62626;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .SlideIDBoxAdminPage {
+  height: 28px;
+  width: 140px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
+  font-family: var(--BaseFontFamily);
+  font-weight: 100;
+  color: #6e6b7b;
+}
+
+.AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot td .SlideIDBoxAdminPage .SlideIDBoxSeleced {
+  background-color: #a62626;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-top: -2px;
+}
