@@ -1,16 +1,8 @@
 <template>
   <div class="D_Content">
-    <Content_Item_registration
-      v-for="item in content_item"
-      :key="item.id"
-      :title_="item.title"
-      :description="item.description"
-      :price="item.price"
-      :time="item.time"
-      :registrations="item.registrations"
-      :image="item.imgs"
-      :link="item.id"
-    />
+    <Content_Item_registration v-for="item in content_item" :key="item.id" :title_="item.title"
+      :description="item.description" :price="item.price" :time="item.time" :registrations="item.registrations"
+      :image="item.imgs" :link="item.id" />
   </div>
 </template>
 
@@ -30,3 +22,6 @@ export default {
   },
 }
 </script>
+<style>
+@import url(@/static/css/content.css);
+</style>

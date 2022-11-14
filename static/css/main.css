@@ -38,6 +38,10 @@ html {
   direction: rtl;
 }
 
+input:-internal-autofill-selected {
+  background-color: #ffffff !important;
+}
+
 .BoxLoading {
   background: linear-gradient(
     60deg,

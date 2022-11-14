@@ -1,3 +1,71 @@
+.AlertModalBox {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: grid;
+  gap: 6px;
+  z-index: 2000;
+}
+
+.AlertModalBox .AlertModalSubBox {
+  border-radius: 5px;
+  width: 400px;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: var(--BaseFontFamily);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 10px 14px;
+  position: relative;
+  margin-right: -450px;
+  transition: margin-right 0.3s;
+}
+
+.AlertModalBox .AlertModalSubBox.Active {
+  margin-right: 0px;
+  transition: margin-right 0.6s;
+}
+
+.AlertModalBox .AlertModalSubBox > span > span {
+  font-weight: bold;
+}
+
+.AlertModalBox .AlertModalSubBox .IconBox {
+  position: absolute;
+  left: 12px;
+  cursor: pointer;
+}
+
+.AlertModalBox .AlertModalSubBox.DangerAlert {
+  background: rgba(166, 38, 38, 0.12);
+  color: #a62626;
+}
+
+.AlertModalBox .AlertModalSubBox.DangerAlert .IconBox svg path {
+  fill: #a62626;
+}
+
+.AlertModalBox .AlertModalSubBox.SuccessAlert {
+  background: rgba(40, 199, 111, 0.12);
+  color: #28c76f;
+}
+
+.AlertModalBox .AlertModalSubBox.SuccessAlert .IconBox svg path {
+  fill: #28c76f;
+}
+
+.AlertModalBox .AlertModalSubBox.WarningAlert {
+  background: rgba(255, 159, 67, 0.12);
+  color: #ff9f43;
+}
+
+.AlertModalBox .AlertModalSubBox.WarningAlert .IconBox svg path {
+  fill: #ff9f43;
+}
+
 .gridLoginTabs {
   display: grid;
   grid-template-columns: 30% 70%;
@@ -55,6 +123,10 @@
   outline: none;
   width: 100%;
   font-size: 1vw;
+}
+
+.LoginContent input:-internal-autofill-selected {
+  background-color: #ffffff !important;
 }
 
 .LoginContent input:focus {

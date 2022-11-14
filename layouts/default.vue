@@ -52,7 +52,8 @@ export default {
     async function check_login(app) {
       const response = await fetch(
         `http://${process.env.server_URL}/account/user`,
-        {headers: { 'Content-Type': 'application/json' },
+        {
+          headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
         }
       )
@@ -92,7 +93,6 @@ export default {
 
 <style>
 @import url(@/static/css/main.css);
-@import url(@/static/css/content.css);
 @import url(@/static/css/responsive.css);
 
 .loading-page {
@@ -109,13 +109,19 @@ export default {
 }
 
 * {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
 }
+
 a {
   text-decoration: none !important;
 }
