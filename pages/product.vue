@@ -134,8 +134,30 @@ export default {
           this.ImgMain = document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0].src;
         }
     },
-    registerProduct() { },
-    disregisterProduct() { },
+    async registerProduct() {
+     let response =  await fetch(`http://${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`)
+     const content = await response.json()
+     if (content.res) {
+      this.userRegiter=true
+      this.item = await fetch(
+      `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+    ).then((res) => res.json())
+     }else{
+      return
+     }
+    },
+    async disregisterProduct() {
+      let response =  await fetch(`http://${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`)
+     const content = await response.json()
+     if (content.res) {
+      this.userRegiter=false
+      this.item = await fetch(
+      `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+    ).then((res) => res.json())
+     }else{
+      return
+     }
+    },
   },
   async mounted() {
     this.item = await fetch(
