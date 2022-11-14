@@ -133,8 +133,6 @@ export default {
           document.getElementsByClassName('SmallImageSubBox')[i].classList.add('SelectedImage');
           this.ImgMain = document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0].src;
         }
-
-      console.log(element.srcElement.getAttribute('ImageKey'))
     },
     registerProduct() { },
     disregisterProduct() { },
