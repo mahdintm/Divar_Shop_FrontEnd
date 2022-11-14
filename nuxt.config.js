@@ -7,6 +7,7 @@ export default {
   ssr: false,
   env: {
     server_URL: 'localhost:3001',
+    server_cdn_URL: 'localhost:3002',
   },
   loading: {
     color: '#a7211b',
@@ -28,7 +29,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/static/js/fontawesome.min.js', '@/static/js/duotone.min.js'],
+  plugins: [
+    '@/static/js/fontawesome.min.js',
+    '@/static/js/duotone.min.js',
+    // '@/static/js/apexchart.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

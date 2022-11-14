@@ -102,7 +102,7 @@
   position: relative;
 }
 .ActiveMarkIcon::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 5px;
   height: 5px;
@@ -240,7 +240,7 @@
 /* Chrome, Safari, Edge, Opera, Firefox */
 .D_Header .ContentInputBox input::-webkit-outer-spin-button,
 .D_Header .ContentInputBox input::-webkit-inner-spin-button,
-.D_Header .ContentInputBox input[type="number"] {
+.D_Header .ContentInputBox input[type='number'] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: textfield;

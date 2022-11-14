@@ -1,9 +1,16 @@
 <template>
-    <body>
+  <body>
     <div class="gridLoginTabs">
       <div class="LoginBox">
         <div class="LoginContent">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="DivarIcon" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="DivarIcon"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -25,13 +32,40 @@
             <label for="PasswordInput">
               <span>رمز عبور</span>
               <div class="LoginInputBox">
-                <input @keyup.enter="submit" v-model="password" type="password" id="PasswordInput" />
+                <input
+                  @keyup.enter="submit"
+                  v-model="password"
+                  type="password"
+                  id="PasswordInput"
+                />
                 <span>
-                  <div id="InputEye" class="InputEye" @click="TogglePasswordType()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" class="InputEye" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C15.5878 4 18.7554 6.43241 21.5113 11.1435L21.7172 11.5011L22 12L21.5113 12.8565C18.7554 17.5676 15.5878 20 12 20C8.41215 20 5.24464 17.5676 2.48874 12.8565L2.28282 12.4989L2 12L2.28282 11.5011C5.08652 6.55556 8.32245 4 12 4ZM12 6C9.29692 6 6.72829 7.91554 4.30532 12C6.72829 16.0845 9.29692 18 12 18C14.6297 18 17.1289 16.1901 19.487 12.3447L19.6948 12.0001L19.4867 11.6553C17.1249 7.80768 14.6259 6 12 6ZM12 9C13.6569 9 15 10.3431 15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9Z" />
+                  <div
+                    id="InputEye"
+                    class="InputEye"
+                    @click="TogglePasswordType()"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      class="InputEye"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 4C15.5878 4 18.7554 6.43241 21.5113 11.1435L21.7172 11.5011L22 12L21.5113 12.8565C18.7554 17.5676 15.5878 20 12 20C8.41215 20 5.24464 17.5676 2.48874 12.8565L2.28282 12.4989L2 12L2.28282 11.5011C5.08652 6.55556 8.32245 4 12 4ZM12 6C9.29692 6 6.72829 7.91554 4.30532 12C6.72829 16.0845 9.29692 18 12 18C14.6297 18 17.1289 16.1901 19.487 12.3447L19.6948 12.0001L19.4867 11.6553C17.1249 7.80768 14.6259 6 12 6ZM12 9C13.6569 9 15 10.3431 15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9Z"
+                      />
                     </svg>
-                    <svg width="20" height="20" viewBox="0 0 24 24" class="InputEye" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      class="InputEye"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <path
                         fill-rule="evenodd"
                         clip-rule="evenodd"
@@ -48,7 +82,9 @@
               <input id="cbx" type="checkbox" class="invisible" />
               <div class="checkbox">
                 <svg width="20px" height="20px" viewBox="0 0 20 20">
-                  <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
+                  <path
+                    d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"
+                  ></path>
                   <polyline points="4 11 8 15 16 6"></polyline>
                 </svg>
               </div>
@@ -60,7 +96,13 @@
         </div>
       </div>
       <div class="VectorBox">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1117" height="773" viewBox="0 0 1117 773">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="1117"
+          height="773"
+          viewBox="0 0 1117 773"
+        >
           <image
             x="22"
             y="9"
@@ -71,54 +113,55 @@
         </svg>
       </div>
     </div>
-</body>
+  </body>
 </template>
 
 <script>
 export default {
-    layout: 'none',
-    data() {
-      return {
-        username:"",
-        password:""
-      }
-    },
+  layout: 'none',
+  data() {
+    return {
+      username: '',
+      password: '',
+    }
+  },
 
-    methods: {
-      TogglePasswordType() {
-            var elem = document.getElementById('InputEye')
-            elem.classList.toggle("CloseEye");
-            if (elem.classList.contains("CloseEye")) document.getElementById("PasswordInput").type ="text";
-            else document.getElementById("PasswordInput").type = "password";
-          },
-      async submit() {
-        if (this.username==""||this.password=="") return alert("bodo")
+  methods: {
+    TogglePasswordType() {
+      var elem = document.getElementById('InputEye')
+      elem.classList.toggle('CloseEye')
+      if (elem.classList.contains('CloseEye'))
+        document.getElementById('PasswordInput').type = 'text'
+      else document.getElementById('PasswordInput').type = 'password'
+    },
+    async submit() {
+      if (this.username == '' || this.password == '') return alert('bodo')
       await fetch(`http://${process.env.server_URL}/account/login`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
           username: this.username,
-          password: this.password
-        })
-      });
-      await this.$router.push('/');
-    }
+          password: this.password,
+        }),
+      })
+      await this.$router.push('/')
     },
+  },
 }
 </script>
 <style>
 @font-face {
   font-family: IRANSans;
-  src: url("@/static/fonts/IRANSans.ttf");
+  src: url('@/static/fonts/IRANSans.ttf');
 }
 @font-face {
   font-family: IRANSans_Regular;
-  src: url("@/static/fonts/IRAN_Sans_Regular.ttf");
+  src: url('@/static/fonts/IRAN_Sans_Regular.ttf');
 }
 @font-face {
   font-family: IRANSans_Bold;
-  src: url("@/static/fonts/IRAN_Sans_Bold.ttf");
+  src: url('@/static/fonts/IRAN_Sans_Bold.ttf');
 }
 
 :root {
@@ -135,7 +178,9 @@ export default {
 }
 
 body {
-  font-family: var(--BaseFontFamily), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--BaseFontFamily), -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   background-color: #f3f4f6;
 }
 
@@ -346,8 +391,8 @@ html {
   margin-top: 35px;
   transition: box-shadow 0.3s;
 }
-label{
-    width: 100%;
+label {
+  width: 100%;
 }
 
 .LoginButton:hover:not(.disabled):not(:disabled) {
@@ -372,5 +417,4 @@ label{
     max-width: 100%;
   }
 }
-
 </style>

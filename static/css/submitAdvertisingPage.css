@@ -1,11 +1,12 @@
 .SubmitAdvertisingContentBox {
-  margin: calc(20px + var(--HeaderHeight)) calc(40px + 26px + var(--WidthSideBarAdmin)) 100px 26px;
+  margin: calc(20px + var(--HeaderHeight))
+    calc(40px + 26px + var(--WidthSideBarAdmin)) 100px 26px;
   display: grid;
   column-gap: 35px;
   grid-template-areas:
-    "TitlePageBox TitlePageBox TitlePageBox TitlePageBox TitlePageBox"
-    "UploadImageBox UploadImageBox InformationAdBox InformationAdBox InformationAdBox"
-    "DescriptionBox DescriptionBox InformationAdBox InformationAdBox InformationAdBox";
+    'TitlePageBox TitlePageBox TitlePageBox TitlePageBox TitlePageBox'
+    'UploadImageBox UploadImageBox InformationAdBox InformationAdBox InformationAdBox'
+    'DescriptionBox DescriptionBox InformationAdBox InformationAdBox InformationAdBox';
 }
 
 .SubmitAdvertisingContentBox .TitlePage {
@@ -43,7 +44,9 @@
   display: block;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox {
   border-radius: 15px;
   border: 1px #000000;
   border-style: dashed;
@@ -58,12 +61,18 @@
   width: 100%;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox > span:nth-child(2) {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  > span:nth-child(2) {
   color: rgba(112, 112, 112, 0.5);
   font-size: 12px;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  .UploadImagesBox {
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -73,11 +82,19 @@
   column-gap: 8px;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox img {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  .UploadImagesBox
+  img {
   width: 100%;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox > div {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  .UploadImagesBox
+  > div {
   width: 55px;
   height: 55px;
   display: flex;
@@ -87,7 +104,11 @@
   border-radius: 15px;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .UploadAdvertisingImagesSubBox .UploadImagesBox > .AddPathImageButton {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .UploadAdvertisingImagesSubBox
+  .UploadImagesBox
+  > .AddPathImageButton {
   border: 1px solid rgba(112, 112, 112, 0.25);
   cursor: pointer;
 }
@@ -111,7 +132,10 @@
   padding-left: 140px;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox .UploadImageBigBox {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .FirstBox
+  .UploadImageBigBox {
   width: 130px;
   height: 130px;
   overflow: hidden;
@@ -123,7 +147,11 @@
   border-radius: 15px;
 }
 
-.SubmitAdvertisingContentBox .UploadAdvertisingImagesBox .FirstBox .UploadImageBigBox img {
+.SubmitAdvertisingContentBox
+  .UploadAdvertisingImagesBox
+  .FirstBox
+  .UploadImageBigBox
+  img {
   width: 100%;
 }
 
@@ -188,16 +216,23 @@
   transition: border 0.3s;
 }
 
-.SubmitAdvertisingContentBox .InformationAdvertisingBox select:focus > option:hover {
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  select:focus
+  > option:hover {
   background: rgba(112, 112, 112, 0.2) !important;
   cursor: pointer;
 }
 
 /* Hide Arrows From Input Number */
 /* Chrome, Safari, Edge, Opera, Firefox */
-.SubmitAdvertisingContentBox .InformationAdvertisingBox input::-webkit-outer-spin-button,
-.SubmitAdvertisingContentBox .InformationAdvertisingBox input::-webkit-inner-spin-button,
-.SubmitAdvertisingContentBox .InformationAdvertisingBox input[type="number"] {
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  input::-webkit-outer-spin-button,
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  input::-webkit-inner-spin-button,
+.SubmitAdvertisingContentBox .InformationAdvertisingBox input[type='number'] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: textfield;
@@ -212,20 +247,29 @@
   transition: border 0.3s;
 }
 
-.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox {
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  .InformationAdvertisingSubBox {
   padding: 10px 0px;
   display: grid;
   row-gap: 15px;
 }
 
-.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox .InformationInsertDataBox {
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  .InformationAdvertisingSubBox
+  .InformationInsertDataBox {
   display: grid;
   align-items: center;
   column-gap: 10px;
   grid-template-columns: 30% 40px auto;
 }
 
-.SubmitAdvertisingContentBox .InformationAdvertisingBox .InformationAdvertisingSubBox .InformationInsertDataBox .VerticalLineInformationInsertData {
+.SubmitAdvertisingContentBox
+  .InformationAdvertisingBox
+  .InformationAdvertisingSubBox
+  .InformationInsertDataBox
+  .VerticalLineInformationInsertData {
   border-bottom: 2px solid #707070;
   height: 0px;
   margin: auto;

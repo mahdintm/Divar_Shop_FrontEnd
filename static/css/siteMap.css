@@ -1,5 +1,6 @@
 .SiteMapBox {
-  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
+  margin: calc(20px + var(--HeaderHeight))
+    calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
   display: flex;
   justify-content: right;
   align-items: center;

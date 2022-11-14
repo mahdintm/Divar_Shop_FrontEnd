@@ -1,38 +1,39 @@
 <template>
-  <div v-if="auth" lang="fa">
-    <div class="loading-page" v-if="loading">
-      <p>Loading...</p>
-    </div>
-    <div v-if="!isMobile" class="D_Wrapper">
-      <NavBar_PC></NavBar_PC>
-      <SideBar_PC></SideBar_PC>
-      <nuxt />
+  <div>
+    <div v-if="auth" lang="fa">
+      <div class="loading-page" v-if="loading">
+        <p>Loading...</p>
+      </div>
+      <div v-if="!isMobile" class="D_Wrapper">
+        <NavBar_PC></NavBar_PC>
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import NavBar_PC from '~/components/pc/navbar.vue'
-import SideBar_PC from '~/components/pc/sidebar.vue'
 import NavBar_Mobile from '~/components/mobile/navbar.vue'
+
 export default {
+  components: {
+    NavBar_PC,
+    NavBar_Mobile,
+  },
   head() {
     return {
       script: [
+        {
+          src: 'https://cdn.jsdelivr.net/npm/apexcharts',
+          body: true,
+          async: true,
+        },
         {
           src: 'https://cdn.lordicon.com/qjzruarw.js',
           body: true,
           async: true,
         },
       ],
-    }
-  },
-  data() {
-    return {
-      isMobile: false,
-      posts: '',
-      auth: false,
-      loading: false,
-      login_check_interval: false,
     }
   },
   methods: {
@@ -43,16 +44,21 @@ export default {
       this.loading = false
     },
   },
-  components: {
-    NavBar_PC,
-    SideBar_PC,
-    NavBar_Mobile,
+  data() {
+    return {
+      isMobile: false,
+      posts: '',
+      auth: false,
+      loading: false,
+      login_check_interval: false,
+    }
   },
-  async mounted() {
+  mounted() {
     async function check_login(app) {
       const response = await fetch(
         `http://${process.env.server_URL}/account/user`,
-        {headers: { 'Content-Type': 'application/json' },
+        {
+          headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
         }
       )
@@ -89,25 +95,14 @@ export default {
   },
 }
 </script>
-
 <style>
 @import url(@/static/css/main.css);
-@import url(@/static/css/content.css);
-@import url(@/static/css/responsive.css);
-
-.loading-page {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding-top: 200px;
-  font-size: 30px;
-  font-family: sans-serif;
+@import url(@/static/css/header.css);
+@import url(@/static/css/sideBarAdmin.css);
+@import url(@/static/css/adminPage.css);
+a {
+  text-decoration: none !important;
 }
-
 * {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -115,8 +110,5 @@ export default {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
-}
-a {
-  text-decoration: none !important;
 }
 </style>

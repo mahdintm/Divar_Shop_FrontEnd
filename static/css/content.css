@@ -1,6 +1,7 @@
 .D_Wrapper .D_Content {
   width: auto;
-  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
+  margin: calc(20px + var(--HeaderHeight))
+    calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--WidthBoxItem), 1fr));
   gap: 10px;
@@ -28,7 +29,7 @@
 }
 
 .D_Content .D_ItemImage::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 500px;
   height: 300px;
@@ -42,7 +43,7 @@
 }
 
 .D_Content .D_ContentItem:hover .D_ItemImage::before {
-  content: "";
+  content: '';
   top: -240px;
 }
 

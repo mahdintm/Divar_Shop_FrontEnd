@@ -1,11 +1,12 @@
 .AdvertisingContentBox {
-  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 100px 26px;
+  margin: calc(20px + var(--HeaderHeight))
+    calc(16px + 26px + var(--WidthSideBar)) 100px 26px;
   display: grid;
   justify-content: center;
   column-gap: 100px;
   grid-template-areas:
-    "SiteMap SiteMap"
-    "RightPanel LeftPanel";
+    'SiteMap SiteMap'
+    'RightPanel LeftPanel';
 }
 
 .AdvertisingContentBox .SiteMapBox {
@@ -122,7 +123,9 @@
   font-style: normal;
 }
 
-.AdvertisingBox .AdvertisingInformationBox .AdvertisingInformationSubBox:last-child {
+.AdvertisingBox
+  .AdvertisingInformationBox
+  .AdvertisingInformationSubBox:last-child {
   border: unset;
 }
 
@@ -227,7 +230,7 @@
 
 .AdvertisingContentBox .SmallImageBox .SmallImageSubBox.SelectedImage::before {
   background-color: unset;
-  content: "";
+  content: '';
   position: absolute;
   width: 500px;
   height: 300px;
@@ -259,12 +262,17 @@
   border: unset;
 }
 
-.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox {
+.AdvertisingContentBox
+  .RateOrderOfAdvertisingBox
+  .RateOrderOfAdvertisingSubBox {
   display: flex;
   gap: 10px;
 }
 
-.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .AvatarClientBox {
+.AdvertisingContentBox
+  .RateOrderOfAdvertisingBox
+  .RateOrderOfAdvertisingSubBox
+  .AvatarClientBox {
   border-radius: 5px;
   width: 42px;
   height: 42px;
@@ -274,18 +282,28 @@
   align-items: center;
 }
 
-.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .AvatarClientBox img {
+.AdvertisingContentBox
+  .RateOrderOfAdvertisingBox
+  .RateOrderOfAdvertisingSubBox
+  .AvatarClientBox
+  img {
   width: 100%;
 }
 
-.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .ClientInfoBox {
+.AdvertisingContentBox
+  .RateOrderOfAdvertisingBox
+  .RateOrderOfAdvertisingSubBox
+  .ClientInfoBox {
   font-size: 14px;
   color: #707070;
   text-align: right;
   font-weight: 400;
 }
 
-.AdvertisingContentBox .RateOrderOfAdvertisingBox .RateOrderOfAdvertisingSubBox .RateValueBox {
+.AdvertisingContentBox
+  .RateOrderOfAdvertisingBox
+  .RateOrderOfAdvertisingSubBox
+  .RateValueBox {
   font-size: 12px;
   color: #bbbbbb;
   text-align: right;

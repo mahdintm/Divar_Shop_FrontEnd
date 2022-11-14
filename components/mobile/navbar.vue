@@ -1,10 +1,8 @@
 <template>
-    <div >
-        Mobile Nav
-    </div>
+  <div>Mobile Nav</div>
 </template>
 <script>
 export default {
-    name:"NavBar_Mobile"
+  name: 'NavBar_Mobile',
 }
 </script>
