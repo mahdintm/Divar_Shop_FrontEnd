@@ -66,10 +66,10 @@
         </div>
       </div>
       <div class="SmallImageBox">
-        <div @click="selectPhoto" ImageKey="1" class="SmallImageSubBox SelectedImage">
-          <img src="@/static/img/Item1.png" alt="" />
+        <div v-for="item_ of item.imgs" @click="selectPhoto" :ImageKey="ite" class="SmallImageSubBox SelectedImage">
+          <img :src="item_" alt="" />
         </div>
-        <div @click="selectPhoto" ImageKey="2" class="SmallImageSubBox">
+        <!-- <div @click="selectPhoto" ImageKey="2" class="SmallImageSubBox">
           <img src="@/static/img/Item2.png" alt="" />
         </div>
         <div @click="selectPhoto" ImageKey="3" class="SmallImageSubBox">
@@ -80,7 +80,7 @@
         </div>
         <div @click="selectPhoto" ImageKey="5" class="SmallImageSubBox">
           <img src="@/static/img/Item5.png" alt="" />
-        </div>
+        </div> -->
       </div>
       <div class="RateOrderOfAdvertising">
         <RateOrderOfAdvertisingSubBox v-for="itm in item.registrations" :key="itm" :id="itm" />

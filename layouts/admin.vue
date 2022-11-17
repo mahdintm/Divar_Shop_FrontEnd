@@ -11,6 +11,7 @@
           <div class="AvatarBox"><img src="@/static/img/avatar.png" alt="" /></div>
           <div class="UserInfo">شیوا کمالی</div>
           <div class="RankInfoBox">ادمین</div>
+          <nuxt-link to="sabt">
           <div class="AddAdvertisingBox">
             <span>ثبت آگهی</span>
             <svg width="18" height="18" viewBox="0 0 32 32" fill="none" :xmlns="'http://www.w3.org/2000/svg%22%3E'">
@@ -19,6 +20,7 @@
                 fill="#ffffff" />
             </svg>
           </div>
+        </nuxt-link>
           <div class="AdvertisingInfoBox">
             <div class="AdvertisingInfoSubBox">
               <span>27</span><br /><span>آگهی های فعال</span>

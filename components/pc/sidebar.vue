@@ -143,7 +143,8 @@
           />
         </svg>
       </div>
-      <div class="D_SideBarSubItem">
+      <nuxt-link to="admin">
+        <div class="D_SideBarSubItem">
         <svg
           width="20"
           height="20"
@@ -174,6 +175,8 @@
           />
         </svg>
       </div>
+      </nuxt-link>
+      
     </div>
   </div>
 </template>
