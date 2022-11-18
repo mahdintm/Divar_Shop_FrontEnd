@@ -2,7 +2,7 @@
   <div class="D_SideBar">
     <div class="D_SideBarSubBox">
       <div class="D_SideBarSubBoxTitle">دسته ها</div>
-      <div class="D_SideBarSubBoxItems">
+      <div class="D_SideBarSubBoxItems D_Topmenu">
         <div class="D_SideBarSubBoxItems">
           <SideBarItem
             v-for="item in items"
@@ -195,6 +195,8 @@ export default {
     this.items = await fetch(
       `http://${process.env.server_URL}/api/sidebar`
     ).then((res) => res.json())
+
+    console.log(this.items)
   },
 }
 </script>

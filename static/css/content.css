@@ -1,7 +1,6 @@
 .D_Wrapper .D_Content {
   width: auto;
-  margin: calc(20px + var(--HeaderHeight))
-    calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
+  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--WidthBoxItem), 1fr));
   gap: 10px;
@@ -29,7 +28,7 @@
 }
 
 .D_Content .D_ItemImage::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 500px;
   height: 300px;
@@ -43,7 +42,7 @@
 }
 
 .D_Content .D_ContentItem:hover .D_ItemImage::before {
-  content: '';
+  content: "";
   top: -240px;
 }
 
@@ -68,7 +67,7 @@
   font-family: var(--BaseFontFamily);
   font-style: normal;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 24px;
   height: 26px;
   text-align: right;
@@ -81,13 +80,13 @@
   font-family: var(--BaseFontFamily);
   font-style: normal;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 10px;
   line-height: 24px;
   text-align: right;
   color: #707070;
   width: 66%;
   overflow: hidden;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .D_ItemPrice {
@@ -95,16 +94,16 @@
   width: 66%;
   overflow: hidden;
   font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
   text-align: right;
   color: #252525;
-  margin-top: 12px;
+  margin-top: 5px;
 }
 
 .D_ItemCreateTime {
-  margin-top: 5px;
+  margin-top: 17px;
   font-family: var(--BaseFontFamily);
   width: fit-content;
   max-width: 200px;

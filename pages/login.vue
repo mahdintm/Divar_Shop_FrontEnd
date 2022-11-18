@@ -32,7 +32,7 @@
               <label for="UsernameInput">
                 <span>نام کاربری</span>
                 <div class="InputIntoThisBox">
-                  <input type="text" id="UsernameInput" v-model="username" autofocus />
+                  <input type="text" id="UsernameInput" v-model="username" autofocus @keydown.enter="submit()"/>
                   <div class="AlertInputBox" id="AlertInputUsernameBox">
                     <lord-icon src="https://cdn.lordicon.com/vacmyjrh.json" trigger="loop" colors="primary:#a62626"
                       state="hover-2" style="width: 20px; height: 20px"> </lord-icon>
@@ -45,7 +45,7 @@
               <label for="PasswordInput">
                 <span>رمز عبور</span>
                 <div class="InputIntoThisBox">
-                  <input type="password" id="PasswordInput" v-model="password" />
+                  <input type="password" id="PasswordInput" v-model="password" @keydown.enter="submit()"/>
                   <div class="AlertInputBox GotoRightPanel" id="AlertInputPasswordBox">
                     <lord-icon src="https://cdn.lordicon.com/vacmyjrh.json" trigger="loop" colors="primary:#a62626"
                       state="hover-2" style="width: 20px; height: 20px"> </lord-icon>

@@ -12,6 +12,11 @@ export default {
           body: true,
           async: true,
         },
+        {
+          src: "https://cdn.jsdelivr.net/npm/apexcharts",
+          body: true,
+          async: true,
+        },
       ],
     }
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="D_Content">
     <Content_Item_registration v-for="item in content_item" :key="item.id" :title_="item.title"
-      :description="item.description" :price="item.price" :time="item.time" :registrations="item.registrations"
+      :description="item.description" :price="item.price" :time="'item.time'" :registrations="item.registrations"
       :image="item.imgs" :link="item.id" />
   </div>
 </template>

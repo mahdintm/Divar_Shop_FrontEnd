@@ -206,7 +206,7 @@
 
 .AdvertisingContentBox .SmallImageBox {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   gap: 10px;
   margin-top: 15px;
 }

@@ -30,7 +30,7 @@
           <div class="SubmitAdvertisingButton" @click="registerProduct" v-if="!userRegiter">
             سفارش
           </div>
-          <div class="SubmitAdvertisingButton" @click="disregisterProduct" v-if="userRegiter">
+          <div class="SaveAdvertisingButton" @click="disregisterProduct" v-if="userRegiter">
             لغو سفارش
           </div>
           <!-- <div class="SaveAdvertisingButton">نشان کردن</div> -->
@@ -66,21 +66,9 @@
         </div>
       </div>
       <div class="SmallImageBox">
-        <div v-for="item_ of item.imgs" @click="selectPhoto" :ImageKey="ite" class="SmallImageSubBox SelectedImage">
+        <div v-for="item_ of item.imgs" :key="item_" @click="selectPhoto" :ImageKey="ite" class="SmallImageSubBox SelectedImage">
           <img :src="item_" alt="" />
         </div>
-        <!-- <div @click="selectPhoto" ImageKey="2" class="SmallImageSubBox">
-          <img src="@/static/img/Item2.png" alt="" />
-        </div>
-        <div @click="selectPhoto" ImageKey="3" class="SmallImageSubBox">
-          <img src="@/static/img/Item3.png" alt="" />
-        </div>
-        <div @click="selectPhoto" ImageKey="4" class="SmallImageSubBox">
-          <img src="@/static/img/Item4.png" alt="" />
-        </div>
-        <div @click="selectPhoto" ImageKey="5" class="SmallImageSubBox">
-          <img src="@/static/img/Item5.png" alt="" />
-        </div> -->
       </div>
       <div class="RateOrderOfAdvertising">
         <RateOrderOfAdvertisingSubBox v-for="itm in item.registrations" :key="itm" :id="itm" />

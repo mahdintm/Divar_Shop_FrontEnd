@@ -18,13 +18,179 @@
           </div>
           <div class="ChartBox">
             <div class="InsertChartInAdminPage" :color="chartInfo.color" :dataChart="chartInfo.data"></div>
-            <apexchart :options="ChartOption"></apexchart>
+            <!-- <apexchart :options="ChartOption"></apexchart> -->
           </div>
         </div>
 
 
       </div>
     </div>
+
+
+
+
+    <div class="AdminPageContentInfoBox">
+        <div class="AdminPageBigChartBox">
+          <div class="AdminPageBigChartIconSettingBox">
+            <lord-icon src="https://cdn.lordicon.com/dycatgju.json" trigger="hover" id="SettingIcon" class="SettingIcon" colors="primary:#BABFC7" style="width: 24px; height: 24px"> </lord-icon>
+          </div>
+          <div class="AdminPageBigChartTitleBox">
+            <span>نمودار تست</span>
+            <div class="AdminPageBigChartSubTitleBox FirstElementInBigChart">
+              <span>ماه اول</span>
+              <span>1.750 تومان</span>
+            </div>
+            <div class="AdminPageBigChartSubTitleBox">
+              <span>ماه آخر</span>
+              <span>8.960 تومان</span>
+            </div>
+          </div>
+          <div class="AdminPageBigChartSeriesBox" id="AdminPageBigChartSeriesBox"></div>
+        </div>
+
+        <div class="AdminPageUserInfoTableBox">
+          <table>
+            <thead>
+              <th>#</th>
+              <th>اکانت</th>
+              <th>مقدار خرید</th>
+              <th>وضعیت</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar2.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OfflineClientShowInAdminPage">آفلاین</span></td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar2.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OfflineClientShowInAdminPage">آفلاین</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar3.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OfflineClientShowInAdminPage">آفلاین</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OfflineClientShowInAdminPage">آفلاین</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar3.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OnlineClientShowInAdminPage">آنلاین</span></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OfflineClientShowInAdminPage">آفلاین</span></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td class="UserInformationBoxTableAdminPage">
+                  <div>
+                    <div class="AvatarInUserTableAdminPage"><img src="@/static/img/avatar2.png" alt="" /></div>
+                    <div class="ClientInfoInAdminPage">
+                      <div class="ClientUsernameBoxInAdminPage">سارا شریفی</div>
+                      <div class="ClientContactInfoInAdminBox">SaraSharifi@gmail.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="UserBuyInformationBoxTableAdminPage">10,000 تومان</td>
+                <td><span class="OnlineClientShowInAdminPage">آنلاین</span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <td>
+                <label for="UserTableAdminPageSearchInput">
+                  <div class="UserTableAdminPageSearchBox">
+                    <lord-icon src="https://cdn.lordicon.com/rlizirgt.json" trigger="hover" colors="primary:#707070" style="width: 18px; height: 18px"> </lord-icon>
+                    <input type="text" id="UserTableAdminPageSearchInput" placeholder="جستجو" />
+                  </div>
+                </label>
+              </td>
+              <td>
+                <div class="SlideButtonAdminPage">
+                  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.46667 5.46665L1.46667 9.46665C1.33333 9.59998 1.2 9.66665 0.999999 9.66665C0.799999 9.66665 0.666665 9.59998 0.533332 9.46665C0.266665 9.19998 0.266665 8.79998 0.533332 8.53331L4.06667 4.99998L0.533332 1.46665C0.266665 1.19998 0.266665 0.79998 0.533332 0.533313C0.799999 0.266646 1.2 0.266646 1.46667 0.533313L5.46667 4.53331C5.73333 4.79998 5.73333 5.19998 5.46667 5.46665Z" fill="black" />
+                  </svg>
+                </div>
+                <div class="SlideIDBoxAdminPage">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span class="SlideIDBoxSeleced">4</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7</span>
+                </div>
+                <div class="SlideButtonAdminPage">
+                  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.46668 8.53331C5.73334 8.79998 5.73334 9.19998 5.46668 9.46665C5.33334 9.59998 5.20001 9.66665 5.00001 9.66665C4.80001 9.66665 4.66668 9.59998 4.53334 9.46665L0.533344 5.46665C0.266677 5.19998 0.266677 4.79998 0.533344 4.53331L4.53334 0.533313C4.80001 0.266646 5.20001 0.266646 5.46668 0.533313C5.73334 0.79998 5.73334 1.19998 5.46668 1.46665L1.93334 4.99998L5.46668 8.53331Z" fill="black" />
+                  </svg>
+                </div>
+              </td>
+            </tfoot>
+          </table>
+        </div>
+      </div>
   </div>
 </template>
 <script>
@@ -96,6 +262,52 @@ export default {
     //   });
     // chart.render();
     // }
+
+
+
+
+    // var chart = new ApexCharts(document.getElementById("AdminPageBigChartSeriesBox"), {
+    //         series: [{ data: [0, 20, 30, 55, 43, 77, 88, 110] }, { data: [0, 50, 100, 30, 80, 20, 50, 25] }],
+    //         chart: { height: 350, toolbar: false, zoom: { enabled: false }, type: "line" },
+    //         tooltip: { enabled: false },
+    //         legend: { show: false },
+    //         stroke: {
+    //           show: true,
+    //           curve: "smooth",
+    //           width: [4],
+    //           dashArray: [0, 5],
+    //         },
+    //         colors: ["#a62626", "#707070"],
+    //         xaxis: {
+    //           show: true,
+    //           labels: {
+    //             show: true,
+    //             style: {
+    //               cssClass: "AdminPageApexChartsLabels",
+    //             },
+    //           },
+    //         },
+    //         yaxis: {
+    //           show: true,
+    //           labels: {
+    //             show: true,
+    //             style: {
+    //               cssClass: "AdminPageApexChartsLabels",
+    //             },
+    //           },
+    //         },
+    //         grid: {
+    //           show: true,
+    //           padding: {
+    //             top: 0,
+    //             right: 30,
+    //             bottom: 0,
+    //             left: 30,
+    //           },
+    //         },
+    //       });
+
+    //       chart.render();
   },
 }
 </script>
