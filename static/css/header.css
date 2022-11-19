@@ -44,6 +44,7 @@
   height: 42px;
   overflow: hidden;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .D_Header .D_AvatarHeader img {
@@ -317,4 +318,185 @@
   color: #ffffff;
   padding: 10px 0px;
   margin-bottom: 15px;
+}
+
+.D_Header .D_ProfileModalSubBox {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+  position: absolute;
+  width: 378px;
+  height: 313px;
+  left: 28px;
+  top: 60px;
+  background: #ffffff;
+  box-shadow: 0px 3px 8px rgba(9, 30, 66, 0.16),
+    0px 0px 1px rgba(9, 30, 66, 0.31);
+  border-radius: 4px;
+}
+
+.D_Header .D_ProfileModalSubBox.ActiveProfileModal {
+  display: flex;
+}
+
+.D_Header .D_ProfileModalSubBox .ClientInformationBox {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  position: relative;
+  direction: ltr;
+  width: 100%;
+}
+
+.D_Header .D_ProfileModalSubBox .ClientInformationBox .MenuIconBox {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.D_Header .D_ProfileModalSubBox .ClientInformationBox .ClientAvatarBox {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #93c5fd;
+}
+
+.D_Header .D_ProfileModalSubBox .ClientInformationBox .ClientAvatarBox img {
+  width: 100%;
+}
+
+.D_Header
+  .D_ProfileModalSubBox
+  .ClientInformationBox
+  .ClientUsernameInformation {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #252525;
+}
+
+.D_Header
+  .D_ProfileModalSubBox
+  .ClientInformationBox
+  .ClientUsernameInformation
+  .ClientPermissionBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 12px;
+  width: min-content;
+  background: rgba(112, 112, 112, 0.25);
+  border-radius: 25px;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #252525;
+}
+
+.D_Header .D_ProfileModalSubBox .ChangeClientInfoBox {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: right;
+  color: #475569;
+  width: 100%;
+}
+
+.D_Header .D_ProfileModalSubBox .ChangeClientInfoBox label {
+  display: block;
+  margin-bottom: 16px;
+  width: 100%;
+  position: relative;
+}
+
+.D_Header .D_ProfileModalSubBox .ChangeClientInfoBox input {
+  outline: none;
+  border: none;
+  background-color: unset;
+  margin-right: 10px;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: right;
+  color: #64748b;
+  width: 250px;
+}
+
+.D_Header
+  .D_ProfileModalSubBox
+  .ChangeClientInfoBox
+  input.ActiveInputForEditingInformation {
+  color: #252525;
+}
+
+.D_Header .D_ProfileModalSubBox .ChangeClientInfoBox .EditIconBox {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.D_Header .D_ProfileModalSubBox .ChangeClientInfoBox .EditIconBox svg path {
+  fill: #707070;
+  transition: 0.3s;
+}
+
+.D_Header
+  .D_ProfileModalSubBox
+  .ChangeClientInfoBox
+  .EditIconBox:hover
+  svg
+  path {
+  fill: #252525;
+  transition: 0.3s;
+}
+
+.D_Header .D_ProfileModalSubBox .LogOutButtonBox {
+  position: absolute;
+  background: #a62626;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  bottom: 20px;
+  left: 20px;
+  color: #ffffff;
+  font-family: var(--BaseFontFamily);
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.D_Header .D_ProfileModalSubBox .LogOutButtonBox:hover {
+  box-shadow: 0 8px 25px -8px #a62626;
+  transition: box-shadow 0.3s;
 }

@@ -1,6 +1,7 @@
 .D_Wrapper .D_Content {
   width: auto;
-  margin: calc(20px + var(--HeaderHeight)) calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
+  margin: calc(20px + var(--HeaderHeight))
+    calc(16px + 26px + var(--WidthSideBar)) 0px 26px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--WidthBoxItem), 1fr));
   gap: 10px;
@@ -28,7 +29,7 @@
 }
 
 .D_Content .D_ItemImage::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 500px;
   height: 300px;
@@ -42,16 +43,22 @@
 }
 
 .D_Content .D_ContentItem:hover .D_ItemImage::before {
-  content: "";
+  content: '';
   top: -240px;
 }
 
-.D_Content .D_ContentItem .D_ItemImage {
+.D_Content .D_ContentItem .D_ItemImage,
+.D_Content .D_ContentItem .D_ItemImageDontScale {
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.D_Content .D_ContentItem .D_ItemImageDontScale img {
+  width: 70%;
+}
+
 .D_Content .D_ContentItem .D_ItemImage img {
   width: 100%;
   transform: scale(115%);
@@ -89,6 +96,18 @@
   /* margin-top: 10px; */
 }
 
+.D_ProductBottomBox {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 0px 15px 10px;
+}
+
+.D_ProductBottomSubBox {
+  position: relative;
+}
+
 .D_ItemPrice {
   font-family: var(--BaseFontFamily);
   width: 66%;
@@ -99,11 +118,11 @@
   line-height: 24px;
   text-align: right;
   color: #252525;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .D_ItemCreateTime {
-  margin-top: 17px;
+  /* margin-top: 17px; */
   font-family: var(--BaseFontFamily);
   width: fit-content;
   max-width: 200px;
@@ -116,7 +135,8 @@
   color: #707070;
 }
 
-.D_ItemImage {
+.D_ItemImage,
+.D_ItemImageDontScale {
   position: absolute;
   width: var(--HeightBoxItem);
   height: var(--HeightBoxItem);
@@ -127,10 +147,17 @@
   z-index: 10;
 }
 
+.D_ItemImageDontScale {
+  /* background-color: #70707017; */
+}
+
 .D_ItemSlotBox {
   position: absolute;
-  bottom: 5px;
-  left: 187px;
+  bottom: 0px;
+  left: 165px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
   z-index: 12;
   text-align: left;
   direction: rtl;

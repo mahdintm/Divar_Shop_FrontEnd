@@ -1,5 +1,5 @@
 <template>
-  <div class="AdvertisingContentBox">
+  <div class="AdvertisingContentBox" v-if="this.$route.query.id != undefined">
     <!-- <div @click="backto">برگشت</div> -->
     <div class="SiteMapBox">
       <span>کالای دیجیتال</span>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="LeftPanel">
-      <div class="BigImageBox">
+      <div :class="this.FirstImgMain != this.default_no_photo ? 'BigImageBox' : 'BigImageBoxDontShadow'">
         <img :src="FirstImgMain" class="BigImageElement Active" alt="" />
         <img :src="SecondImgMain" class="BigImageElement" alt="" />
         <div class="IndexImageIDBox">
@@ -162,6 +162,13 @@ export default {
     this.item = await fetch(
       `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then((res) => res.json())
+    // Salam, Dar morede inke ID ro dakhele url taghir bedan va site mire roo hava bahat sohbat kardam gharar shod ke
+    // Az samte backend bege aya in id peyda shode ya na ke age peyda nashode redirect kone be safheye asli
+    // Ba tashakor, modiriyate FRONT :)
+
+    // Dar zemn zamani ha ke this.$route.query.id == undefined 
+    // Dakhele khate 2 goftam ke chizi ro load nakone amma redirect nemishe inam dorost kon 
+    // Mersi AH xDDD
     this.catergory = await fetch(
       `http://${process.env.server_URL}/api/category?id=${await this.item.category_id}`
     ).then((res) => res.json())
@@ -176,9 +183,6 @@ export default {
     })
     this.FirstImgMain =
       this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
-
-
-      console.log(this.item.imgs)
   },
   components: { Item_option_Product, RateOrderOfAdvertisingSubBox },
 }
