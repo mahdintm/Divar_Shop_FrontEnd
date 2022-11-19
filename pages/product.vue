@@ -56,17 +56,14 @@
     </div>
     <div class="LeftPanel">
       <div class="BigImageBox">
-        <img :src="ImgMain" alt="" />
+        <img :src="FirstImgMain" class="BigImageElement Active" alt="" />
+        <img :src="SecondImgMain" class="BigImageElement" alt="" />
         <div class="IndexImageIDBox">
-          <div @click="selectPhotoFromID" ImageKey="1" class="IndexImageIDSubBox SelectedImageID"></div>
-          <div @click="selectPhotoFromID" ImageKey="2" class="IndexImageIDSubBox"></div>
-          <div @click="selectPhotoFromID" ImageKey="3" class="IndexImageIDSubBox"></div>
-          <div @click="selectPhotoFromID" ImageKey="4" class="IndexImageIDSubBox"></div>
-          <div @click="selectPhotoFromID" ImageKey="5" class="IndexImageIDSubBox"></div>
+          <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhotoFromID" :class="index == 0 ? 'IndexImageIDSubBox SelectedImageID' : 'IndexImageIDSubBox'"></div>
         </div>
       </div>
       <div class="SmallImageBox">
-        <div v-for="item_ of item.imgs" :key="item_" @click="selectPhoto" :ImageKey="ite" class="SmallImageSubBox SelectedImage">
+        <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhoto" :class="index == 0 ? 'SmallImageSubBox SelectedImage' : 'SmallImageSubBox'">
           <img :src="item_" alt="" />
         </div>
       </div>
@@ -86,7 +83,8 @@ export default {
       item: '',
       catergory: '',
       default_no_photo: `http://${process.env.server_cdn_URL}/private/img/no-photo.png`,
-      ImgMain: '',
+      FirstImgMain: '',
+      SecondImgMain: '',
       myuser: '',
       userRegiter: false,
     }
@@ -94,6 +92,18 @@ export default {
   methods: {
     backto() {
       this.$router.go(-1)
+    },
+    ChangeBigImage(SRC){
+      for (let i = 0; i < document.getElementsByClassName('BigImageElement').length; i++) 
+        document.getElementsByClassName('BigImageElement')[i].classList.toggle('Active');
+        
+      if(this.FirstImgMain == ''){
+        this.FirstImgMain = SRC;
+          this.SecondImgMain = '';
+      }else{
+        this.SecondImgMain = SRC;
+          this.FirstImgMain = '';
+      }
     },
     selectPhoto(element) {
       if (element.srcElement.src == undefined) return;
@@ -107,7 +117,8 @@ export default {
         if (document.getElementsByClassName('IndexImageIDSubBox')[i].getAttribute('ImageKey') == element.path[1].getAttribute('ImageKey'))
           document.getElementsByClassName('IndexImageIDSubBox')[i].classList.add('SelectedImageID');
 
-      this.ImgMain = element.srcElement.src
+      this.ChangeBigImage(element.srcElement.src)
+      
     },
     selectPhotoFromID(element) {
       for (let i = 0; i < document.getElementsByClassName('SelectedImage').length; i++)
@@ -119,7 +130,7 @@ export default {
       for (let i = 0; i < document.getElementsByClassName('SmallImageSubBox').length; i++)
         if (element.srcElement.getAttribute('ImageKey') == document.getElementsByClassName('SmallImageSubBox')[i].getAttribute('ImageKey')) {
           document.getElementsByClassName('SmallImageSubBox')[i].classList.add('SelectedImage');
-          this.ImgMain = document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0].src;
+          this.ChangeBigImage(document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0].src);
         }
     },
     async registerProduct() {
@@ -163,8 +174,11 @@ export default {
         this.userRegiter = true
       }
     })
-    this.ImgMain =
+    this.FirstImgMain =
       this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
+
+
+      console.log(this.item.imgs)
   },
   components: { Item_option_Product, RateOrderOfAdvertisingSubBox },
 }

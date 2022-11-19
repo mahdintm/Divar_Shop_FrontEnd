@@ -195,8 +195,6 @@ export default {
     this.items = await fetch(
       `http://${process.env.server_URL}/api/sidebar`
     ).then((res) => res.json())
-
-    console.log(this.items)
   },
 }
 </script>
