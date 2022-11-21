@@ -1,0 +1,369 @@
+.D_CategoryBox {
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin-right: calc(385px + 40px);
+  /* margin-top: calc(64px + 20px); */
+  margin-top: calc(var(--HeaderHeight) + 20px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.D_CategoryBox .CategoryTitleBox {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: right;
+  color: #252525;
+}
+
+.D_CategoryBox .CategorySubBox .CategorySubBoxPanel {
+  margin-top: 45px;
+}
+
+.D_CategoryBox .CategorySubBox .CategorySubBoxPanel .CategorySubBoxPanelTitle {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: right;
+  margin-bottom: 30px;
+  color: rgba(37, 37, 37, 0.8);
+}
+
+.D_CategoryBox .CategorySubBox .CategorySubBoxPanel .CategoryEditInputBox {
+  margin-top: 20px;
+  border-radius: 7px;
+  border: 1px solid #707070;
+  width: 461px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0px 15px;
+  position: relative;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox.CategoryEditSubInputBox {
+  margin-right: 10px;
+  width: 250px;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .CategoryIconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .CategoryIconBox
+  svg
+  path {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .CategoryIconBox:hover
+  svg
+  path {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .CategoryVerticalHR {
+  border: 1px solid rgba(112, 112, 112, 0.8);
+  transform: rotate(-90deg);
+  width: 24px;
+  height: 0px;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  input {
+  outline: none;
+  border: none;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: right;
+  color: rgba(112, 112, 112, 0.8);
+  background-color: unset;
+  width: calc(100% - 90px);
+  height: 100%;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  input.ActiveInputForEditingInformation {
+  color: #252525;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .EditIconBox {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .EditIconBox.InSelectCategory
+  svg {
+  transform: rotate(270deg);
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox.EditIconBox
+  svg
+  path {
+  fill: #707070;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .EditIconBox:hover
+  svg
+  path {
+  fill: #252525;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox.SelectCategoryForEditingSubCategory,
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox.SelectCategoryForEditingSubCategory
+  input {
+  cursor: pointer;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox.SelectCategoryForEditingSubCategory
+  .CategoryIconBox:hover
+  svg
+  path {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.D_CategoryBox .CategorySubBox .CategorySubBoxPanel .AddToCategoryBottunBox {
+  width: fit-content;
+  margin-top: 25px;
+  background: rgba(112, 112, 112, 0.5);
+  border-radius: 7px;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #000000;
+  padding: 4px 6px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: box-shadow 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .DeleteIconBox {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: absolute;
+  left: calc(15px + 30px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .DeleteIconBox:hover
+  svg
+  path {
+  fill: #252525;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .AddSubCategoryBottunInEdit {
+  position: absolute;
+  left: -30px;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryEditInputBox
+  .AddSubCategoryBottunInEdit
+  span {
+  background: #707070;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .AddToCategoryBottunBox:hover {
+  box-shadow: 0 8px 15px -8px rgba(112, 112, 112, 0.5);
+  transition: box-shadow 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .AddToCategoryBottunBox
+  span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .AddToCategoryBottunBox
+  span:first-child {
+  background: #707070;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: fit-content;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory
+  .CategoryEditInputBox {
+  background-color: none;
+  border: none;
+  border-radius: 0px;
+  margin: unset;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory
+  .CategoryEditInputBox:hover {
+  background: rgba(112, 112, 112, 0.2);
+  transition: background 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory
+  .CategoryEditInputBox.Selected {
+  background: rgba(112, 112, 112, 0.4);
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory
+  .CategoryEditInputBox
+  .CategoryIconBox:hover
+  svg
+  path {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.D_CategoryBox
+  .CategorySubBox
+  .CategorySubBoxPanel
+  .CategoryAllDataForAddSubCategory
+  span {
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: rgba(37, 37, 37, 0.8);
+}
