@@ -66,7 +66,6 @@ export default {
       }
     }
     this.$nuxt.$on('logout', async () => {
-      console.log('event')
       await fetch(`http://${process.env.server_URL}/account/logout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

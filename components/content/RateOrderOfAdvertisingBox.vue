@@ -13,10 +13,10 @@
                 : user.email
             }}
           </div>
-          <div class="RateValueBox">نفر اول</div>
+          <!-- <div class="RateValueBox">نفر اول</div> -->
         </div>
       </div>
-      <div class="RateOrderOfAdvertisingDateTime">2 دقیقه پیش</div>
+      <!-- <div class="RateOrderOfAdvertisingDateTime">2 دقیقه پیش</div> -->
     </div>
   </nuxt-link>
 </template>

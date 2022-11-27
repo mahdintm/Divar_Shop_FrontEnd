@@ -46,41 +46,59 @@
         <textarea v-model="adsData.description" name="" id="" rows="10"></textarea>
       </div>
       <div class="InformationAdvertisingBox">
-        <span>وضعیت</span>
-        <select v-model="adsData.options.status">
+        <span>عنوان آگهی</span>
+        <input v-model="adsData.title" type="text" />
+        <span>قیمت</span>
+        <input v-model="adsData.price" type="number" value="0" />
+        <span>کد اموال</span>
+        <input v-model="adsData.code" type="number" value="0" />
+        <span>دسته بندی</span>
+        <select v-model="adsData.category_id">
+          <option v-for="(item, index) in catergory" :key="index" :value="item.id">{{item.name}}</option>
+        </select>
+        <span>وضعیت کارکرد</span>
+        <select v-model="adsData.options[0].value">
           <option value="نو">نو</option>
           <option value="در حد نو">در حد نو</option>
           <option value="کار کرده">کار کرده</option>
           <option value="نیاز به تعمیر">نیاز به تعمیر</option>
         </select>
-        <span>قیمت</span>
-        <input v-model="adsData.price" type="number" value="0" />
-        <span>عنوان آگهی</span>
-        <input v-model="adsData.title" type="text" />
+        <span>وضعیت آگهی</span>
+        <select v-model="adsData.active">
+          <option value="true">فعال</option>
+          <option value="false">غیرفعال</option>
+        </select>
+ 
+
         <span>مشخصات</span>
         <div class="InformationAdvertisingSubBox">
-          <div class="InformationInsertDataBox">
-            <div class="TitleInformationInsertDataBox">پردازنده</div>
+          <div class="InformationInsertDataBox"  v-for="(CategoryInEditMenu, index) in adsData.options" :key="index" v-if="index!=0">
+            <input class="" v-model="CategoryInEditMenu.key" type="text" name="" id="" placeholder="عنوان" />
             <div class="VerticalLineInformationInsertData"></div>
-            <input type="text" name="" id="" placeholder="توضیحات " />
+            <input type="text" v-model="CategoryInEditMenu.value" name="" id="" placeholder="توضیحات " />
+            <div class="DeleteIconBox" @click="RemoveOptionData(index)">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1666 5.66666C11.6269 5.66666 12 6.03975 12 6.49999V14.8333C12 16.214 10.8807 17.3333 9.49998 17.3333H4.49998C3.11927 17.3333 1.99998 16.214 1.99998 14.8333V6.49999C1.99998 6.03975 2.37308 5.66666 2.83331 5.66666H11.1666ZM10.3333 7.33332H3.66665V14.8333C3.66665 15.2936 4.03974 15.6667 4.49998 15.6667H9.49998C9.96022 15.6667 10.3333 15.2936 10.3333 14.8333V7.33332ZM4.49998 1.49999C4.49998 1.03975 4.87308 0.666656 5.33331 0.666656H8.66665C9.12688 0.666656 9.49998 1.03975 9.49998 1.49999V2.33332H12.8333C13.2936 2.33332 13.6666 2.70642 13.6666 3.16666C13.6666 3.62689 13.2936 3.99999 12.8333 3.99999H1.16665C0.706409 3.99999 0.333313 3.62689 0.333313 3.16666C0.333313 2.70642 0.706409 2.33332 1.16665 2.33332H4.49998V1.49999Z" fill="#707070" fill-opacity="0.8"/>
+                        </svg>
+                    </div>
           </div>
-          <div class="InformationInsertDataBox">
-            <div class="TitleInformationInsertDataBox">رم</div>
-            <div class="VerticalLineInformationInsertData"></div>
-            <input type="text" name="" id="" placeholder="توضیحات " />
-          </div>
-          <div class="InformationInsertDataBox">
-            <div class="TitleInformationInsertDataBox">هارد</div>
-            <div class="VerticalLineInformationInsertData"></div>
-            <input type="text" name="" id="" placeholder="توضیحات " />
-          </div>
-          <div class="InformationInsertDataBox">
-            <div class="TitleInformationInsertDataBox">گرافیک</div>
-            <div class="VerticalLineInformationInsertData"></div>
-            <input type="text" name="" id="" placeholder="توضیحات " />
-          </div>
+          <div class="AddToCategoryBottunBox" @click="AddOptionData">
+                    <span>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 0.5C5.41421 0.5 5.75 0.835786 5.75 1.25V4.25H8.75C9.16421 4.25 9.5 4.58579 9.5 5C9.5 5.41421 9.16421 5.75 8.75 5.75H5.75V8.75C5.75 9.16421 5.41421 9.5 5 9.5C4.58579 9.5 4.25 9.16421 4.25 8.75V5.75H1.25C0.835786 5.75 0.5 5.41421 0.5 5C0.5 4.58579 0.835786 4.25 1.25 4.25H4.25V1.25C4.25 0.835786 4.58579 0.5 5 0.5Z" fill="white"/>
+                        </svg>
+                    </span>
+                    <span>اضافه کردن دسته</span>
+                </div>
         </div>
-        <button @click="SubmitAdvertising">ثبت</button>
+        <div class="AddToCategoryBottunBox" style="background-color: #A7211B;color: white;" @click="SubmitAdvertising">
+                    <span>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 0.5C5.41421 0.5 5.75 0.835786 5.75 1.25V4.25H8.75C9.16421 4.25 9.5 4.58579 9.5 5C9.5 5.41421 9.16421 5.75 8.75 5.75H5.75V8.75C5.75 9.16421 5.41421 9.5 5 9.5C4.58579 9.5 4.25 9.16421 4.25 8.75V5.75H1.25C0.835786 5.75 0.5 5.41421 0.5 5C0.5 4.58579 0.835786 4.25 1.25 4.25H4.25V1.25C4.25 0.835786 4.58579 0.5 5 0.5Z" fill="white"/>
+                        </svg>
+                    </span>
+                    <span>ثبت نهایی</span>
+                </div>
       </div>
     </div>
   </div>
@@ -90,6 +108,7 @@ export default {
   layout: 'admin',
   data() {
     return {
+      catergory:[],
       ImageInsertInWeb: [],
       ImageFiles: [],
       adsData:{
@@ -99,11 +118,19 @@ export default {
         price:"",
         date:"",
         imgs:[],
-        options:{}
+        options:[{key:"وضعیت",value:""}],
+        active:false,
+        code:0
       }
     }
   },
   methods: {
+    RemoveOptionData(index){
+      this.adsData.options.splice(index, 1);
+            },
+    AddOptionData(){
+                this.adsData.options.push({key:"",value:""})
+            },
     InsertImageButtonClicked() {
       document.getElementById('InputImageInSubmitAdvertising').click();
     },
@@ -119,17 +146,17 @@ export default {
       for await(const file of this.ImageFiles) {
         var data = new FormData();
         data.append("files", file, file.name);
-        await fetch("http://localhost:3002/upload", {
+        await fetch(`http://${process.env.server_cdn_URL}/upload`, {
         method: "POST",
         headers: {},
         body: data,
       }).then(async res=>{
         let a =await res.json()
-        this.adsData.imgs.push(`http://localhost:3002/upload/${a.name}`)
+        this.adsData.imgs.push(`http://${process.env.server_cdn_URL}/upload/${a.name}`)
       });
       }
       this.adsData.date=Date.now()
-      await fetch("http://localhost:3001/api/postADS", {
+      await fetch(`http://${process.env.server_URL}/api/postADS`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(this.adsData),
@@ -139,10 +166,50 @@ export default {
       })
     }
   },
-  mounted() {
+ async mounted() {
+    this.catergory = await fetch(
+      `http://${process.env.server_URL}/api/category`
+    ).then((res) => res.json())
   },
 }
 </script>
 <style>
 @import url(@/static/css/submitAdvertisingPage.css);
+.AddToCategoryBottunBox
+  span:first-child {
+  background: #707070;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.AddToCategoryBottunBox
+  span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AddToCategoryBottunBox:hover {
+  box-shadow: 0 8px 15px -8px rgba(112, 112, 112, 0.5);
+  transition: box-shadow 0.3s;
+}
+.AddToCategoryBottunBox {
+  width: fit-content;
+  margin-top: 25px;
+  background: rgba(112, 112, 112, 0.5);
+  border-radius: 7px;
+  font-family: var(--BaseFontFamily);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #000000;
+  padding: 4px 6px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: box-shadow 0.3s;
+}
 </style>

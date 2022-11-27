@@ -16,10 +16,10 @@
           />
         </div>
       </div>
-      <div class="D_SideBarSubBoxTitle">موارد اضافی</div>
+      <!-- <div class="D_SideBarSubBoxTitle">موارد اضافی</div> -->
     </div>
-    <div class="D_SideBarSubBoxItems">
-      <div class="D_SideBarSubItem">
+     <div class="D_SideBarSubBoxItems">
+    <!--  <div class="D_SideBarSubItem">
         <svg
           width="20"
           height="20"
@@ -142,8 +142,8 @@
             fill="#707070"
           />
         </svg>
-      </div>
-      <nuxt-link to="admin">
+      </div> -->
+      <nuxt-link v-if="myuser.acl==1" to="admin">
         <div class="D_SideBarSubItem">
         <svg
           width="20"
@@ -187,6 +187,7 @@ export default {
   data() {
     return {
       items: '',
+      myuser:""
     }
   },
   name: 'SideBar_PC',
@@ -195,7 +196,12 @@ export default {
     this.items = await fetch(
       `http://${process.env.server_URL}/api/sidebar`
     ).then((res) => res.json())
+    this.myuser = await fetch(`http://${process.env.server_URL}/account/isUser`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    }).then((res) => res.json())
   },
+
 }
 </script>
 <style>

@@ -2,48 +2,39 @@
   <div class="AdvertisingContentBox" v-if="this.$route.query.id != undefined">
     <!-- <div @click="backto">برگشت</div> -->
     <div class="SiteMapBox">
-      <span>کالای دیجیتال</span>
-      <svg width="5" height="11" viewBox="0 0 5 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M4.4999 10.8334C4.37191 10.8334 4.24391 10.7745 4.14642 10.6571L0.146618 5.8423C-0.0488726 5.60698 -0.0488726 5.22661 0.146618 4.99129L4.14642 0.176492C4.34191 -0.0588308 4.65789 -0.0588308 4.85338 0.176492C5.04887 0.411815 5.04887 0.792184 4.85338 1.02751L1.20706 5.41679L4.85338 9.80608C5.04887 10.0414 5.04887 10.4218 4.85338 10.6571C4.75589 10.7745 4.62789 10.8334 4.4999 10.8334Z"
-          fill="#707070" />
-      </svg>
-      <span>رایانه</span>
-      <svg width="5" height="11" viewBox="0 0 5 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M4.4999 10.8334C4.37191 10.8334 4.24391 10.7745 4.14642 10.6571L0.146618 5.8423C-0.0488726 5.60698 -0.0488726 5.22661 0.146618 4.99129L4.14642 0.176492C4.34191 -0.0588308 4.65789 -0.0588308 4.85338 0.176492C5.04887 0.411815 5.04887 0.792184 4.85338 1.02751L1.20706 5.41679L4.85338 9.80608C5.04887 10.0414 5.04887 10.4218 4.85338 10.6571C4.75589 10.7745 4.62789 10.8334 4.4999 10.8334Z"
-          fill="#707070" />
-      </svg>
-      <span>رایانه همراه</span>
-      <svg width="5" height="11" viewBox="0 0 5 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M4.4999 10.8334C4.37191 10.8334 4.24391 10.7745 4.14642 10.6571L0.146618 5.8423C-0.0488726 5.60698 -0.0488726 5.22661 0.146618 4.99129L4.14642 0.176492C4.34191 -0.0588308 4.65789 -0.0588308 4.85338 0.176492C5.04887 0.411815 5.04887 0.792184 4.85338 1.02751L1.20706 5.41679L4.85338 9.80608C5.04887 10.0414 5.04887 10.4218 4.85338 10.6571C4.75589 10.7745 4.62789 10.8334 4.4999 10.8334Z"
-          fill="#707070" />
-      </svg>
-      <span>رایانه سری مک M1</span>
+      <Map_navigation v-for="itm in cat" :key="itm" :name="itm" />
+      <span>{{item.title}}</span>
+      
     </div>
     <div class="RightPanel">
       <div class="AdvertisingBox">
         <div class="AdvertisingTitle">{{ item.title }}</div>
-        <div class="AdvertisingCreateTime">5 دقیقه پیش . . .</div>
+        <!-- <div class="AdvertisingCreateTime">5 دقیقه پیش . . .</div> -->
         <div class="AdvertisingButtonBox">
           <div class="SubmitAdvertisingButton" @click="registerProduct" v-if="!userRegiter">
             سفارش
+          </div>
+          <div class="SubmitAdvertisingButton" @click="registerProduct" v-if="!fullUser">
+            ظرفیت پر شده
           </div>
           <div class="SaveAdvertisingButton" @click="disregisterProduct" v-if="userRegiter">
             لغو سفارش
           </div>
           <!-- <div class="SaveAdvertisingButton">نشان کردن</div> -->
           <div class="ShareIconAdvertisingBox">
-            <lord-icon src="https://cdn.lordicon.com/uvqnvwbl.json" colors="primary:#707070" trigger="hover"
+            <!-- <lord-icon src="https://cdn.lordicon.com/uvqnvwbl.json" colors="primary:#707070" trigger="hover"
               style="width: 26px; height: 26px">
-            </lord-icon>
+            </lord-icon> -->
           </div>
         </div>
         <div class="AdvertisingInformationBox">
           <div class="AdvertisingInformationSubBox">
             <div>آخرین بروزرسانی آگهی</div>
             <div>لحظاتی پیش . . .</div>
+          </div>
+          <div class="AdvertisingInformationSubBox">
+            <div>قیمت</div>
+            <div>{{item.price}}</div>
           </div>
           <Item_option_Product v-for="itm in item.options" :key="itm.id" :option_name="itm.key"
             :option_value="itm.value" />
@@ -77,6 +68,8 @@
 <script>
 import Item_option_Product from '~/components/content/item_option_Product.vue'
 import RateOrderOfAdvertisingSubBox from '~/components/content/RateOrderOfAdvertisingBox.vue'
+import Map_navigation from '~/components/content/Map_navigation.vue'
+import { async } from 'q'
 export default {
   data() {
     return {
@@ -87,6 +80,8 @@ export default {
       SecondImgMain: '',
       myuser: '',
       userRegiter: false,
+      cat:[],
+      fullUser:false
     }
   },
   methods: {
@@ -161,7 +156,7 @@ export default {
   async mounted() {
     this.item = await fetch(
       `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
-    ).then((res) => res.json())
+    ).then(async(res) =>res.json())
     // Salam, Dar morede inke ID ro dakhele url taghir bedan va site mire roo hava bahat sohbat kardam gharar shod ke
     // Az samte backend bege aya in id peyda shode ya na ke age peyda nashode redirect kone be safheye asli
     // Ba tashakor, modiriyate FRONT :)
@@ -183,9 +178,24 @@ export default {
     })
     this.FirstImgMain =
       this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
+      test(this,this.item.category_id)
+        async function test(th,category_id) {
+            await fetch(
+            `http://${process.env.server_URL}/api/category?id=${category_id}`
+            ).then(async (res) => {
+               res = await res.json()
+                th.cat.push(res.name)
+                if (res.parent !=0) {
+                    test(th,res.parent)
+                }else{
+                    th.cat.reverse()
+                }
+            })
+        }
   },
-  components: { Item_option_Product, RateOrderOfAdvertisingSubBox },
+  components: { Item_option_Product, RateOrderOfAdvertisingSubBox,Map_navigation },
 }
+
 </script>
 
 <style>

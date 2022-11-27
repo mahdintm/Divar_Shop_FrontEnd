@@ -5,7 +5,7 @@
       <div class="D_ItemDescription">{{ description }}</div>
       <div class="D_ProductBottomBox">
         <div class="D_ProductBottomSubBox">
-          <div class="D_ItemPrice">{{ price }}</div>
+          <div class="D_ItemPrice">{{ price.toLocaleString()  }}</div>
           <div class="D_ItemCreateTime">{{ time }}</div>
           <div class="D_ItemSlotBox">
             <div class="D_ItemSlotNumber">{{ registrations.length }}/4</div>

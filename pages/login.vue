@@ -147,4 +147,7 @@ export default {
 <style>
 @import url(@/static/css/main.css);
 @import url(@/static/css/login.css);
+.LoginBox{
+  text-align: right !important;
+}
 </style>

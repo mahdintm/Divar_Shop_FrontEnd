@@ -28,18 +28,18 @@
             style="width: 24px; height: 24px"
           >
           </lord-icon>
-          <input type="text" id="SearchBarInput" placeholder="جستجو" />
+          <input @keyup="search($event.target.value)" type="text" id="SearchBarInput" placeholder="جستجو" />
         </div>
       </label>
     </div>
     <div class="D_LeftHeader">
       <div class="D_ContentHeader">
         <div class="D_AvatarHeader" @click="OpenProfileModal">
-          <img src="@/static/img/avatar.png" alt="" />
+          <img :src="myuser.profile ? myuser.profile : default_profile" alt="" />
         </div>
         <div class="D_IconsHeader">
           <!-- Start Setting Icon Codes -->
-          <lord-icon
+          <!-- <lord-icon
             src="https://cdn.lordicon.com/dycatgju.json"
             trigger="hover"
             id="SettingIcon"
@@ -47,11 +47,11 @@
             colors="primary:#707070"
             style="width: 24px; height: 24px"
           >
-          </lord-icon>
+          </lord-icon> -->
           <!-- Stop Setting Icon Codes -->
 
           <!-- Start Cart Icon Codes -->
-          <lord-icon
+          <!-- <lord-icon
             src="https://cdn.lordicon.com/lqsduwhb.json"
             trigger="hover"
             id="CartIcon"
@@ -59,11 +59,11 @@
             colors="primary:#707070"
             style="width: 24px; height: 24px"
           >
-          </lord-icon>
+          </lord-icon> -->
           <!-- Stop Cart Icon Codes -->
 
           <!-- Start Notification Icon Codes -->
-          <lord-icon
+          <!-- <lord-icon
             src="https://cdn.lordicon.com/msetysan.json"
             trigger="hover"
             id="NotificationIcon"
@@ -71,11 +71,11 @@
             colors="primary:#707070"
             style="width: 24px; height: 24px"
           >
-          </lord-icon>
+          </lord-icon> -->
           <!-- Stop Notification Icon Codes -->
 
           <!-- Start Help Icon Codes -->
-          <lord-icon
+          <!-- <lord-icon
             src="https://cdn.lordicon.com/gmgkjaqp.json"
             trigger="hover"
             id="HelpIcon"
@@ -84,7 +84,8 @@
             state="hover-1"
             style="width: 24px; height: 24px"
           >
-          </lord-icon>
+          </lord-icon> -->
+          <div>{{myuser.email}}</div>
           <!-- Stop Help Icon Codes -->
         </div>
       </div>
@@ -100,17 +101,17 @@
         </div>
 
         <div class="ClientAvatarBox">
-          <img src="@/static/img/avatar.png" alt="" />
+          <img :src="myuser.profile ? myuser.profile : default_profile" alt="" />
         </div>
         <div class="ClientUsernameInformation">
-          <span>Toofan Tootian</span>
-          <div class="ClientPermissionBox"><span>Admin</span></div>
+          <span>{{myuser.firstname||myuser.lastname?myuser.firstname&&myuser.lastname?`${myuser.firstname} ${myuser.lastname}`:myuser.firstname?myuser.firstname:myuser.lastname:myuser.email}}</span>
+          <div v-if="myuser.acl == 1" class="ClientPermissionBox"><span>Admin</span></div>
         </div>
       </div>
       <div class="ChangeClientInfoBox">
         <label for="ProfileModalUsenameInput">
           <span>نام کاربری</span>
-          <input type="text" id="ProfileModalUsenameInput" @blur="FocusOutInput" value="شیوا کمالی" disabled>
+          <input type="text" id="ProfileModalUsenameInput" @blur="FocusOutInput" :value="myuser.username" disabled>
           <div class="EditIconBox" @click="OpenInputForEditing">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 15.6667C16.9603 15.6667 17.3334 16.0398 17.3334 16.5C17.3334 16.9602 16.9603 17.3333 16.5 17.3333H1.50002C1.03978 17.3333 0.666687 16.9602 0.666687 16.5C0.666687 16.0398 1.03978 15.6667 1.50002 15.6667H16.5ZM4.2441 10.0774L13.4108 0.910744C13.7112 0.610341 14.1839 0.587233 14.5108 0.841421L14.5893 0.910744L17.0893 3.41074C17.3897 3.71115 17.4128 4.18384 17.1586 4.51075L17.0893 4.58926L7.92261 13.7559C7.79238 13.8862 7.62348 13.9688 7.44289 13.9928L7.33335 14H4.83335C4.40599 14 4.05376 13.6783 4.00563 13.2639L4.00002 13.1667V10.6667C4.00002 10.4825 4.06099 10.3046 4.17175 10.16L4.2441 10.0774L13.4108 0.910744L4.2441 10.0774ZM14 2.67851L5.66669 11.0118V12.3333H6.98818L15.3215 4L14 2.67851Z" fill="#707070" fill-opacity="0.8"/>
@@ -120,7 +121,7 @@
 
         <label for="ProfileModalPhoneInput">
           <span>تلفن همراه</span>
-          <input type="text" id="ProfileModalPhoneInput" @blur="FocusOutInput" value="09121234545" disabled>
+          <input type="text" id="ProfileModalPhoneInput" @blur="FocusOutInput" :value="myuser.phonenumber" disabled>
           <div class="EditIconBox" @click="OpenInputForEditing">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 15.6667C16.9603 15.6667 17.3334 16.0398 17.3334 16.5C17.3334 16.9602 16.9603 17.3333 16.5 17.3333H1.50002C1.03978 17.3333 0.666687 16.9602 0.666687 16.5C0.666687 16.0398 1.03978 15.6667 1.50002 15.6667H16.5ZM4.2441 10.0774L13.4108 0.910744C13.7112 0.610341 14.1839 0.587233 14.5108 0.841421L14.5893 0.910744L17.0893 3.41074C17.3897 3.71115 17.4128 4.18384 17.1586 4.51075L17.0893 4.58926L7.92261 13.7559C7.79238 13.8862 7.62348 13.9688 7.44289 13.9928L7.33335 14H4.83335C4.40599 14 4.05376 13.6783 4.00563 13.2639L4.00002 13.1667V10.6667C4.00002 10.4825 4.06099 10.3046 4.17175 10.16L4.2441 10.0774L13.4108 0.910744L4.2441 10.0774ZM14 2.67851L5.66669 11.0118V12.3333H6.98818L15.3215 4L14 2.67851Z" fill="#707070" fill-opacity="0.8"/>
@@ -146,7 +147,19 @@
 <script>
 export default {
   name: 'NavBar_PC',
+  data() {
+    return {
+      myuser:"",
+      default_profile: `http://${process.env.server_cdn_URL}/private/img/user.png`,
+    }
+  },
   methods: {
+    search(s) {
+      this.$nuxt.$emit('set-filters', {
+        ...this.filters,
+        s,
+      });
+    },
     OpenProfileModal(){
       document.getElementById('D_ProfileModal').classList.toggle('ActiveProfileModal');
     },
@@ -171,39 +184,43 @@ export default {
         }
     }
   },
-  mounted() {
-    document
-      .getElementById('SettingIcon')
-      .addEventListener('mouseenter', () => {
-        document.getElementById('SettingIcon').colors = 'primary:#252525'
-      })
-    document
-      .getElementById('SettingIcon')
-      .addEventListener('mouseleave', () => {
-        document.getElementById('SettingIcon').colors = 'primary:#707070'
-      })
-    document.getElementById('CartIcon').addEventListener('mouseenter', () => {
-      document.getElementById('CartIcon').colors = 'primary:#252525'
-    })
-    document.getElementById('CartIcon').addEventListener('mouseleave', () => {
-      document.getElementById('CartIcon').colors = 'primary:#707070'
-    })
-    document
-      .getElementById('NotificationIcon')
-      .addEventListener('mouseenter', () => {
-        document.getElementById('NotificationIcon').colors = 'primary:#252525'
-      })
-    document
-      .getElementById('NotificationIcon')
-      .addEventListener('mouseleave', () => {
-        document.getElementById('NotificationIcon').colors = 'primary:#707070'
-      })
-    document.getElementById('HelpIcon').addEventListener('mouseenter', () => {
-      document.getElementById('HelpIcon').colors = 'primary:#252525'
-    })
-    document.getElementById('HelpIcon').addEventListener('mouseleave', () => {
-      document.getElementById('HelpIcon').colors = 'primary:#707070'
-    })
+  async mounted() {
+    this.myuser = await fetch(`http://${process.env.server_URL}/account/isUser`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    }).then((res) => res.json())
+    // document
+    //   .getElementById('SettingIcon')
+    //   .addEventListener('mouseenter', () => {
+    //     document.getElementById('SettingIcon').colors = 'primary:#252525'
+    //   })
+    // document
+    //   .getElementById('SettingIcon')
+    //   .addEventListener('mouseleave', () => {
+    //     document.getElementById('SettingIcon').colors = 'primary:#707070'
+    //   })
+    // document.getElementById('CartIcon').addEventListener('mouseenter', () => {
+    //   document.getElementById('CartIcon').colors = 'primary:#252525'
+    // })
+    // document.getElementById('CartIcon').addEventListener('mouseleave', () => {
+    //   document.getElementById('CartIcon').colors = 'primary:#707070'
+    // })
+    // document
+    //   .getElementById('NotificationIcon')
+    //   .addEventListener('mouseenter', () => {
+    //     document.getElementById('NotificationIcon').colors = 'primary:#252525'
+    //   })
+    // document
+    //   .getElementById('NotificationIcon')
+    //   .addEventListener('mouseleave', () => {
+    //     document.getElementById('NotificationIcon').colors = 'primary:#707070'
+    //   })
+    // document.getElementById('HelpIcon').addEventListener('mouseenter', () => {
+    //   document.getElementById('HelpIcon').colors = 'primary:#252525'
+    // })
+    // document.getElementById('HelpIcon').addEventListener('mouseleave', () => {
+    //   document.getElementById('HelpIcon').colors = 'primary:#707070'
+    // })
   },
 }
 </script>

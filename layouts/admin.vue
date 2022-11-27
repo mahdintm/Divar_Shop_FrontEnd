@@ -8,10 +8,10 @@
         <NavBar_PC></NavBar_PC>
         <div class="D_AdminBox">
           <div class="HeaderBox"></div>
-          <div class="AvatarBox"><img src="@/static/img/avatar.png" alt="" /></div>
-          <div class="UserInfo">شیوا کمالی</div>
+          <div class="AvatarBox"><img :src="myuser.profile ? myuser.profile : default_profile"  alt="" /></div>
+          <div class="UserInfo">{{myuser.firstname||myuser.lastname?myuser.firstname&&myuser.lastname?`${myuser.firstname} ${myuser.lastname}`:myuser.firstname?myuser.firstname:myuser.lastname:myuser.email}}</div>
           <div class="RankInfoBox">ادمین</div>
-          <nuxt-link to="sabt">
+          <nuxt-link to="/admin/sabt">
           <div class="AddAdvertisingBox">
             <span>ثبت آگهی</span>
             <svg width="18" height="18" viewBox="0 0 32 32" fill="none" :xmlns="'http://www.w3.org/2000/svg%22%3E'">
@@ -23,34 +23,36 @@
         </nuxt-link>
           <div class="AdvertisingInfoBox">
             <div class="AdvertisingInfoSubBox">
-              <span>27</span><br /><span>آگهی های فعال</span>
+              <span>{{Active}}</span><br /><span>آگهی های فعال</span>
             </div>
             <div></div>
             <div class="AdvertisingInfoSubBox">
-              <span>40</span><br /><span>آگهی های غیرفعال</span>
+              <span>{{notActive}}</span><br /><span>آگهی های غیرفعال</span>
             </div>
           </div>
           <div class="AdminBoxDetails">
-            <div class="AdminBoxSubDetails">
+            <!-- <div class="AdminBoxSubDetails">
               <span>آگهی های شما:</span>
               <span>شما تا اکنون تعداد 15 آگهی ثبت کرده اید.</span>
               <div>مشاهده</div>
-            </div>
-            <div class="AdminBoxSubDetails">
+            </div> -->
+            <nuxtLink to="/admin/allads">
+              <div class="AdminBoxSubDetails">
               <span>تمام آگهی ها:</span>
-              <span>تعداد 77 آگهی فعال و غیرفعال موجود میباشد.</span>
+              <span>تعداد {{products.length}} آگهی فعال و غیرفعال موجود میباشد.</span>
               <div>مشاهده</div>
             </div>
+            </nuxtLink>
             <div class="AdminBoxSubDetails">
               <span> اکانت ها:</span>
               <span>تعداد 500 یوزر در دیتابیس فعال میباشد.</span>
               <div>مشاهده</div>
             </div>
-            <div class="AdminBoxSubDetails">
+            <!-- <div class="AdminBoxSubDetails">
               <span>آگهی های شما:</span>
               <span>شما تا اکنون تعداد 15 آگهی ثبت کرده اید.</span>
               <div>مشاهده</div>
-            </div>
+            </div> -->
           </div>
         </div>
         <nuxt />
@@ -61,11 +63,24 @@
 <script>
 import NavBar_PC from '~/components/pc/navbar.vue'
 import NavBar_Mobile from '~/components/mobile/navbar.vue'
+import { async } from 'q'
 
 export default {
   components: {
     NavBar_PC,
     NavBar_Mobile,
+  },
+  async beforeCreate() {
+    let user = await fetch(`http://${process.env.server_URL}/account/isUser`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    }).then((res) => res.json())
+    if (user.acl !=1) {
+      await this.$router.push('/')
+      await this.$nuxt.reload()
+    }else{
+      this.myuser = user
+    }
   },
   head() {
     return {
@@ -93,9 +108,36 @@ export default {
       auth: false,
       loading: false,
       login_check_interval: false,
+      myuser:"",
+      default_profile: `http://${process.env.server_cdn_URL}/private/img/user.png`,
+      products:"",
+      Active:0,
+      notActive:0
     }
   },
-  mounted() {
+  async mounted() {
+this.$nuxt.$on('updateProductCount',async()=>{
+  this.products = await fetch(
+      `http://${process.env.server_URL}/api/products`
+    ).then(async (res) => await res.json())
+    this.Active =0
+    this.notActive =0
+    count(this)
+})
+    function count(th) {
+      for (let i = 0; i < th.products.length; i++) {
+        if (th.products[i].active) {
+          th.Active ++
+        }else{
+          th.notActive ++
+        }
+        
+      }
+    }
+    this.products = await fetch(
+      `http://${process.env.server_URL}/api/products`
+    ).then(async (res) => await res.json())
+    count(this)
     async function check_login(app) {
       const response = await fetch(
         `http://${process.env.server_URL}/account/user`,
@@ -113,7 +155,6 @@ export default {
       }
     }
     this.$nuxt.$on('logout', async () => {
-      console.log('event')
       await fetch(`http://${process.env.server_URL}/account/logout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
