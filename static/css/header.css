@@ -70,6 +70,10 @@
   grid-template-columns: auto auto;
 }
 
+.D_Header .D_RightHeader label {
+  margin-bottom: unset;
+}
+
 .D_Header .D_SearchBarHeader {
   background-color: #f0f0f1;
   border-radius: 15px;
@@ -382,6 +386,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  text-align: right;
   color: #252525;
 }
 
@@ -390,11 +395,11 @@
   .ClientInformationBox
   .ClientUsernameInformation
   .ClientPermissionBox {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2px 16px;
   gap: 12px;
   width: min-content;
   background: rgba(112, 112, 112, 0.25);
@@ -407,6 +412,7 @@
   display: flex;
   align-items: center;
   color: #252525;
+  margin-top: 5px;
 }
 
 .D_Header .D_ProfileModalSubBox .ChangeClientInfoBox {

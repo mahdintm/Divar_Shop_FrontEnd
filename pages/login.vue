@@ -32,7 +32,7 @@
               <label for="UsernameInput">
                 <span>نام کاربری</span>
                 <div class="InputIntoThisBox">
-                  <input type="text" id="UsernameInput" v-model="username" autofocus @keydown.enter="submit()"/>
+                  <input type="text" id="UsernameInput" v-model="username" autofocus @keydown.enter="submit()" />
                   <div class="AlertInputBox" id="AlertInputUsernameBox">
                     <lord-icon src="https://cdn.lordicon.com/vacmyjrh.json" trigger="loop" colors="primary:#a62626"
                       state="hover-2" style="width: 20px; height: 20px"> </lord-icon>
@@ -45,7 +45,7 @@
               <label for="PasswordInput">
                 <span>رمز عبور</span>
                 <div class="InputIntoThisBox">
-                  <input type="password" id="PasswordInput" v-model="password" @keydown.enter="submit()"/>
+                  <input type="password" id="PasswordInput" v-model="password" @keydown.enter="submit()" />
                   <div class="AlertInputBox GotoRightPanel" id="AlertInputPasswordBox">
                     <lord-icon src="https://cdn.lordicon.com/vacmyjrh.json" trigger="loop" colors="primary:#a62626"
                       state="hover-2" style="width: 20px; height: 20px"> </lord-icon>
@@ -83,7 +83,7 @@
             </label>
           </div>
 
-          <div class="LoginButton" @click="submit()">ورود</div>
+          <div class="LoginButton" id="LoginButtonInLoginPage" @click="submit()">ورود</div>
         </div>
       </div>
       <div class="VectorBox">
@@ -124,6 +124,8 @@ export default {
       document.getElementById('AlertInputPasswordBox').classList.remove('Active');
       if (this.username == '') return document.getElementById('AlertInputUsernameBox').classList.add('Active');
       if (this.password == '') return document.getElementById('AlertInputPasswordBox').classList.add('Active');
+
+      document.getElementById('LoginButtonInLoginPage').setAttribute('disable', '');
       await fetch(`http://${process.env.server_URL}/account/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,7 +149,4 @@ export default {
 <style>
 @import url(@/static/css/main.css);
 @import url(@/static/css/login.css);
-.LoginBox{
-  text-align: right !important;
-}
 </style>

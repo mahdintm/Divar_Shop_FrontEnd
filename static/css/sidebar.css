@@ -68,7 +68,7 @@
 .D_SideBar .D_SideBarSubItem svg:nth-child(1) {
   width: 16px;
   height: 16px;
-  transform: translateY(25%);
+  /* transform: translateY(25%); */
   margin-left: 4px;
 }
 

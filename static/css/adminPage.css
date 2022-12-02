@@ -209,8 +209,9 @@
 
 .AdminPageContentInfoBox .AdminPageUserInfoTableBox table thead {
   background-color: rgba(112, 112, 112, 0.15);
-  color: #252525;
+  color: #5e5873;
   height: 40px;
+  font-size: 14px;
 }
 
 .AdminPageContentInfoBox .AdminPageUserInfoTableBox table tfoot {
@@ -240,6 +241,7 @@
   td:first-child {
   color: #a62626;
   width: 50px;
+  font-size: 14px;
 }
 
 .AdminPageContentInfoBox
@@ -249,6 +251,16 @@
   tr
   .UserInformationBoxTableAdminPage {
   text-align: right;
+  font-size: 14px;
+}
+
+.AdminPageContentInfoBox
+  .AdminPageUserInfoTableBox
+  table
+  tfoot
+  td:first-child
+  label {
+  margin-bottom: unset;
 }
 
 .AdminPageContentInfoBox
@@ -325,6 +337,8 @@
   tr
   .UserBuyInformationBoxTableAdminPage {
   color: #6e6b7b;
+  font-weight: 100;
+  font-size: 14px;
 }
 
 .AdminPageContentInfoBox
@@ -332,9 +346,15 @@
   table
   tbody
   tr
-  .OfflineClientShowInAdminPage {
+  .OfflineClientShowInAdminPage,
+.AdminPageContentInfoBox
+  .AdminPageUserInfoTableBox
+  table
+  tbody
+  tr
+  .OnlineClientShowInAdminPage {
   padding: 1px 12px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 17px;
   color: #a62626;
   background: rgba(166, 38, 38, 0.12);
@@ -346,9 +366,6 @@
   tbody
   tr
   .OnlineClientShowInAdminPage {
-  padding: 1px 12px;
-  font-size: 14px;
-  border-radius: 17px;
   color: #28c76f;
   background: rgba(40, 199, 111, 0.12);
 }
@@ -413,8 +430,9 @@
   align-items: center;
   grid-template-columns: 20px calc(100% - 20px);
   overflow: hidden;
-  padding: 2px 14px 2px 0px;
+  padding-right: 14px;
   cursor: pointer;
+  height: 32px;
 }
 
 .AdminPageContentInfoBox
@@ -476,6 +494,38 @@
   font-family: var(--BaseFontFamily);
   font-weight: 100;
   color: #6e6b7b;
+  font-family: Montserrat;
+}
+
+.AdminPageContentInfoBox
+  .AdminPageUserInfoTableBox
+  table
+  tfoot
+  td
+  .SlideIDBoxAdminPage
+  span {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.AdminPageContentInfoBox
+  .AdminPageUserInfoTableBox
+  table
+  tfoot
+  td
+  .SlideIDBoxAdminPage
+  span:first-child.SlideIDBoxSeleced {
+  margin-right: -12px;
+}
+
+.AdminPageContentInfoBox
+  .AdminPageUserInfoTableBox
+  table
+  tfoot
+  td
+  .SlideIDBoxAdminPage
+  span:last-child.SlideIDBoxSeleced {
+  margin-left: -12px;
 }
 
 .AdminPageContentInfoBox
@@ -491,7 +541,8 @@
   height: 32px;
   color: #ffffff;
   display: flex;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 600;
   justify-content: center;
   align-items: center;
   margin-top: -2px;

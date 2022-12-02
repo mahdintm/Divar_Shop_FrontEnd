@@ -92,6 +92,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: right;
 }
 
 .LoginContent .DivarIcon {
@@ -122,6 +123,7 @@
   transition: all 0.3s;
   outline: none;
   width: 100%;
+  margin-top: 10px;
   font-size: 1vw;
 }
 
@@ -146,6 +148,11 @@
   width: 100%;
   margin: 4px 0px 10px;
 }
+
+.LoginInputBox label {
+  width: 100%;
+}
+
 .LoginInputBox > span {
   margin-bottom: 10px;
 }
@@ -160,9 +167,9 @@
 div.InputEye,
 .InputIntoThisBox .AlertInputBox {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: 10px;
-  height: 100%;
+  height: calc(100% - 10px);
   display: flex;
   align-items: center;
 }
@@ -210,6 +217,8 @@ div.InputEye,
   user-select: none;
   cursor: pointer;
   margin-bottom: 0;
+  display: flex;
+  align-items: stretch;
 }
 
 .label-cbx input:checked + .checkbox {
@@ -230,7 +239,7 @@ div.InputEye,
 
 .label-cbx .checkbox {
   position: relative;
-  top: 4px;
+  top: 0px;
   float: right;
   margin-left: 8px;
   width: 1vw;
@@ -328,16 +337,117 @@ div.InputEye,
     width: 50%;
     margin: auto;
   }
+  .LoginContent .DivarIcon {
+    width: 10vw;
+    height: 10vw;
+  }
+  .LoginContent h2 {
+    font-size: 2vw;
+  }
+  .LoginContent p {
+    font-size: 1.4vw;
+  }
+  .RememberMeBox span {
+    font-size: 1.2vw;
+  }
+  .label-cbx .checkbox,
+  .label-cbx .checkbox svg {
+    width: 1.4vw;
+    height: 1.4vw;
+  }
+  .LoginContent input {
+    font-size: 1.4vw;
+  }
+  .InputIntoThisBox .Active.GotoRightPanel {
+    left: calc(2.2vw + 14px);
+  }
+  .InputEye svg {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+  .LoginButton {
+    font-size: 1.8vw;
+  }
 }
 
 @media (max-width: 620px) {
   .LoginContent {
     width: 80%;
   }
+  .LoginContent .DivarIcon {
+    width: 16vw;
+    height: 16vw;
+  }
+  .LoginContent h2 {
+    font-size: 3vw;
+  }
+  .LoginContent p {
+    font-size: 2.4vw;
+  }
+  .RememberMeBox span {
+    font-size: 2vw;
+  }
+  .label-cbx .checkbox,
+  .label-cbx .checkbox svg {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+  .LoginContent input {
+    font-size: 2.4vw;
+  }
+  .InputIntoThisBox .Active.GotoRightPanel {
+    left: calc(3.4vw + 14px);
+  }
+  .InputEye svg {
+    width: 3.4vw;
+    height: 3.4vw;
+  }
+  .LoginButton {
+    font-size: 2.6vw;
+  }
+  .AlertModalBox .AlertModalSubBox {
+    font-size: 12px;
+    width: 300px;
+  }
 }
 
 @media (max-width: 400px) {
   .LoginContent {
     width: 100%;
+  }
+  .LoginContent .DivarIcon {
+    width: 20vw;
+    height: 20vw;
+  }
+  .LoginContent h2 {
+    font-size: 3.8vw;
+  }
+  .LoginContent p {
+    font-size: 3.2vw;
+  }
+  .RememberMeBox span {
+    font-size: 2.8vw;
+  }
+  .label-cbx .checkbox,
+  .label-cbx .checkbox svg {
+    width: 3vw;
+    height: 3vw;
+  }
+  .LoginContent input {
+    font-size: 3.2vw;
+  }
+  .InputIntoThisBox .Active.GotoRightPanel {
+    left: calc(5.2vw + 14px);
+  }
+  .InputEye svg {
+    width: 5.2vw;
+    height: 5.2vw;
+  }
+  .LoginButton {
+    font-size: 4vw;
+  }
+  .AlertModalBox .AlertModalSubBox {
+    font-size: 10px;
+    width: 240px;
   }
 }

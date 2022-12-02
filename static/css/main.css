@@ -3,6 +3,11 @@
   src: url('../fonts/IRANSans.ttf');
 }
 
+@font-face {
+  font-family: Montserrat;
+  src: url('../fonts/Montserrat.ttf');
+}
+
 :root {
   --HeaderHeight: 64px;
   --WidthSideBar: 260px;

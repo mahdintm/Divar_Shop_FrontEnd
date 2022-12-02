@@ -144,6 +144,7 @@
   overflow: hidden;
   font-size: 14px;
   color: #252525;
+  text-align: right;
 }
 
 .AdvertisingBox .AdvertisingDescriptionBox > span {
