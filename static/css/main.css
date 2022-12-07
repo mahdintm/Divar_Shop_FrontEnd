@@ -7,7 +7,14 @@
   font-family: Montserrat;
   src: url('../fonts/Montserrat.ttf');
 }
-
+.my-page-enter-active,
+.my-page-leave-active {
+  transition: opacity 0.3s;
+}
+.my-page-enter,
+.my-page-leave-to {
+  opacity: 0;
+}
 :root {
   --HeaderHeight: 64px;
   --WidthSideBar: 260px;

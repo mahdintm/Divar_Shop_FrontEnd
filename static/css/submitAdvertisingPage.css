@@ -271,7 +271,7 @@
   display: grid;
   align-items: center;
   column-gap: 10px;
-  grid-template-columns: 30% 40px auto;
+  grid-template-columns: 30% 2% auto 5%;
 }
 
 .SubmitAdvertisingContentBox

@@ -13,7 +13,7 @@
                 : user.email
             }}
           </div>
-          <!-- <div class="RateValueBox">نفر اول</div> -->
+          <div class="RateValueBox">قیمت پیشنهاد: {{new Intl.NumberFormat().format(price)}} تومان</div>
         </div>
       </div>
       <!-- <div class="RateOrderOfAdvertisingDateTime">2 دقیقه پیش</div> -->
@@ -37,6 +37,6 @@ export default {
     ).then((res) => res.json())
     this.linkUser = `ShowUser?id=${this.id}`
   },
-  props: ['id'],
+  props: ['id','price'],
 }
 </script>

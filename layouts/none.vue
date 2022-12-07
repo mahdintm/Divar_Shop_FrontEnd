@@ -13,14 +13,14 @@ export default {
           async: true,
         },
         {
-          src: "https://cdn.jsdelivr.net/npm/apexcharts",
+          src: 'https://cdn.jsdelivr.net/npm/apexcharts',
           body: true,
           async: true,
         },
       ],
     }
   },
-  mounted() { },
+  mounted() {},
 }
 </script>
 <style>

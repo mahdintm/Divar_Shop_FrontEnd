@@ -1,5 +1,13 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  // or
+  pageTransition: {
+    name: 'my-page',
+    mode: 'out-in',
+    beforeEnter(el) {
+      console.log('Before enter...')
+    },
+  },
   server: {
     host: 'localhost',
     port: '3000', // optional
@@ -32,10 +40,9 @@ export default {
   plugins: [
     '@/static/js/fontawesome.min.js',
     '@/static/js/duotone.min.js',
-    // '@/static/js/apexchart.js',
-    // '@/node_modules/vue-apexcharts/src/index.js',
-    // '@/apexcharts',
-    // '@/vue-apexcharts',
+    { src: '~/plugins/apex-chart.js', mode: 'client' },
+    // { src: '~/plugins/chart.js', mode: 'client' },
+    // { src: '~/plugins/axios.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

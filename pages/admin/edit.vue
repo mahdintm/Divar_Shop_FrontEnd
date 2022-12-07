@@ -235,7 +235,7 @@ export default {
         })
       }
       this.adsData.date = Date.now()
-      await fetch(`http://${process.env.server_URL}/api/postADS`, {
+      await fetch(`http://${process.env.server_URL}/api/postEdit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(this.adsData),
@@ -253,6 +253,11 @@ export default {
     this.catergory = await fetch(
       `http://${process.env.server_URL}/api/category`
     ).then((res) => res.json())
+    this.adsData = await fetch(
+      `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+    ).then((res) => res.json())
+    this.ImageInsertInWeb=this.adsData.imgs
+    console.log(this.adsData)
   },
 }
 </script>

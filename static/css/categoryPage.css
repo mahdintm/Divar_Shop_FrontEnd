@@ -2,6 +2,7 @@
   overflow-y: hidden;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  margin-left: 2%;
   margin-right: calc(385px + 40px);
   /* margin-top: calc(64px + 20px); */
   margin-top: calc(var(--HeaderHeight) + 20px);
