@@ -8,9 +8,9 @@
         <div class="ClientInformationBox">
           <div class="ClientInfoBox">
             {{
-              user.firstname && user.lastname
-                ? `${user.firstname} ${user.lastname}`
-                : user.email
+            user.firstname && user.lastname
+            ? `${user.firstname} ${user.lastname}`
+            : user.email
             }}
           </div>
           <div class="RateValueBox">قیمت پیشنهاد: {{new Intl.NumberFormat().format(price)}} تومان</div>
@@ -26,14 +26,14 @@ export default {
   name: 'RateOrderOfAdvertisingSubBox',
   data() {
     return {
-      default_profile: `http://${process.env.server_cdn_URL}/private/img/user.png`,
+      default_profile: `https://${process.env.server_cdn_URL}/private/img/user.png`,
       user: '',
       linkUser: '',
     }
   },
   async mounted() {
     this.user = await fetch(
-      `http://${process.env.server_URL}/api/user?id=${this.id}`
+      `https://${process.env.server_URL}/api/user?id=${this.id}`
     ).then((res) => res.json())
     this.linkUser = `ShowUser?id=${this.id}`
   },

@@ -8,31 +8,14 @@
             <label for="input-valid">قیمت پیشنهادی:</label>
           </b-col>
           <b-col sm="8">
-            <b-form-input
-              id="input-valid"
-              type="number"
-              v-model="UserPrice"
-              :state="validPrice"
-              placeholder="قیمت را وارد کنید"
-            ></b-form-input>
+            <b-form-input id="input-valid" type="number" v-model="UserPrice" :state="validPrice"
+              placeholder="قیمت را وارد کنید"></b-form-input>
           </b-col>
         </b-row>
       </div>
-      <b-button
-        style="background-color: #a62626"
-        :disabled="!validPrice"
-        class="mt-3"
-        block
-        @click="registerProduct"
-        >ثبت پیشنهاد</b-button
-      >
-      <b-button
-        v-if="userRegiter"
-        class="mt-3"
-        block
-        @click="disregisterProduct"
-        >حذف پیشنهاد</b-button
-      >
+      <b-button style="background-color: #a62626" :disabled="!validPrice" class="mt-3" block
+        @click="registerProduct">ثبت پیشنهاد</b-button>
+      <b-button v-if="userRegiter" class="mt-3" block @click="disregisterProduct">حذف پیشنهاد</b-button>
     </b-modal>
     <!-- <div @click="backto">برگشت</div> -->
     <div class="SiteMapBox">
@@ -44,21 +27,15 @@
         <div class="AdvertisingTitle">{{ item.title }}</div>
         <!-- <div class="AdvertisingCreateTime">5 دقیقه پیش . . .</div> -->
         <div class="AdvertisingButtonBox">
-          <div
-            class="SubmitAdvertisingButton"
-            @click="$bvModal.show('bv-modal-Register-Product')"
-            v-if="!userRegiter && isTimeRegister"
-          >
+          <div class="SubmitAdvertisingButton" @click="$bvModal.show('bv-modal-Register-Product')"
+            v-if="!userRegiter && isTimeRegister">
             ثبت پیشنهاد
           </div>
           <!-- <div class="SaveAdvertisingButton" @click="registerProduct" v-if="!isTimeRegister">
             خارج زمان ثبت نام
           </div> -->
-          <div
-            class="SaveAdvertisingButton"
-            @click="$bvModal.show('bv-modal-Register-Product')"
-            v-if="userRegiter && isTimeRegister"
-          >
+          <div class="SaveAdvertisingButton" @click="$bvModal.show('bv-modal-Register-Product')"
+            v-if="userRegiter && isTimeRegister">
             ویرایش پیشنهاد
           </div>
           <!-- <div class="SaveAdvertisingButton">نشان کردن</div> -->
@@ -75,14 +52,10 @@
           </div>
           <div class="AdvertisingInformationSubBox">
             <div>قیمت</div>
-            <div>{{  new Intl.NumberFormat().format(item.price) }} تومان</div>
+            <div>{{ new Intl.NumberFormat().format(item.price) }} تومان</div>
           </div>
-          <Item_option_Product
-            v-for="itm in item.options"
-            :key="itm.id"
-            :option_name="itm.key"
-            :option_value="itm.value"
-          />
+          <Item_option_Product v-for="itm in item.options" :key="itm.id" :option_name="itm.key"
+            :option_value="itm.value" />
         </div>
         <div style="text-align: rtl" class="AdvertisingDescriptionBox">
           <span style="text-align: rtl">توضیحات :</span>
@@ -91,49 +64,30 @@
       </div>
     </div>
     <div class="LeftPanel">
-      <div
-        :class="
-          this.FirstImgMain != this.default_no_photo
-            ? 'BigImageBox'
-            : 'BigImageBoxDontShadow'
-        "
-      >
+      <div :class="
+        this.FirstImgMain != this.default_no_photo
+          ? 'BigImageBox'
+          : 'BigImageBoxDontShadow'
+      ">
         <img :src="FirstImgMain" class="BigImageElement Active" alt="" />
         <img :src="SecondImgMain" class="BigImageElement" alt="" />
         <div class="IndexImageIDBox">
-          <div
-            v-for="(item_, index) of item.imgs"
-            :key="item_"
-            :ImageKey="index"
-            @click="selectPhotoFromID"
-            :class="
-              index == 0
-                ? 'IndexImageIDSubBox SelectedImageID'
-                : 'IndexImageIDSubBox'
-            "
-          ></div>
+          <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhotoFromID" :class="
+            index == 0
+              ? 'IndexImageIDSubBox SelectedImageID'
+              : 'IndexImageIDSubBox'
+          "></div>
         </div>
       </div>
       <div class="SmallImageBox">
-        <div
-          v-for="(item_, index) of item.imgs"
-          :key="item_"
-          :ImageKey="index"
-          @click="selectPhoto"
-          :class="
-            index == 0 ? 'SmallImageSubBox SelectedImage' : 'SmallImageSubBox'
-          "
-        >
+        <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhoto" :class="
+          index == 0 ? 'SmallImageSubBox SelectedImage' : 'SmallImageSubBox'
+        ">
           <img :src="item_" alt="" />
         </div>
       </div>
       <div class="RateOrderOfAdvertising">
-        <RateOrderOfAdvertisingSubBox
-          v-for="itm in item.registrations"
-          :key="itm"
-          :id="itm.id"
-          :price="itm.price"
-        />
+        <RateOrderOfAdvertisingSubBox v-for="itm in item.registrations" :key="itm" :id="itm.id" :price="itm.price" />
       </div>
     </div>
   </div>
@@ -153,7 +107,7 @@ export default {
     return {
       item: '',
       catergory: '',
-      default_no_photo: `http://${process.env.server_cdn_URL}/private/img/no-photo.png`,
+      default_no_photo: `https://${process.env.server_cdn_URL}/private/img/no-photo.png`,
       FirstImgMain: '',
       SecondImgMain: '',
       myuser: '',
@@ -264,7 +218,7 @@ export default {
     },
     async registerProduct() {
       let response = await fetch(
-        `http://${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
+        `https://${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
       )
       const content = await response.json()
       if (content.res) {
@@ -274,7 +228,7 @@ export default {
     },
     async disregisterProduct() {
       let response = await fetch(
-        `http://${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+        `https://${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
       )
       const content = await response.json()
       if (content.res) {
@@ -285,14 +239,14 @@ export default {
   },
   async mounted() {
     this.item = await fetch(
-      `http://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+      `https://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then(async (res) => res.json())
     this.catergory = await fetch(
-      `http://${process.env.server_URL}/api/category?id=${await this.item
+      `https://${process.env.server_URL}/api/category?id=${await this.item
         .category_id}`
     ).then((res) => res.json())
     this.myuser = await fetch(
-      `http://${process.env.server_URL}/account/isUser`,
+      `https://${process.env.server_URL}/account/isUser`,
       {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -303,7 +257,7 @@ export default {
     test(this, this.item.category_id)
     async function test(th, category_id) {
       await fetch(
-        `http://${process.env.server_URL}/api/category?id=${category_id}`
+        `https://${process.env.server_URL}/api/category?id=${category_id}`
       ).then(async (res) => {
         res = await res.json()
         th.cat.push(res.name)
@@ -315,10 +269,10 @@ export default {
       })
     }
     this.isTimeRegister = await fetch(
-      `http://${process.env.server_URL}/api/registerTime`
+      `https://${process.env.server_URL}/api/registerTime`
     ).then(async (res) => res.json())
     this.userRegiter = await fetch(
-      `http://${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+      `https://${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
     ).then(async (res) => res.json())
   },
   components: {
@@ -337,6 +291,7 @@ export default {
   padding: 1rem 1rem;
   margin: -1rem -1rem -1rem 0rem !important;
 }
+
 /* hide arrows
  Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -344,6 +299,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   margin: 0 !important;
 }
+
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield !important;

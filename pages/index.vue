@@ -1,19 +1,10 @@
 <template>
-<div class="D_Content">
-    <Content_Item_registration
-      v-for="item in filteredProducts"
-      v-if="item.active != false"
-      :key="item.id"
-      :title_="item.title"
-      :description="item.description"
-      :price="item.price"
-      :time="'item.time'"
-      :registrations="item.registrations"
-      :image="item.imgs"
-      :link="item.id"
-    />
+  <div class="D_Content">
+    <Content_Item_registration v-for="item in filteredProducts" v-if="item.active != false" :key="item.id"
+      :title_="item.title" :description="item.description" :price="item.price" :time="'item.time'"
+      :registrations="item.registrations" :image="item.imgs" :link="item.id" />
   </div>
-  
+
 </template>
 
 <script>
@@ -31,7 +22,7 @@ export default {
   },
   async mounted() {
     this.content_item = await fetch(
-      `http://${process.env.server_URL}/api/products`
+      `https://${process.env.server_URL}/api/products`
     ).then(async (res) => {
       let a = await res.json()
       this.filteredProducts = a
@@ -49,6 +40,5 @@ export default {
 }
 </script>
 <style>
-
 @import url(@/static/css/content.css);
 </style>

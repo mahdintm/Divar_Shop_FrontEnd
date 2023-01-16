@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="D_Content">
         <b-container class="bv-example-row">
             <b-row>
@@ -36,9 +36,9 @@
     
     @import url(@/static/css/content.css);
 
-    *{
+    /* *{
         text-align: right !important;
-    }
+    } */
     .UserST_header{
         padding: 4% 0px 4% 0% !important;
     }
@@ -46,4 +46,4 @@
         padding: 0 2% 0 2% !important;
     }
     </style>
-    
+     -->

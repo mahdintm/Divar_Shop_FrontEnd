@@ -51,7 +51,7 @@ export default {
   async mounted() {
     async function check_login(app) {
       const response = await fetch(
-        `http://${process.env.server_URL}/account/user`,
+        `https://${process.env.server_URL}/account/user`,
         {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -66,7 +66,7 @@ export default {
       }
     }
     this.$nuxt.$on('logout', async () => {
-      await fetch(`http://${process.env.server_URL}/account/logout`, {
+      await fetch(`https://${process.env.server_URL}/account/logout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

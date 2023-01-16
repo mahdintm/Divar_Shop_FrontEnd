@@ -10,20 +10,14 @@
           <div class="D_ItemSlotBox">
             <div class="D_ItemSlotNumber">{{ registrations.length }}/4</div>
             <div class="D_ItemAvatars" v-if="registrations.length > 0">
-              <Content_Item_registration
-                v-for="reg in registrations"
-                :key="reg"
-                :id="reg"
-              />
+              <Content_Item_registration v-for="reg in registrations" :key="reg" :id="reg" />
             </div>
           </div>
         </div>
       </div>
-      <div
-        :class="
-          image.length > 0 ? 'D_ItemImage BoxLoading' : 'D_ItemImageDontScale'
-        "
-      >
+      <div :class="
+        image.length > 0 ? 'D_ItemImage BoxLoading' : 'D_ItemImageDontScale'
+      ">
         <img :src="image.length > 0 ? image[0] : default_no_photo" alt="" />
       </div>
     </div>
@@ -37,7 +31,7 @@ export default {
   },
   data() {
     return {
-      default_no_photo: `http://${process.env.server_cdn_URL}/private/img/no-photo.png`,
+      default_no_photo: `https://${process.env.server_cdn_URL}/private/img/no-photo.png`,
     }
   },
   name: 'Content_Item',

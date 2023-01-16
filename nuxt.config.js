@@ -5,17 +5,17 @@ export default {
     name: 'my-page',
     mode: 'out-in',
     beforeEnter(el) {
-      console.log('Before enter...')
+//      console.log('Before enter...')
     },
   },
   server: {
-    host: 'localhost',
+    host: '0',
     port: '3000', // optional
   },
   ssr: false,
   env: {
-    server_URL: 'localhost:3001',
-    server_cdn_URL: 'localhost:3002',
+    server_URL: 'shop-backend.agahpardazan.ir',
+    server_cdn_URL: 'shop-cdn.agahpardazan.ir',
   },
   loading: {
     color: '#a7211b',
