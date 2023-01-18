@@ -22,7 +22,7 @@ export default {
   },
   async mounted() {
     this.content_item = await fetch(
-      `https://${process.env.server_URL}/api/products`
+      `${process.env.server_URL}/api/products`
     ).then(async (res) => {
       let a = await res.json()
       this.filteredProducts = a

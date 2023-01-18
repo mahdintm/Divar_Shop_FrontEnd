@@ -10,7 +10,7 @@ export default {
   name: 'Content_Item_registration',
   data() {
     return {
-      default_profile: `https://${process.env.server_cdn_URL}/private/img/user.png`,
+      default_profile: `${process.env.server_cdn_URL}/private/img/user.png`,
       user: '',
       linkUser: '',
     }
@@ -20,7 +20,7 @@ export default {
   watch: {},
   async mounted() {
     this.user = await fetch(
-      `https://${process.env.server_URL}/api/user?id=${this.id}`
+      `${process.env.server_URL}/api/user?id=${this.id}`
     ).then((res) => res.json())
     this.linkUser = `ShowUser?id=${this.id}`
   },

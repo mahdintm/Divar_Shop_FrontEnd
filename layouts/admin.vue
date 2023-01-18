@@ -14,13 +14,13 @@
             </div>
             <div class="UserInfo">
               {{
-                  myuser.firstname || myuser.lastname
-                    ? myuser.firstname && myuser.lastname
-                      ? `${myuser.firstname} ${myuser.lastname}`
-                      : myuser.firstname
-                        ? myuser.firstname
-                        : myuser.lastname
-                    : myuser.email
+                myuser.firstname || myuser.lastname
+                  ? myuser.firstname && myuser.lastname
+                    ? `${myuser.firstname} ${myuser.lastname}`
+                    : myuser.firstname
+                      ? myuser.firstname
+                      : myuser.lastname
+                  : myuser.email
               }}
             </div>
             <div class="RankInfoBox">ادمین</div>
@@ -86,7 +86,7 @@ export default {
     NavBar_Mobile,
   },
   async beforeCreate() {
-    let user = await fetch(`https://${process.env.server_URL}/account/isUser`, {
+    let user = await fetch(`${process.env.server_URL}/account/isUser`, {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
     }).then((res) => res.json())
@@ -125,7 +125,7 @@ export default {
       loading: false,
       login_check_interval: false,
       myuser: '',
-      default_profile: `https://${process.env.server_cdn_URL}/private/img/user.png`,
+      default_profile: `${process.env.server_cdn_URL}/private/img/user.png`,
       products: '',
       Active: 0,
       notActive: 0,
@@ -135,7 +135,7 @@ export default {
   async mounted() {
     this.$nuxt.$on('updateProductCount', async () => {
       this.products = await fetch(
-        `https://${process.env.server_URL}/api/products`
+        `${process.env.server_URL}/api/products`
       ).then(async (res) => await res.json())
       this.Active = 0
       this.notActive = 0
@@ -144,13 +144,13 @@ export default {
     this.$nuxt.$on('showLoading', async (state) => {
       this.showOverLay = state
     })
-  this.$nuxt.$on('showErrorAlert', async (state) => {
+    this.$nuxt.$on('showErrorAlert', async (state) => {
       alert(state)
     })
 
-    
+
     this.Users = await fetch(
-      `https://${process.env.server_URL}/api/getAllUsers`
+      `${process.env.server_URL}/api/getAllUsers`
     ).then(async (res) => await res.json())
     function count(th) {
       for (let i = 0; i < th.products.length; i++) {
@@ -162,12 +162,12 @@ export default {
       }
     }
     this.products = await fetch(
-      `https://${process.env.server_URL}/api/products`
+      `${process.env.server_URL}/api/products`
     ).then(async (res) => await res.json())
     count(this)
     async function check_login(app) {
       const response = await fetch(
-        `https://${process.env.server_URL}/account/user`,
+        `${process.env.server_URL}/account/user`,
         {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -182,7 +182,7 @@ export default {
       }
     }
     this.$nuxt.$on('logout', async () => {
-      await fetch(`https://${process.env.server_URL}/account/logout`, {
+      await fetch(`${process.env.server_URL}/account/logout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

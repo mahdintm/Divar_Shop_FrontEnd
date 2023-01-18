@@ -143,44 +143,44 @@ export default {
     async SubmitAdvertising() {
 
 
-      if (this.adsData.options[0]&&this.adsData.category_id&&this.adsData.code&&this.adsData.description&&this.adsData.price&&this.adsData.title) {
+      if (this.adsData.options[0] && this.adsData.category_id && this.adsData.code && this.adsData.description && this.adsData.price && this.adsData.title) {
         for await (const file of this.ImageFiles) {
-        var data = new FormData()
-        data.append('files', file, file.name)
-        await fetch(`https://${process.env.server_cdn_URL}/upload`, {
+          var data = new FormData()
+          data.append('files', file, file.name)
+          await fetch(`${process.env.server_cdn_URL}/upload`, {
+            method: 'POST',
+            headers: {},
+            body: data,
+          }).then(async (res) => {
+            let a = await res.json()
+            this.adsData.imgs.push(
+              `${process.env.server_cdn_URL}/upload/${a.name}`
+            )
+          })
+        }
+        this.adsData.date = Date.now()
+        await fetch(`${process.env.server_URL}/api/postEdit`, {
           method: 'POST',
-          headers: {},
-          body: data,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.adsData),
         }).then(async (res) => {
           let a = await res.json()
-          this.adsData.imgs.push(
-            `https://${process.env.server_cdn_URL}/upload/${a.name}`
-          )
+          await this.$router.push(`/Product?id=${a.id}`)
         })
-      }
-      this.adsData.date = Date.now()
-      await fetch(`https://${process.env.server_URL}/api/postEdit`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.adsData),
-      }).then(async (res) => {
-        let a = await res.json()
-        await this.$router.push(`/Product?id=${a.id}`)
-      })
       } else {
         alert('لطفا فرم را پر کنید')
       }
-      
+
     },
   },
   async mounted() {
     this.catergory = await fetch(
-      `https://${process.env.server_URL}/api/category`
+      `${process.env.server_URL}/api/category`
     ).then((res) => res.json())
     this.adsData = await fetch(
-      `https://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+      `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then((res) => res.json())
-    this.ImageInsertInWeb=this.adsData.imgs
+    this.ImageInsertInWeb = this.adsData.imgs
     console.log(this.adsData)
   },
 }

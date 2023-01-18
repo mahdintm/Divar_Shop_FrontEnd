@@ -9,18 +9,18 @@
       </template>
       <template #cell(date)="data">
         {{
-            new Date(parseInt(data.item.date)).toLocaleDateString('fa-IR', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })
+          new Date(parseInt(data.item.date)).toLocaleDateString('fa-IR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
         }}
         |
         {{
-            `${new Date(parseInt(data.item.date)).getHours()}:${new Date(
-              parseInt(data.item.date)
-            ).getMinutes()}`
+        `${new Date(parseInt(data.item.date)).getHours()}:${new Date(
+  parseInt(data.item.date)
+).getMinutes()}`
         }}
       </template>
       <template #cell(remove)="data">
@@ -81,35 +81,35 @@ export default {
   },
   async mounted() {
     this.items = await fetch(
-      `https://${process.env.server_URL}/api/products`
+      `${process.env.server_URL}/api/products`
     ).then(async (res) => await res.json())
   },
   methods: {
-    async test(){
+    async test() {
       const data = []
       let i = 0
-      for await(const element of this.items) {
-        i=0
-        let d__={
-          id:element.id,
-          title:element.title,
-          price:element.price,
-          code:element.code,
-          active:element.active,
+      for await (const element of this.items) {
+        i = 0
+        let d__ = {
+          id: element.id,
+          title: element.title,
+          price: element.price,
+          code: element.code,
+          active: element.active,
         }
-        for await(const element__ of element.registrations) {
-          let userd= await fetch(`https://${process.env.server_URL}/api/user?id=${element__.id}`).then(async (res) => await res.json())
+        for await (const element__ of element.registrations) {
+          let userd = await fetch(`${process.env.server_URL}/api/user?id=${element__.id}`).then(async (res) => await res.json())
           switch (i) {
-              case 0:d__["oneـperson"]={email:await userd.email,price:element__.price}; break;
-              case 1:d__["secondـperson"]={email:await userd.email,price:element__.price}; break;
-              case 2:d__["thridـperson"]={email:await userd.email,price:element__.price}; break;
-              case 3:d__["fourthـperson"]={email:await userd.email,price:element__.price}; break;
+            case 0: d__["oneـperson"] = { email: await userd.email, price: element__.price }; break;
+            case 1: d__["secondـperson"] = { email: await userd.email, price: element__.price }; break;
+            case 2: d__["thridـperson"] = { email: await userd.email, price: element__.price }; break;
+            case 3: d__["fourthـperson"] = { email: await userd.email, price: element__.price }; break;
           }
           i++
         }
         data.push(d__)
       }
-      
+
       const fileName = `Export_${process.env.APP_NAME}_${Date.now()}`;
       const exportType = exportFromJSON.types.xls;
 
@@ -117,18 +117,18 @@ export default {
     },
     async change(status, id) {
       console.log(Boolean(status))
-      await fetch(`https://${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`).then(async (res) => {await res.json()})
+      await fetch(`${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`).then(async (res) => { await res.json() })
       this.$root.$emit('updateProductCount')
     },
     async remove(id) {
       if (confirm('Press a button!')) {
         return await fetch(
-          `https://${process.env.server_URL}/api/deletePost?id=${id}`
+          `${process.env.server_URL}/api/deletePost?id=${id}`
         ).then(async (res) => {
           await res.json()
           this.$root.$emit('updateProductCount')
           this.items = await fetch(
-            `https://${process.env.server_URL}/api/products`
+            `${process.env.server_URL}/api/products`
           ).then(async (res) => await res.json())
         })
       } else {

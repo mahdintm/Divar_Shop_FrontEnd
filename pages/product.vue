@@ -51,6 +51,10 @@
             <div>لحظاتی پیش . . .</div>
           </div>
           <div class="AdvertisingInformationSubBox">
+            <div>کد اموال</div>
+            <div>{{ item.code }}</div>
+          </div>
+          <div class="AdvertisingInformationSubBox">
             <div>قیمت</div>
             <div>{{ new Intl.NumberFormat().format(item.price) }} تومان</div>
           </div>
@@ -107,7 +111,7 @@ export default {
     return {
       item: '',
       catergory: '',
-      default_no_photo: `https://${process.env.server_cdn_URL}/private/img/no-photo.png`,
+      default_no_photo: `${process.env.server_cdn_URL}/private/img/no-photo.png`,
       FirstImgMain: '',
       SecondImgMain: '',
       myuser: '',
@@ -130,7 +134,7 @@ export default {
       )
         document
           .getElementsByClassName('BigImageElement')
-          [i].classList.toggle('Active')
+        [i].classList.toggle('Active')
 
       if (this.FirstImgMain == '') {
         this.FirstImgMain = SRC
@@ -149,7 +153,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImage')
-          [i].classList.remove('SelectedImage')
+        [i].classList.remove('SelectedImage')
       for (
         let i = 0;
         i < document.getElementsByClassName('SelectedImageID').length;
@@ -157,7 +161,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImageID')
-          [i].classList.remove('SelectedImageID')
+        [i].classList.remove('SelectedImageID')
 
       element.path[1].classList.add('SelectedImage')
       for (
@@ -168,12 +172,12 @@ export default {
         if (
           document
             .getElementsByClassName('IndexImageIDSubBox')
-            [i].getAttribute('ImageKey') ==
+          [i].getAttribute('ImageKey') ==
           element.path[1].getAttribute('ImageKey')
         )
           document
             .getElementsByClassName('IndexImageIDSubBox')
-            [i].classList.add('SelectedImageID')
+          [i].classList.add('SelectedImageID')
 
       this.ChangeBigImage(element.srcElement.src)
     },
@@ -185,7 +189,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImage')
-          [i].classList.remove('SelectedImage')
+        [i].classList.remove('SelectedImage')
       for (
         let i = 0;
         i < document.getElementsByClassName('SelectedImageID').length;
@@ -193,7 +197,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImageID')
-          [i].classList.remove('SelectedImageID')
+        [i].classList.remove('SelectedImageID')
 
       element.srcElement.classList.add('SelectedImageID')
       for (
@@ -205,11 +209,11 @@ export default {
           element.srcElement.getAttribute('ImageKey') ==
           document
             .getElementsByClassName('SmallImageSubBox')
-            [i].getAttribute('ImageKey')
+          [i].getAttribute('ImageKey')
         ) {
           document
             .getElementsByClassName('SmallImageSubBox')
-            [i].classList.add('SelectedImage')
+          [i].classList.add('SelectedImage')
           this.ChangeBigImage(
             document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0]
               .src
@@ -218,7 +222,7 @@ export default {
     },
     async registerProduct() {
       let response = await fetch(
-        `https://${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
+        `${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
       )
       const content = await response.json()
       if (content.res) {
@@ -228,7 +232,7 @@ export default {
     },
     async disregisterProduct() {
       let response = await fetch(
-        `https://${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+        `${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
       )
       const content = await response.json()
       if (content.res) {
@@ -239,14 +243,14 @@ export default {
   },
   async mounted() {
     this.item = await fetch(
-      `https://${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+      `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then(async (res) => res.json())
     this.catergory = await fetch(
-      `https://${process.env.server_URL}/api/category?id=${await this.item
+      `${process.env.server_URL}/api/category?id=${await this.item
         .category_id}`
     ).then((res) => res.json())
     this.myuser = await fetch(
-      `https://${process.env.server_URL}/account/isUser`,
+      `${process.env.server_URL}/account/isUser`,
       {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -257,7 +261,7 @@ export default {
     test(this, this.item.category_id)
     async function test(th, category_id) {
       await fetch(
-        `https://${process.env.server_URL}/api/category?id=${category_id}`
+        `${process.env.server_URL}/api/category?id=${category_id}`
       ).then(async (res) => {
         res = await res.json()
         th.cat.push(res.name)
@@ -269,10 +273,10 @@ export default {
       })
     }
     this.isTimeRegister = await fetch(
-      `https://${process.env.server_URL}/api/registerTime`
+      `${process.env.server_URL}/api/registerTime`
     ).then(async (res) => res.json())
     this.userRegiter = await fetch(
-      `https://${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+      `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
     ).then(async (res) => res.json())
   },
   components: {

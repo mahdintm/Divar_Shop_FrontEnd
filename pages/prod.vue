@@ -15,11 +15,11 @@ export default {
       content_item: '',
     }
   },
-  async mounted() {},
-  async computed() {},
+  async mounted() { },
+  async computed() { },
   async watch() {
     this.content_item = await fetch(
-      `https://${process.env.server_URL}/api/products?category=${this.$route.query.id}`
+      `${process.env.server_URL}/api/products?category=${this.$route.query.id}`
     ).then((res) => res.json())
   },
 }

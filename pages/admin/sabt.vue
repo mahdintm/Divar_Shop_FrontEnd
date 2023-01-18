@@ -147,7 +147,7 @@ export default {
         for await (const file of this.ImageFiles) {
           var data = new FormData()
           data.append('files', file, file.name)
-          await fetch(`https://${process.env.server_cdn_URL}/upload`, {
+          await fetch(`${process.env.server_cdn_URL}/upload`, {
             method: 'POST',
             // headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type' 'Access-Control-Allow-Headers': '*' },
             body: data,
@@ -155,12 +155,12 @@ export default {
           }).then(async (res) => {
             let a = await res.json()
             this.adsData.imgs.push(
-              `https://${process.env.server_cdn_URL}/upload/${a.name}`
+              `${process.env.server_cdn_URL}/upload/${a.name}`
             )
           })
         }
         this.adsData.date = Date.now()
-        await fetch(`https://${process.env.server_URL}/api/postADS`, {
+        await fetch(`${process.env.server_URL}/api/postADS`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.adsData),
@@ -176,7 +176,7 @@ export default {
   },
   async mounted() {
     this.catergory = await fetch(
-      `https://${process.env.server_URL}/api/category`
+      `${process.env.server_URL}/api/category`
     ).then((res) => res.json())
   },
 }

@@ -69,7 +69,7 @@
               </div>
               <div>
                 {{ new Date(TimeRegister.start).getHours() }}:{{
-                    new Date(TimeRegister.start).getMinutes()
+                  new Date(TimeRegister.start).getMinutes()
                 }}:{{ new Date(TimeRegister.start).getSeconds() }} -
                 {{ new Date(TimeRegister.start).toLocaleDateString('fa-IR') }}
               </div>
@@ -86,7 +86,7 @@
               </div>
               <div>
                 {{ new Date(TimeRegister.end).getHours() }}:{{
-                    new Date(TimeRegister.end).getMinutes()
+                  new Date(TimeRegister.end).getMinutes()
                 }}:{{ new Date(TimeRegister.end).getSeconds() }} -
                 {{ new Date(TimeRegister.end).toLocaleDateString('fa-IR') }}
               </div>
@@ -323,8 +323,7 @@ export default {
       date_.setSeconds(time.seconds)
       this.TimeRegister.start = date_.getTime()
       let response = await fetch(
-        `https://${
-          process.env.server_URL
+        `${process.env.server_URL
         }/api/setRegisterTime_Start?Time=${date_.getTime()}`
       )
       this.$bvModal.hide('bv-modal-Setting_Start_register')
@@ -344,34 +343,33 @@ export default {
       date_.setSeconds(time.seconds)
       this.TimeRegister.end = date_.getTime()
       let response = await fetch(
-        `https://${
-          process.env.server_URL
+        `${process.env.server_URL
         }/api/setRegisterTime_End?Time=${date_.getTime()}`
       )
       this.$bvModal.hide('bv-modal-Setting_End_register')
     },
-    async MozaiedeRun(){
-      this.$nuxt.$emit('showLoading', (true) )
+    async MozaiedeRun() {
+      this.$nuxt.$emit('showLoading', (true))
       console.log(1)
       let response = await fetch(
-        `https://${process.env.server_URL}/api/RunMozaiede`
+        `${process.env.server_URL}/api/RunMozaiede`
       ).then(async (res) => res.json())
       if (response[0]) {
-      this.$nuxt.$emit('showLoading', (false) )
-      }else{
-        this.$nuxt.$emit('showLoading', (false) )
-        this.$nuxt.$emit('showErrorAlert', (`مشکلی در سمت سرور وجود دارد لطفا با ادمین تماس بگیرید.\n${response[1]}`) )
+        this.$nuxt.$emit('showLoading', (false))
+      } else {
+        this.$nuxt.$emit('showLoading', (false))
+        this.$nuxt.$emit('showErrorAlert', (`مشکلی در سمت سرور وجود دارد لطفا با ادمین تماس بگیرید.\n${response[1]}`))
       }
     }
   },
 
   async mounted() {
     this.items = await fetch(
-      `https://${process.env.server_URL}/api/products`
+      `${process.env.server_URL}/api/products`
     ).then(async (res) => res.json())
     console.log(this.items.length)
     this.TimeRegister = await fetch(
-      `https://${process.env.server_URL}/api/getRegisterTime`
+      `${process.env.server_URL}/api/getRegisterTime`
     ).then(async (res) => res.json())
     this.Start_TimeVmodel = `${new Date(
       this.TimeRegister.start
@@ -380,17 +378,15 @@ export default {
     ).getSeconds()}`
     this.Start_DateVmodel = `${new Date(
       this.TimeRegister.start
-    ).getFullYear()}-${
-      new Date(this.TimeRegister.start).getMonth() + 1
-    }-${new Date(this.TimeRegister.start).getDate()}`
+    ).getFullYear()}-${new Date(this.TimeRegister.start).getMonth() + 1
+      }-${new Date(this.TimeRegister.start).getDate()}`
     this.End_TimeVmodel = `${new Date(
       this.TimeRegister.end
     ).getHours()}:${new Date(this.TimeRegister.end).getMinutes()}:${new Date(
       this.TimeRegister.end
     ).getSeconds()}`
-    this.End_DateVmodel = `${new Date(this.TimeRegister.end).getFullYear()}-${
-      new Date(this.TimeRegister.end).getMonth() + 1
-    }-${new Date(this.TimeRegister.end).getDate()}`
+    this.End_DateVmodel = `${new Date(this.TimeRegister.end).getFullYear()}-${new Date(this.TimeRegister.end).getMonth() + 1
+      }-${new Date(this.TimeRegister.end).getDate()}`
   },
 }
 </script>

@@ -89,14 +89,14 @@
         </div>
         <div class="ClientUsernameInformation">
           <span>{{
-              myuser.firstname || myuser.lastname
-                ? myuser.firstname && myuser.lastname
-                  ? `${myuser.firstname}
+            myuser.firstname || myuser.lastname
+              ? myuser.firstname && myuser.lastname
+                ? `${myuser.firstname}
                       ${myuser.lastname}`
-                  : myuser.firstname
-                    ? myuser.firstname
-                    : myuser.lastname
-                : myuser.email
+                : myuser.firstname
+                  ? myuser.firstname
+                  : myuser.lastname
+              : myuser.email
           }}</span>
           <div v-if="myuser.acl == 1" class="ClientPermissionBox">
             <span>مدیر</span>
@@ -151,7 +151,7 @@ export default {
   data() {
     return {
       myuser: '',
-      default_profile: `https://${process.env.server_cdn_URL}/private/img/user.png`,
+      default_profile: `${process.env.server_cdn_URL}/private/img/user.png`,
     }
   },
   methods: {
@@ -194,7 +194,7 @@ export default {
   },
   async mounted() {
     this.myuser = await fetch(
-      `https://${process.env.server_URL}/account/isUser`,
+      `${process.env.server_URL}/account/isUser`,
       {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

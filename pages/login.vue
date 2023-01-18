@@ -142,7 +142,7 @@ export default {
       document
         .getElementById('LoginButtonInLoginPage')
         .setAttribute('disable', '')
-      await fetch(`https://${process.env.server_URL}/account/login`, {
+      await fetch(`${process.env.server_URL}/account/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

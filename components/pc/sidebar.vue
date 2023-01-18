@@ -167,10 +167,10 @@ export default {
   components: { SideBarItem },
   async mounted() {
     this.items = await fetch(
-      `https://${process.env.server_URL}/api/sidebar`
+      `${process.env.server_URL}/api/sidebar`
     ).then((res) => res.json())
     this.myuser = await fetch(
-      `https://${process.env.server_URL}/account/isUser`,
+      `${process.env.server_URL}/account/isUser`,
       {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
