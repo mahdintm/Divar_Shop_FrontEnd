@@ -2,7 +2,7 @@
   <div class="D_Content">
     <Content_Item_registration v-for="item in filteredProducts" v-if="item.active != false" :key="item.id"
       :title_="item.title" :description="item.description" :price="item.price" :time="'item.time'"
-      :registrations="item.registrations" :image="item.imgs" :link="item.id" />
+      :registrations="item.registrations" :image="item.imgs" :link="item.id" :code="item.code" />
   </div>
 
 </template>

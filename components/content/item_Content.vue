@@ -2,7 +2,7 @@
   <nuxt-link :to="`Product?id=${link}`">
     <div class="D_ContentItem">
       <div class="D_ItemTitle">{{ title_ }}</div>
-      <div class="D_ItemDescription">{{ description }}</div>
+      <div class="D_ItemDescription">کد اموال : {{ code }}</div>
       <div class="D_ProductBottomBox">
         <div class="D_ProductBottomSubBox">
           <div class="D_ItemPrice">{{ new Intl.NumberFormat().format(price) }} تومان</div>
@@ -52,6 +52,7 @@ export default {
     'registrations',
     'image',
     'link',
+    'code'
   ],
 }
 </script>
