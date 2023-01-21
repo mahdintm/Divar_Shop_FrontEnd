@@ -141,21 +141,19 @@ export default {
       }
     },
     async SubmitAdvertising() {
-
-
       if (this.adsData.options[0] && this.adsData.category_id && this.adsData.code && this.adsData.description && this.adsData.price && this.adsData.title) {
         for await (const file of this.ImageFiles) {
           var data = new FormData()
           data.append('files', file, file.name)
           await fetch(`${process.env.server_cdn_URL}/upload`, {
             method: 'POST',
-            // headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type' 'Access-Control-Allow-Headers': '*' },
+            // headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type':"*" ,'Access-Control-Allow-Headers': '*' },
             body: data,
-            mode: 'no-cors',
+            mode: 'cors',
           }).then(async (res) => {
-            let a = await res.json()
-            this.adsData.imgs.push(
-              `${process.env.server_cdn_URL}/upload/${a.name}`
+              let a = await res.json()
+                this.adsData.imgs.push(
+              `${process.env.server_cdn_URL}/upload/${await a.name}`
             )
           })
         }

@@ -38,7 +38,7 @@
     <div class="SiteMapBox">
       <Map_navigation
         v-for="itm in cat"
-        :key="itm"
+        :key="itm.id"
         :id="itm.id"
         :name="itm.name"
       />
