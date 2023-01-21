@@ -17,9 +17,8 @@
 
 <script>
 import Content_Item_registration from '@/components/content/item_Content.vue'
-import LazyList from 'lazy-load-list/vue'
 export default {
-  components: { LazyList, Content_Item_registration },
+  components: { Content_Item_registration },
   data() {
     return {
       content_itemm: '',
