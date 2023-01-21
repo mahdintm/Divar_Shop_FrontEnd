@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="#">
+  <div @click="redirect_CAT(id)">
     <span>{{ name }}</span>
     <svg
       width="5"
@@ -15,10 +15,15 @@
         fill="#707070"
       />
     </svg>
-  </nuxt-link>
+  </div>
 </template>
 <script>
 export default {
-  props: ['name'],
+  props: ['id', 'name'],
+  methods: {
+    async redirect_CAT(id) {
+      this.$router.push(`/?set_categories=${id}`)
+    },
+  },
 }
 </script>

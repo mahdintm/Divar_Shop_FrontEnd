@@ -36,7 +36,12 @@
     </b-modal>
     <!-- <div @click="backto">برگشت</div> -->
     <div class="SiteMapBox">
-      <Map_navigation v-for="itm in cat" :key="itm" :name="itm" />
+      <Map_navigation
+        v-for="itm in cat"
+        :key="itm"
+        :id="itm.id"
+        :name="itm.name"
+      />
       <span>{{ item.title }}</span>
     </div>
     <div class="RightPanel">
@@ -286,7 +291,7 @@ export default {
         `${process.env.server_URL}/api/category?id=${category_id}`
       ).then(async (res) => {
         res = await res.json()
-        th.cat.push(res.name)
+        th.cat.push(res)
         if (res.parent != 0) {
           test(th, res.parent)
         } else {

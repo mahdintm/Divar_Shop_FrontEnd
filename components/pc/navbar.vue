@@ -1,7 +1,7 @@
 <template>
   <div class="D_Header">
     <div class="D_RightHeader">
-      <nuxt-link :to="`/`">
+      <div @click="redirect">
         <div class="D_HeaderLogo">
           <svg
             width="24"
@@ -18,7 +18,7 @@
             />
           </svg>
         </div>
-      </nuxt-link>
+      </div>
       <label for="SearchBarInput">
         <div class="D_SearchBarHeader">
           <lord-icon
@@ -235,6 +235,13 @@ export default {
     }
   },
   methods: {
+    async redirect() {
+      if ((await this.$route.name) == 'index') {
+        this.$nuxt.$emit('no-set-categories')
+      } else {
+        this.$router.push('/')
+      }
+    },
     search(s) {
       this.$nuxt.$emit('set-filters', {
         ...this.filters,

@@ -2,7 +2,7 @@
   <div class="D_SideBar">
     <div class="D_SideBarSubBox">
       <div class="D_SideBarSubBoxTitle">دسته ها</div>
-      <div @click="$nuxt.$emit('no-set-categories')">
+      <div @click="allads">
         <div class="D_SideBarSubItem">
           <svg
             width="20"
@@ -233,6 +233,15 @@ export default {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
     }).then((res) => res.json())
+  },
+  methods: {
+    async allads() {
+      if ((await this.$route.name) == 'index') {
+        this.$nuxt.$emit('no-set-categories')
+      } else {
+        this.$router.push('/')
+      }
+    },
   },
 }
 </script>

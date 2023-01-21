@@ -8,8 +8,12 @@ export default {
   name: 'Child_sidebar_item',
   props: ['id', 'name', 'link'],
   methods: {
-    setFillterCategori(s) {
-      this.$nuxt.$emit('set-categories', s)
+    async setFillterCategori(s) {
+      if ((await this.$route.name) == 'index') {
+        this.$nuxt.$emit('set-categories', s)
+      } else {
+        this.$router.push(`/?set_categories=${s}`)
+      }
     },
   },
 }

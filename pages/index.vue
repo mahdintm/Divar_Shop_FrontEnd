@@ -28,6 +28,7 @@ export default {
       },
     }
   },
+
   async mounted() {
     this.content_item = await fetch(
       `${process.env.server_URL}/api/products`
@@ -61,6 +62,9 @@ export default {
       let products = this.content_itemm.sort(() => Math.random() - 0.5)
       this.filteredProducts = products
     })
+    if ((await this.$route.query.set_categories) != undefined) {
+      await this.$nuxt.$emit('set-categories', this.$route.query.set_categories)
+    }
   },
 }
 </script>
