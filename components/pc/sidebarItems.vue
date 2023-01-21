@@ -1,6 +1,10 @@
 <template>
-  <nuxt-link :to="child.length ? '/' : link">
-    <div class="D_SideBarSubItem" @click="ToggleClickedItemSideBar">
+  <div>
+    <div
+      :id="'sidebar_id_' + id"
+      class="D_SideBarSubItem"
+      @click="ToggleClickedItemSideBar(`sidebar_id_${id}`)"
+    >
       <!-- <i :class="icon"></i> -->
       <svg
         width="20"
@@ -38,23 +42,20 @@
       <Child_sidebar_item
         v-for="item in child"
         :key="item.name"
+        :id="item.id"
         :name="item.name"
         :link="item.link"
       />
     </div>
-  </nuxt-link>
+  </div>
 </template>
 <script>
 import Child_sidebar_item from '@/components/pc/childsidebaritem.vue'
 export default {
   name: 'SideBarItem',
   methods: {
-    ToggleClickedItemSideBar(elem) {
-      if (elem.srcElement.classList.contains('D_SideBarSubItem'))
-        return elem.srcElement.classList.toggle('OpenAnotherItems')
-
-      if (elem.path[1].classList.contains('D_SideBarSubItem'))
-        return elem.path[1].classList.toggle('OpenAnotherItems')
+    ToggleClickedItemSideBar(id) {
+      return document.getElementById(id).classList.toggle('OpenAnotherItems')
     },
   },
   computed: {},
@@ -63,28 +64,6 @@ export default {
     // this.child.length >0?this.link="#":this.link
   },
   components: { Child_sidebar_item },
-  props: ['name', 'icon', 'link', 'count', 'child'],
+  props: ['id', 'name', 'icon', 'link', 'count', 'child'],
 }
 </script>
-
-<!-- <div class="D_SideBarSubItem">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M9 16H3C1.34315 16 0 14.6569 0 13V3C0 1.34315 1.34315 0 3 0H17C18.6569 0 20 1.34315 20 3V13C20 14.6569 18.6569 16 17 16H11V18H13C13.5523 18 14 18.4477 14 19C14 19.5523 13.5523 20 13 20H7C6.44772 20 6 19.5523 6 19C6 18.4477 6.44772 18 7 18H9V16ZM17 2H3C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H17C17.5523 14 18 13.5523 18 13V3C18 2.44772 17.5523 2 17 2Z" fill="#707070" />
-    </svg>
-    <span>کالای دیجیتال</span>
-    <div class="SideBarNotifictionAlarm">10</div>
-  </div> -->
-
-<!--   
-    <div class="D_SideBarSubItem" onclick="ToggleClickedItemSideBar(this)">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M9 0H11C12.5977 0 13.9037 1.24892 13.9949 2.82373L14 3V4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20H3C1.34315 20 0 18.6569 0 17V7C0 5.34315 1.34315 4 3 4H6V3C6 1.40232 7.24892 0.0963391 8.82373 0.00509269L9 0H11H9ZM18 14H2V17C2 17.5523 2.44772 18 3 18H17C17.5523 18 18 17.5523 18 17V14ZM17 6H3C2.44772 6 2 6.44772 2 7V12H18V7C18 6.44772 17.5523 6 17 6ZM11 2H9C8.48716 2 8.06449 2.38604 8.00673 2.88338L8 3V4H12V3C12 2.48716 11.614 2.06449 11.1166 2.00673L11 2Z" fill="#707070" />
-      </svg>
-      <span>موارد اداری</span>
-      
-    </div>
-    <div class="ListOfSubItems">
-      <span>تست</span>
-      <span>تست</span>
-      <span>تست</span>
-    </div> -->

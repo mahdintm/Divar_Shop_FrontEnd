@@ -8,14 +8,31 @@
             <label for="input-valid">قیمت پیشنهادی:</label>
           </b-col>
           <b-col sm="8">
-            <b-form-input id="input-valid" type="number" v-model="UserPrice" :state="validPrice"
-              placeholder="قیمت را وارد کنید"></b-form-input>
+            <b-form-input
+              id="input-valid"
+              type="number"
+              v-model="UserPrice"
+              :state="validPrice"
+              placeholder="قیمت را وارد کنید"
+            ></b-form-input>
           </b-col>
         </b-row>
       </div>
-      <b-button style="background-color: #a62626" :disabled="!validPrice" class="mt-3" block
-        @click="registerProduct">ثبت پیشنهاد</b-button>
-      <b-button v-if="userRegiter" class="mt-3" block @click="disregisterProduct">حذف پیشنهاد</b-button>
+      <b-button
+        style="background-color: #a62626"
+        :disabled="!validPrice"
+        class="mt-3"
+        block
+        @click="registerProduct"
+        >ثبت پیشنهاد</b-button
+      >
+      <b-button
+        v-if="userRegiter"
+        class="mt-3"
+        block
+        @click="disregisterProduct"
+        >حذف پیشنهاد</b-button
+      >
     </b-modal>
     <!-- <div @click="backto">برگشت</div> -->
     <div class="SiteMapBox">
@@ -27,15 +44,21 @@
         <div class="AdvertisingTitle">{{ item.title }}</div>
         <!-- <div class="AdvertisingCreateTime">5 دقیقه پیش . . .</div> -->
         <div class="AdvertisingButtonBox">
-          <div class="SubmitAdvertisingButton" @click="$bvModal.show('bv-modal-Register-Product')"
-            v-if="!userRegiter && isTimeRegister">
+          <div
+            class="SubmitAdvertisingButton"
+            @click="$bvModal.show('bv-modal-Register-Product')"
+            v-if="!userRegiter && isTimeRegister"
+          >
             ثبت پیشنهاد
           </div>
           <!-- <div class="SaveAdvertisingButton" @click="registerProduct" v-if="!isTimeRegister">
             خارج زمان ثبت نام
           </div> -->
-          <div class="SaveAdvertisingButton" @click="$bvModal.show('bv-modal-Register-Product')"
-            v-if="userRegiter && isTimeRegister">
+          <div
+            class="SaveAdvertisingButton"
+            @click="$bvModal.show('bv-modal-Register-Product')"
+            v-if="userRegiter && isTimeRegister"
+          >
             ویرایش پیشنهاد
           </div>
           <!-- <div class="SaveAdvertisingButton">نشان کردن</div> -->
@@ -58,8 +81,12 @@
             <div>قیمت</div>
             <div>{{ new Intl.NumberFormat().format(item.price) }} تومان</div>
           </div>
-          <Item_option_Product v-for="itm in item.options" :key="itm.id" :option_name="itm.key"
-            :option_value="itm.value" />
+          <Item_option_Product
+            v-for="itm in item.options"
+            :key="itm.id"
+            :option_name="itm.key"
+            :option_value="itm.value"
+          />
         </div>
         <div style="text-align: rtl" class="AdvertisingDescriptionBox">
           <span style="text-align: rtl">توضیحات :</span>
@@ -68,30 +95,49 @@
       </div>
     </div>
     <div class="LeftPanel">
-      <div :class="
-        this.FirstImgMain != this.default_no_photo
-          ? 'BigImageBox'
-          : 'BigImageBoxDontShadow'
-      ">
+      <div
+        :class="
+          this.FirstImgMain != this.default_no_photo
+            ? 'BigImageBox'
+            : 'BigImageBoxDontShadow'
+        "
+      >
         <img :src="FirstImgMain" class="BigImageElement Active" alt="" />
         <img :src="SecondImgMain" class="BigImageElement" alt="" />
         <div class="IndexImageIDBox">
-          <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhotoFromID" :class="
-            index == 0
-              ? 'IndexImageIDSubBox SelectedImageID'
-              : 'IndexImageIDSubBox'
-          "></div>
+          <div
+            v-for="(item_, index) of item.imgs"
+            :key="item_"
+            :ImageKey="index"
+            @click="selectPhotoFromID"
+            :class="
+              index == 0
+                ? 'IndexImageIDSubBox SelectedImageID'
+                : 'IndexImageIDSubBox'
+            "
+          ></div>
         </div>
       </div>
       <div class="SmallImageBox">
-        <div v-for="(item_, index) of item.imgs" :key="item_" :ImageKey="index" @click="selectPhoto" :class="
-          index == 0 ? 'SmallImageSubBox SelectedImage' : 'SmallImageSubBox'
-        ">
+        <div
+          v-for="(item_, index) of item.imgs"
+          :key="item_"
+          :ImageKey="index"
+          @click="selectPhoto"
+          :class="
+            index == 0 ? 'SmallImageSubBox SelectedImage' : 'SmallImageSubBox'
+          "
+        >
           <img :src="item_" alt="" />
         </div>
       </div>
       <div class="RateOrderOfAdvertising">
-        <RateOrderOfAdvertisingSubBox v-for="itm in item.registrations" :key="itm" :id="itm.id" :price="itm.price" />
+        <RateOrderOfAdvertisingSubBox
+          v-for="itm in item.registrations"
+          :key="itm"
+          :id="itm.id"
+          :price="itm.price"
+        />
       </div>
     </div>
   </div>
@@ -134,7 +180,7 @@ export default {
       )
         document
           .getElementsByClassName('BigImageElement')
-        [i].classList.toggle('Active')
+          [i].classList.toggle('Active')
 
       if (this.FirstImgMain == '') {
         this.FirstImgMain = SRC
@@ -144,41 +190,21 @@ export default {
         this.FirstImgMain = ''
       }
     },
-    selectPhoto(element) {
+    async selectPhoto(element) {
       if (element.srcElement.src == undefined) return
-      for (
-        let i = 0;
-        i < document.getElementsByClassName('SelectedImage').length;
-        i++
-      )
-        document
-          .getElementsByClassName('SelectedImage')
-        [i].classList.remove('SelectedImage')
-      for (
-        let i = 0;
-        i < document.getElementsByClassName('SelectedImageID').length;
-        i++
-      )
-        document
-          .getElementsByClassName('SelectedImageID')
-        [i].classList.remove('SelectedImageID')
-
-      element.path[1].classList.add('SelectedImage')
-      for (
-        let i = 0;
-        i < document.getElementsByClassName('IndexImageIDSubBox').length;
-        i++
-      )
-        if (
-          document
-            .getElementsByClassName('IndexImageIDSubBox')
-          [i].getAttribute('ImageKey') ==
-          element.path[1].getAttribute('ImageKey')
-        )
-          document
-            .getElementsByClassName('IndexImageIDSubBox')
-          [i].classList.add('SelectedImageID')
-
+      let a = document.querySelectorAll('.SelectedImage')[0]
+      let b = element.srcElement.parentElement
+      let c = document.querySelectorAll('.IndexImageIDSubBox')
+      for (const el of c) {
+        if (a.getAttribute('imagekey') == el.getAttribute('imagekey')) {
+          el.classList.remove('SelectedImageID')
+          a.classList.remove('SelectedImage')
+        }
+        if (b.getAttribute('imagekey') == el.getAttribute('imagekey')) {
+          el.classList.add('SelectedImageID')
+          await b.classList.add('SelectedImage')
+        }
+      }
       this.ChangeBigImage(element.srcElement.src)
     },
     selectPhotoFromID(element) {
@@ -189,7 +215,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImage')
-        [i].classList.remove('SelectedImage')
+          [i].classList.remove('SelectedImage')
       for (
         let i = 0;
         i < document.getElementsByClassName('SelectedImageID').length;
@@ -197,7 +223,7 @@ export default {
       )
         document
           .getElementsByClassName('SelectedImageID')
-        [i].classList.remove('SelectedImageID')
+          [i].classList.remove('SelectedImageID')
 
       element.srcElement.classList.add('SelectedImageID')
       for (
@@ -209,11 +235,11 @@ export default {
           element.srcElement.getAttribute('ImageKey') ==
           document
             .getElementsByClassName('SmallImageSubBox')
-          [i].getAttribute('ImageKey')
+            [i].getAttribute('ImageKey')
         ) {
           document
             .getElementsByClassName('SmallImageSubBox')
-          [i].classList.add('SelectedImage')
+            [i].classList.add('SelectedImage')
           this.ChangeBigImage(
             document.getElementsByClassName('SmallImageSubBox')[i].childNodes[0]
               .src
@@ -246,16 +272,12 @@ export default {
       `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then(async (res) => res.json())
     this.catergory = await fetch(
-      `${process.env.server_URL}/api/category?id=${await this.item
-        .category_id}`
+      `${process.env.server_URL}/api/category?id=${await this.item.category_id}`
     ).then((res) => res.json())
-    this.myuser = await fetch(
-      `${process.env.server_URL}/account/isUser`,
-      {
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-      }
-    ).then((res) => res.json())
+    this.myuser = await fetch(`${process.env.server_URL}/account/isUser`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    }).then((res) => res.json())
     this.FirstImgMain =
       this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
     test(this, this.item.category_id)

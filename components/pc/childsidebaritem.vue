@@ -1,11 +1,16 @@
 <template>
-  <nuxt-link :to="link">
+  <div @click="setFillterCategori(id)">
     <span>{{ name }}</span>
-  </nuxt-link>
+  </div>
 </template>
 <script>
 export default {
   name: 'Child_sidebar_item',
-  props: ['name', 'link'],
+  props: ['id', 'name', 'link'],
+  methods: {
+    setFillterCategori(s) {
+      this.$nuxt.$emit('set-categories', s)
+    },
+  },
 }
 </script>
