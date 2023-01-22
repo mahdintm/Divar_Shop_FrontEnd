@@ -223,41 +223,44 @@ export default {
       }
     },
     async SubmitAdvertising() {
-      if (
-        this.adsData.options[0] &&
-        this.adsData.category_id &&
-        this.adsData.code &&
-        this.adsData.description &&
-        this.adsData.price &&
-        this.adsData.title
-      ) {
-        for await (const file of this.ImageFiles) {
-          try {
+      try {
+        if (
+          this.adsData.options[0] &&
+          this.adsData.category_id &&
+          this.adsData.code &&
+          this.adsData.description &&
+          this.adsData.price &&
+          this.adsData.title
+        ) {
+          for await (const file of this.ImageFiles) {
             var data = new FormData()
             data.append('files', file, file.name)
-            let a = await fetch(`${process.env.server_cdn_URL}/upload`, {
+            await fetch(`${process.env.server_cdn_URL}/upload`, {
               method: 'POST',
               body: data,
               mode: 'cors',
-            }).then(async (res) => await res.json())
-            this.adsData.imgs.push(
-              `${process.env.server_cdn_URL}/upload/${await a.name}`
-            )
-          } catch (error) {
-            console.log(error)
+            }).then(async (res) => {
+              let a = await res.json()
+              this.adsData.imgs.push(
+                `${process.env.server_cdn_URL}/upload/${await a.name}`
+              )
+            })
           }
+          this.adsData.date = Date.now()
+          console.log(this.adsData.imgs)
+          await fetch(`${process.env.server_URL}/api/postADS`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.adsData),
+          }).then(async (res) => {
+            let a = await res.json()
+            await this.$router.push(`/Product?id=${await a.id}`)
+          })
+        } else {
+          alert('لطفا فرم را پر کنید')
         }
-        this.adsData.date = Date.now()
-        await fetch(`${process.env.server_URL}/api/postADS`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.adsData),
-        }).then(async (res) => {
-          let a = await res.json()
-          await this.$router.push(`/Product?id=${a.id}`)
-        })
-      } else {
-        alert('لطفا فرم را پر کنید')
+      } catch (error) {
+        console.log(error)
       }
     },
   },
