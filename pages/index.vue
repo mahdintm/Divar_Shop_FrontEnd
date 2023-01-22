@@ -110,4 +110,7 @@ export default {
 .modal-footer {
   justify-content: center !important;
 }
+.modal-header .close {
+  display: none;
+}
 </style>
