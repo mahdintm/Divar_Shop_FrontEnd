@@ -1,17 +1,52 @@
 <template>
-  <div class="D_Content">
-    <Content_Item_registration
-      v-for="item in filteredProducts"
-      :key="item.id"
-      :title_="item.title"
-      :description="item.description"
-      :price="item.price"
-      :time="'item.time'"
-      :registrations="item.registrations"
-      :image="item.imgs"
-      :link="item.id"
-      :code="item.code"
-    />
+  <div>
+    <b-modal
+      id="modal-center"
+      :no-close-on-backdrop="true"
+      centered
+      scrollable
+      title="شرایط و مقررات"
+    >
+      <p style="direction: rtl; text-align: right" class="my-4">
+        من یک متن تستی هستم برای تست مقررات باید تیک پایین رو بزنی تا همه درست
+        شه
+      </p>
+      <b-form-checkbox
+        style="direction: rtl; text-align: right"
+        id="checkbox-1"
+        v-model="status_REQ"
+        name="checkbox-1"
+        :value="true"
+        :unchecked-value="false"
+      >
+        من شرایط رو قبول میکنم
+      </b-form-checkbox>
+      <template style="text-align: center" #modal-footer="{ ok }">
+        <b-button
+          style="padding: 6px 20px 3px 20px"
+          :disabled="!status_REQ ? true : false"
+          size="sm"
+          variant="success"
+          @click="ok()"
+        >
+          OK
+        </b-button>
+      </template>
+    </b-modal>
+    <div class="D_Content">
+      <Content_Item_registration
+        v-for="item in filteredProducts"
+        :key="item.id"
+        :title_="item.title"
+        :description="item.description"
+        :price="item.price"
+        :time="'item.time'"
+        :registrations="item.registrations"
+        :image="item.imgs"
+        :link="item.id"
+        :code="item.code"
+      />
+    </div>
   </div>
 </template>
 
@@ -26,6 +61,7 @@ export default {
       filters: {
         s: '',
       },
+      status_REQ: false,
     }
   },
 
@@ -65,9 +101,13 @@ export default {
     if ((await this.$route.query.set_categories) != undefined) {
       await this.$nuxt.$emit('set-categories', this.$route.query.set_categories)
     }
+    this.$bvModal.show('modal-center')
   },
 }
 </script>
 <style>
 @import url(@/static/css/content.css);
+.modal-footer {
+  justify-content: center !important;
+}
 </style>
