@@ -232,32 +232,30 @@ export default {
         this.adsData.title
       ) {
         for await (const file of this.ImageFiles) {
-          var data = new FormData()
-          data.append('files', file, file.name)
-          await fetch(`${process.env.server_cdn_URL}/upload`, {
-            method: 'POST',
-            // headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type':"*" ,'Access-Control-Allow-Headers': '*' },
-            body: data,
-            mode: 'cors',
-          })
-          // .then(async (res) => {
-          //   let a = await res.json()
-          //   conso
-          //   // this.adsData.imgs.push(
-          //   //   `${process.env.server_cdn_URL}/upload/${await a.name}`
-          //   // )
-          // })
+          try {
+            var data = new FormData()
+            data.append('files', file, file.name)
+            let a = await fetch(`${process.env.server_cdn_URL}/upload`, {
+              method: 'POST',
+              body: data,
+              mode: 'cors',
+            }).then(async (res) => await res.json())
+            this.adsData.imgs.push(
+              `${process.env.server_cdn_URL}/upload/${await a.name}`
+            )
+          } catch (error) {
+            console.log(error)
+          }
         }
         this.adsData.date = Date.now()
         await fetch(`${process.env.server_URL}/api/postADS`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.adsData),
+        }).then(async (res) => {
+          let a = await res.json()
+          await this.$router.push(`/Product?id=${a.id}`)
         })
-        // .then(async (res) => {
-        //   let a = await res.json()
-        //   await this.$router.push(`/Product?id=${a.id}`)
-        // })
       } else {
         alert('لطفا فرم را پر کنید')
       }
