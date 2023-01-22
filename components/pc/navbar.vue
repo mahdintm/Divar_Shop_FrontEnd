@@ -32,7 +32,7 @@
             @keyup="search($event.target.value)"
             type="text"
             id="SearchBarInput"
-            placeholder="جستجو"
+            placeholder="جستجو (عنوان آگهی ، کد امول ، توضیحات آگهی)"
           />
         </div>
       </label>
@@ -135,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div class="ChangeClientInfoBox">
+      <!-- <div class="ChangeClientInfoBox">
         <label for="ProfileModalUsenameInput">
           <span>نام کاربری</span>
           <input
@@ -218,7 +218,7 @@
             </svg>
           </div>
         </label>
-      </div>
+      </div> -->
       <div class="LogOutButtonBox" @click="$nuxt.$emit('logout')">خروج</div>
     </div>
     <!-- Stop Profile Modal -->

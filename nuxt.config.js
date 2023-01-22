@@ -5,11 +5,11 @@ export default {
     name: 'my-page',
     mode: 'out-in',
     beforeEnter(el) {
-//      console.log('Before enter...')
+      //      console.log('Before enter...')
     },
   },
   server: {
-    host: '0',
+    host: 'localhost',
     port: '3000', // optional
   },
   ssr: false,
@@ -17,7 +17,7 @@ export default {
     server_URL: 'https://shop-backend.agahpardazan.ir',
     // server_URL: 'http://localhost:3001',
     server_cdn_URL: 'https://shop-cdn.agahpardazan.ir',
-    // server_cdn_URL: 'http://ll.ll',
+    // server_cdn_URL: 'http://localhost:3002',
   },
   loading: {
     color: '#a7211b',
@@ -46,12 +46,17 @@ export default {
     // { src: '~/plugins/chart.js', mode: 'client' },
     // { src: '~/plugins/axios.js' },
   ],
-
+  fontawesome: {
+    icons: {
+      solid: true,
+      // brands: true,
+    },
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/fontawesome'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

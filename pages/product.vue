@@ -74,17 +74,17 @@
           </div>
         </div>
         <div class="AdvertisingInformationBox">
-          <div class="AdvertisingInformationSubBox">
+          <!-- <div class="AdvertisingInformationSubBox">
             <div>آخرین بروزرسانی آگهی</div>
             <div>لحظاتی پیش . . .</div>
-          </div>
+          </div> -->
           <div class="AdvertisingInformationSubBox">
             <div>کد اموال</div>
             <div>{{ item.code }}</div>
           </div>
           <div class="AdvertisingInformationSubBox">
             <div>قیمت</div>
-            <div>{{ new Intl.NumberFormat().format(item.price) }} تومان</div>
+            <div>{{ new Intl.NumberFormat().format(item.price) }} ریال</div>
           </div>
           <Item_option_Product
             v-for="itm in item.options"

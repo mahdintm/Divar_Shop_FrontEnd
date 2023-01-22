@@ -5,7 +5,9 @@
       <div class="D_ItemDescription">کد اموال : {{ code }}</div>
       <div class="D_ProductBottomBox">
         <div class="D_ProductBottomSubBox">
-          <div class="D_ItemPrice">{{ new Intl.NumberFormat().format(price) }} تومان</div>
+          <div class="D_ItemPrice">
+            {{ new Intl.NumberFormat().format(price) }} ریال
+          </div>
           <!-- <div class="D_ItemCreateTime">{{ time }}</div> -->
           <div class="D_ItemSlotBox">
             <!-- <div class="D_ItemSlotNumber">{{ registrations.length }}/4</div>
@@ -15,9 +17,11 @@
           </div>
         </div>
       </div>
-      <div :class="
-        image.length > 0 ? 'D_ItemImage BoxLoading' : 'D_ItemImageDontScale'
-      ">
+      <div
+        :class="
+          image.length > 0 ? 'D_ItemImage BoxLoading' : 'D_ItemImageDontScale'
+        "
+      >
         <img :src="image.length > 0 ? image[0] : default_no_photo" alt="" />
       </div>
     </div>
@@ -52,7 +56,7 @@ export default {
     'registrations',
     'image',
     'link',
-    'code'
+    'code',
   ],
 }
 </script>
