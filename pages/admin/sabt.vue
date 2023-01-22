@@ -253,10 +253,11 @@ export default {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.adsData),
-        }).then(async (res) => {
-          let a = await res.json()
-          await this.$router.push(`/Product?id=${a.id}`)
         })
+        // .then(async (res) => {
+        //   let a = await res.json()
+        //   await this.$router.push(`/Product?id=${a.id}`)
+        // })
       } else {
         alert('لطفا فرم را پر کنید')
       }
