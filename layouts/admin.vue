@@ -49,7 +49,7 @@
               <span>شما تا اکنون تعداد 15 آگهی ثبت کرده اید.</span>
               <div>مشاهده</div>
             </div> -->
-              <nuxtLink to="/admin/allads">
+              <nuxtLink to="/admin/allAds">
                 <div class="AdminBoxSubDetails">
                   <span>تمام آگهی ها:</span>
                   <span>تعداد {{ products.length }} آگهی فعال و غیرفعال موجود

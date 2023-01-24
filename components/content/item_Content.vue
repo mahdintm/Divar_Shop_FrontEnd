@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`Product?id=${link}`">
+  <nuxt-link :to="`product?id=${link}`">
     <div class="D_ContentItem">
       <div class="D_ItemTitle">{{ title_ }}</div>
       <div class="D_ItemDescription">کد اموال : {{ code }}</div>
