@@ -45,7 +45,7 @@
         </lord-icon>
       </template>
       <template #cell(goto)="data">
-        <nuxt-link :to="`/Product?id=${data.item.id}`"
+        <nuxt-link :to="`/product?id=${data.item.id}`"
           ><lord-icon
             class="pointer"
             src="https://cdn.lordicon.com/ofwpzftr.json"
