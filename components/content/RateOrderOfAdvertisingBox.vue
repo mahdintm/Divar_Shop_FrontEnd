@@ -13,7 +13,9 @@
                 : user.email
             }}
           </div>
-          <div class="RateValueBox">قیمت پیشنهاد: {{ new Intl.NumberFormat().format(price) }} تومان</div>
+          <div class="RateValueBox">
+            قیمت پیشنهاد: {{ new Intl.NumberFormat().format(price) }} ریال
+          </div>
         </div>
       </div>
       <!-- <div class="RateOrderOfAdvertisingDateTime">2 دقیقه پیش</div> -->

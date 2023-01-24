@@ -247,7 +247,6 @@ export default {
             })
           }
           this.adsData.date = Date.now()
-          console.log(this.adsData.imgs)
           await fetch(`${process.env.server_URL}/api/postADS`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -259,9 +258,7 @@ export default {
         } else {
           alert('لطفا فرم را پر کنید')
         }
-      } catch (error) {
-        console.log(error)
-      }
+      } catch (error) {}
     },
   },
   async mounted() {

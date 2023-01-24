@@ -139,9 +139,9 @@
       <div class="RateOrderOfAdvertising">
         <RateOrderOfAdvertisingSubBox
           v-for="itm in item.registrations"
-          :key="itm"
-          :id="itm.id"
-          :price="itm.price"
+          :key="itm.id"
+          :id="itm.User_id"
+          :price="itm.Price"
         />
       </div>
     </div>
@@ -259,6 +259,7 @@ export default {
       if (content.res) {
         this.userRegiter = true
         this.$bvModal.hide('bv-modal-Register-Product')
+        window.location.reload(true)
       }
     },
     async disregisterProduct() {
@@ -269,6 +270,7 @@ export default {
       if (content.res) {
         this.userRegiter = false
         this.$bvModal.hide('bv-modal-Register-Product')
+        window.location.reload(true)
       }
     },
   },
@@ -276,6 +278,7 @@ export default {
     this.item = await fetch(
       `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
     ).then(async (res) => res.json())
+
     this.catergory = await fetch(
       `${process.env.server_URL}/api/category?id=${await this.item.category_id}`
     ).then((res) => res.json())
@@ -304,6 +307,9 @@ export default {
     ).then(async (res) => res.json())
     this.userRegiter = await fetch(
       `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+    ).then(async (res) => res.json())
+    this.item.registrations = await fetch(
+      `${process.env.server_URL}/api/getRegisters?id=${this.$route.query.id}`
     ).then(async (res) => res.json())
   },
   components: {

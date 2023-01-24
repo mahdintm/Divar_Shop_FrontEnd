@@ -21,7 +21,7 @@
       >
         من شرایط رو قبول میکنم
       </b-form-checkbox>
-      <template style="text-align: center" #modal-footer="{ ok }">
+      <template style="text-align: center" #modal-footer="{}">
         <b-button
           style="padding: 6px 20px 3px 20px"
           :disabled="!status_REQ ? true : false"
@@ -64,7 +64,12 @@ export default {
       status_REQ: false,
     }
   },
-
+  methods: {
+    ok() {
+      localStorage.setItem('req', 'true')
+      this.$bvModal.hide('modal-center')
+    },
+  },
   async mounted() {
     this.content_item = await fetch(
       `${process.env.server_URL}/api/products`
@@ -101,7 +106,9 @@ export default {
     if ((await this.$route.query.set_categories) != undefined) {
       await this.$nuxt.$emit('set-categories', this.$route.query.set_categories)
     }
-    this.$bvModal.show('modal-center')
+    if (localStorage.getItem('req') != 'true') {
+      this.$bvModal.show('modal-center')
+    }
   },
 }
 </script>

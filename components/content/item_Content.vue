@@ -10,10 +10,9 @@
           </div>
           <!-- <div class="D_ItemCreateTime">{{ time }}</div> -->
           <div class="D_ItemSlotBox">
-            <!-- <div class="D_ItemSlotNumber">{{ registrations.length }}/4</div>
-            <div class="D_ItemAvatars" v-if="registrations.length > 0">
-              <Content_Item_registration v-for="reg in registrations" :key="reg" :id="reg" />
-            </div> -->
+            <div class="D_ItemSlotNumber">
+              تعداد پیشنهاد ها : {{ register_COUNT.count }} نفر
+            </div>
           </div>
         </div>
       </div>
@@ -35,18 +34,15 @@ export default {
   },
   data() {
     return {
+      register_COUNT: {},
       default_no_photo: `${process.env.server_cdn_URL}/private/img/no-photo.png`,
     }
   },
   name: 'Content_Item',
-  mounted() {
-    // var Result = '';
-    // for (let i = 0; i < this.price.length; i++) {
-    //   Result += this.price.charAt(i)
-    //   if(i % 3 == 0)
-    //     Result += ','
-    // }
-    // this.price = Result;
+  async mounted() {
+    this.register_COUNT = await fetch(
+      `${process.env.server_URL}/api/count_product_register?productid=${this.link}`
+    ).then((res) => res.json())
   },
   props: [
     'title_',
