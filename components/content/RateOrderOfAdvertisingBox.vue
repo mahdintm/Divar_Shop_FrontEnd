@@ -7,11 +7,7 @@
         </div>
         <div class="ClientInformationBox">
           <div class="ClientInfoBox">
-            {{
-              user.firstname && user.lastname
-                ? `${user.firstname} ${user.lastname}`
-                : user.email
-            }}
+            کاربر ناشناس 
           </div>
           <div class="RateValueBox">
             قیمت پیشنهاد: {{ new Intl.NumberFormat().format(price) }} ریال

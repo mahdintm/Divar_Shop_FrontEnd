@@ -13,7 +13,7 @@
               type="number"
               v-model="UserPrice"
               :state="validPrice"
-              placeholder="قیمت را وارد کنید"
+              placeholder="قیمت را به ریال وارد کنید"
             ></b-form-input>
           </b-col>
         </b-row>
@@ -83,7 +83,7 @@
             <div>{{ item.code }}</div>
           </div>
           <div class="AdvertisingInformationSubBox">
-            <div>قیمت</div>
+            <div>قیمت پایه مزایده</div>
             <div>{{ new Intl.NumberFormat().format(item.price) }} ریال</div>
           </div>
           <Item_option_Product
