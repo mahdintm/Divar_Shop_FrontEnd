@@ -25,7 +25,7 @@
     "json-to-csv-export": "^2.1.1",
     "keepalive": "^3.0.0",
     "nuxt": "^2.15.8",
-    "vue": "^2.7.10",
+    "vue": "^3.0.0",
     "vue-apexcharts": "^1.6.2",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
