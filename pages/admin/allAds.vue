@@ -105,9 +105,18 @@ export default {
     }
   },
   async mounted() {
-    this.items = await fetch(`${process.env.server_URL}/api/products`).then(
-      async (res) => await res.json()
-    )
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/products`
+      )
+      if (!response.ok) {
+        throw new Error(`Product list request failed with HTTP ${response.status}`)
+      }
+      this.items = await response.json()
+    } catch (error) {
+      console.error('Admin ad loading failed:', error)
+      alert('بارگذاری آگهی‌ها با خطا مواجه شد')
+    }
   },
   methods: {
     async test() {
@@ -163,24 +172,54 @@ export default {
       if (data) exportFromJSON({ data, fileName, exportType })
     },
     async change(status, id) {
-      await fetch(
-        `${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`
-      ).then(async (res) => {
-        await res.json()
-      })
-      this.$root.$emit('updateProductCount')
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`
+        )
+        if (!response.ok) {
+          throw new Error(
+            `Change status request failed with HTTP ${response.status}`
+          )
+        }
+        const result = await response.json()
+        if (result.res !== true) {
+          throw new Error('Change status request returned an unsuccessful result')
+        }
+        this.$root.$emit('updateProductCount')
+      } catch (error) {
+        console.error('Admin ad status change failed:', error)
+        alert('تغییر وضعیت آگهی با خطا مواجه شد')
+      }
     },
     async remove(id) {
       if (confirm('Press a button!')) {
-        return await fetch(
-          `${process.env.server_URL}/api/deletePost?id=${id}`
-        ).then(async (res) => {
-          await res.json()
+        try {
+          const response = await fetch(
+            `${process.env.server_URL}/api/deletePost?id=${id}`
+          )
+          if (!response.ok) {
+            throw new Error(
+              `Delete request failed with HTTP ${response.status}`
+            )
+          }
+          const result = await response.json()
+          if (result !== true) {
+            throw new Error('Delete request returned an unsuccessful result')
+          }
           this.$root.$emit('updateProductCount')
-          this.items = await fetch(
+          const refreshResponse = await fetch(
             `${process.env.server_URL}/api/products`
-          ).then(async (res) => await res.json())
-        })
+          )
+          if (!refreshResponse.ok) {
+            throw new Error(
+              `Product list refresh failed with HTTP ${refreshResponse.status}`
+            )
+          }
+          this.items = await refreshResponse.json()
+        } catch (error) {
+          console.error('Admin ad deletion failed:', error)
+          alert('حذف آگهی با خطا مواجه شد')
+        }
       } else {
         return
       }
