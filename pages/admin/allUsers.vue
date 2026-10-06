@@ -52,50 +52,7 @@
       <template #cell(acl)="data">
         {{ data.item.acl == 1 ? 'مدیر' : 'کاریر' }}
       </template>
-      <template #cell(remove)="data">
-        <!-- `data.value` is the value after formatted by the Formatter -->
-        <lord-icon
-          class="pointer"
-          @click="remove(data.item.id)"
-          src="https://cdn.lordicon.com/kfzfxczd.json"
-          trigger="morph"
-        >
-        </lord-icon>
-      </template>
-      <template #cell(goto)="data">
-        <nuxt-link :to="`/Product?id=${data.item.id}`"
-          ><lord-icon
-            class="pointer"
-            src="https://cdn.lordicon.com/ofwpzftr.json"
-            trigger="morph"
-          >
-          </lord-icon
-        ></nuxt-link>
-        <!-- `data.value` is the value after formatted by the Formatter -->
-      </template>
 
-      <template #cell(register)="data">
-        {{ data.item.registrations.length }}
-      </template>
-      <template #cell(edit)="data">
-        <nuxt-link :to="`/admin/edit?id=${data.item.id}`">
-          <span class="pointer" :href="`/admin/removead?${data.item.id}`">
-            <lord-icon
-              src="https://cdn.lordicon.com/hbigeisx.json"
-              trigger="morph"
-            >
-            </lord-icon
-          ></span>
-        </nuxt-link>
-      </template>
-      <template #cell(active)="data">
-        <b-form-checkbox
-          style="color: #a7211b"
-          :checked="!!data.item.active"
-          @change="change($event, data.item.id)"
-          switch
-        ></b-form-checkbox>
-      </template>
     </b-table>
   </div>
 </template>
@@ -115,9 +72,6 @@ export default {
         { key: 'firstLogin', label: 'اولین ورود' },
         { key: 'lastLogin', label: 'آخرین ورود' },
         { key: 'acl', label: 'سطح دسترسی' },
-        { key: 'goto', label: 'دیدن پروفایل' },
-        { key: 'edit', label: 'ویرایش' },
-        { key: 'remove', label: 'حذف' },
       ],
       items: [],
     }
@@ -129,80 +83,24 @@ export default {
   },
   methods: {
     async test() {
-      const data = []
-      let i = 0
-      for await (const element of this.items) {
-        i = 0
-        let d__ = {
-          id: element.id,
-          title: element.title,
-          price: element.price,
-          code: element.code,
-          active: element.active,
-        }
-        for await (const element__ of element.registrations) {
-          let userd = await fetch(
-            `${process.env.server_URL}/api/user?id=${element__.id}`
-          ).then(async (res) => await res.json())
-          switch (i) {
-            case 0:
-              d__['oneـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 1:
-              d__['secondـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 2:
-              d__['thridـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 3:
-              d__['fourthـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-          }
-          i++
-        }
-        data.push(d__)
-      }
+      const data = this.items.map((element) => ({
+        id: element.id,
+        username: element.username,
+        email: element.email,
+        firstname: element.firstname,
+        lastname: element.lastname,
+        phonenumber: element.phonenumber,
+        firstLogin: element.firstLogin,
+        lastLogin: element.lastLogin,
+        acl: element.acl,
+      }))
 
       const fileName = `Export_${process.env.APP_NAME}_${Date.now()}`
       const exportType = exportFromJSON.types.xls
 
       if (data) exportFromJSON({ data, fileName, exportType })
     },
-    async change(status, id) {
-      await fetch(
-        `${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`
-      ).then(async (res) => {
-        await res.json()
-      })
-      this.$root.$emit('updateProductCount')
-    },
-    async remove(id) {
-      if (confirm('Press a button!')) {
-        return await fetch(
-          `${process.env.server_URL}/api/deletePost?id=${id}`
-        ).then(async (res) => {
-          await res.json()
-          this.$root.$emit('updateProductCount')
-          this.items = await fetch(
-            `${process.env.server_URL}/api/products`
-          ).then(async (res) => await res.json())
-        })
-      } else {
-        return
-      }
-    },
+
   },
 }
 </script>
