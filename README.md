@@ -57,6 +57,13 @@ Apply Prettier formatting:
 npm run lintfix
 ```
 
+## Service URLs
+
+The backend and CDN service URLs can be overridden through environment variables when the application is built:
+
+- `SERVER_URL` — backend service URL. Default: `https://shop-backend.agahpardazan.ir`
+- `SERVER_CDN_URL` — CDN service URL. Default: `https://shop-cdn.agahpardazan.ir`
+
 ## Related services
 
 The application is configured to use the Divar Shop BackEnd and CDN services through the URLs defined in `nuxt.config.js`.

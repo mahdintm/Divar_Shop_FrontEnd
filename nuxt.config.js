@@ -14,10 +14,10 @@ export default {
   },
   ssr: false,
   env: {
-    server_URL: 'https://shop-backend.agahpardazan.ir',
-    // server_URL: 'http://localhost:3001',
-    server_cdn_URL: 'https://shop-cdn.agahpardazan.ir',
-    // server_cdn_URL: 'http://localhost:3002',
+    server_URL:
+      process.env.SERVER_URL || 'https://shop-backend.agahpardazan.ir',
+    server_cdn_URL:
+      process.env.SERVER_CDN_URL || 'https://shop-cdn.agahpardazan.ir',
   },
   loading: {
     color: '#a7211b',
