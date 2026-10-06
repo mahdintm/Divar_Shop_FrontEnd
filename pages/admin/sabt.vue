@@ -235,30 +235,51 @@ export default {
           for await (const file of this.ImageFiles) {
             var data = new FormData()
             data.append('files', file, file.name)
-            await fetch(`${process.env.server_cdn_URL}/upload`, {
-              method: 'POST',
-              body: data,
-              mode: 'cors',
-            }).then(async (res) => {
-              let a = await res.json()
-              this.adsData.imgs.push(
-                `${process.env.server_cdn_URL}/upload/${await a.name}`
-              )
-            })
+            const response = await fetch(
+              `${process.env.server_cdn_URL}/upload`,
+              {
+                method: 'POST',
+                body: data,
+                mode: 'cors',
+              }
+            )
+            if (!response.ok) {
+              throw new Error(`Image upload failed with HTTP ${response.status}`)
+            }
+            const result = await response.json()
+            if (!result.name) {
+              throw new Error('Image upload response did not include a file name')
+            }
+            this.adsData.imgs.push(
+              `${process.env.server_cdn_URL}/upload/${result.name}`
+            )
           }
           this.adsData.date = Date.now()
-          await fetch(`${process.env.server_URL}/api/postADS`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.adsData),
-          }).then(async (res) => {
-            let a = await res.json()
-            await this.$router.push(`/Product?id=${await a.id}`)
-          })
+          const response = await fetch(
+            `${process.env.server_URL}/api/postADS`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.adsData),
+            }
+          )
+          if (!response.ok) {
+            throw new Error(
+              `Advertising submission failed with HTTP ${response.status}`
+            )
+          }
+          const result = await response.json()
+          if (!result.id) {
+            throw new Error('Advertising submission response did not include an id')
+          }
+          await this.$router.push(`/Product?id=${result.id}`)
         } else {
           alert('لطفا فرم را پر کنید')
         }
-      } catch (error) {}
+      } catch (error) {
+        console.error('Advertising submission failed:', error)
+        alert('ثبت آگهی با خطا مواجه شد')
+      }
     },
   },
   async mounted() {
