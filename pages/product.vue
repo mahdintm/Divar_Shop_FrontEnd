@@ -275,44 +275,90 @@ export default {
     },
   },
   async mounted() {
-    this.item = await fetch(
-      `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
-    ).then(async (res) => res.json())
+    try {
+      const productResponse = await fetch(
+        `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+      )
+      if (productResponse.status === 404) {
+        alert('آگهی موردنظر پیدا نشد')
+        return
+      }
+      if (!productResponse.ok) {
+        throw new Error(`Product request failed with HTTP ${productResponse.status}`)
+      }
+      const product = await productResponse.json()
+      this.item = product
 
-    this.catergory = await fetch(
-      `${process.env.server_URL}/api/category?id=${await this.item.category_id}`
-    ).then((res) => res.json())
-    this.myuser = await fetch(`${process.env.server_URL}/account/isUser`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    }).then((res) => res.json())
-    this.FirstImgMain =
-      this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
-    test(this, this.item.category_id)
-    async function test(th, category_id) {
-      await fetch(
-        `${process.env.server_URL}/api/category?id=${category_id}`
-      ).then(async (res) => {
-        res = await res.json()
-        th.cat.push(res)
-        if (res.parent != 0) {
-          test(th, res.parent)
-        } else {
-          th.cat.reverse()
-        }
+      const categoryResponse = await fetch(
+        `${process.env.server_URL}/api/category?id=${this.item.category_id}`
+      )
+      if (!categoryResponse.ok) {
+        throw new Error(`Category request failed with HTTP ${categoryResponse.status}`)
+      }
+      this.catergory = await categoryResponse.json()
+
+      const authResponse = await fetch(`${process.env.server_URL}/account/isUser`, {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
       })
+      if (authResponse.status === 401) {
+        this.myuser = ''
+      } else if (!authResponse.ok) {
+        throw new Error(`Session request failed with HTTP ${authResponse.status}`)
+      } else {
+        this.myuser = await authResponse.json()
+      }
+
+      this.FirstImgMain =
+        this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
+
+      const loadCategoryParents = async (categoryId) => {
+        const response = await fetch(
+          `${process.env.server_URL}/api/category?id=${categoryId}`
+        )
+        if (!response.ok) {
+          throw new Error(`Category parent request failed with HTTP ${response.status}`)
+        }
+        const category = await response.json()
+        this.cat.push(category)
+        if (category.parent != 0) {
+          await loadCategoryParents(category.parent)
+        } else {
+          this.cat.reverse()
+        }
+      }
+      await loadCategoryParents(this.item.category_id)
+
+      const registerTimeResponse = await fetch(
+        `${process.env.server_URL}/api/registerTime`
+      )
+      if (!registerTimeResponse.ok) {
+        throw new Error(`Register time request failed with HTTP ${registerTimeResponse.status}`)
+      }
+      this.isTimeRegister = await registerTimeResponse.json()
+
+      if (this.myuser && this.myuser.id) {
+        const registrationResponse = await fetch(
+          `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+        )
+        if (!registrationResponse.ok) {
+          throw new Error(`Registration status request failed with HTTP ${registrationResponse.status}`)
+        }
+        this.userRegiter = await registrationResponse.json()
+      }
+
+      const registrationsResponse = await fetch(
+        `${process.env.server_URL}/api/getRegisters?id=${this.$route.query.id}`
+      )
+      if (!registrationsResponse.ok) {
+        throw new Error(`Registrations request failed with HTTP ${registrationsResponse.status}`)
+      }
+      this.item.registrations = await registrationsResponse.json()
+    } catch (error) {
+      console.error('Product page initialization failed:', error)
+      alert('بارگذاری آگهی با خطا مواجه شد')
     }
-    this.isTimeRegister = await fetch(
-      `${process.env.server_URL}/api/registerTime`
-    ).then(async (res) => res.json())
-    this.userRegiter = await fetch(
-      `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
-    ).then(async (res) => res.json())
-    this.item.registrations = await fetch(
-      `${process.env.server_URL}/api/getRegisters?id=${this.$route.query.id}`
-    ).then(async (res) => res.json())
-  },
-  components: {
+  },  components: {
     Item_option_Product,
     RateOrderOfAdvertisingSubBox,
     Map_navigation,
