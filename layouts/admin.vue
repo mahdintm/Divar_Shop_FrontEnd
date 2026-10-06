@@ -145,13 +145,36 @@ export default {
     }
   },
   async mounted() {
+    const refreshProducts = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/products`
+        )
+        if (!response.ok) {
+          throw new Error(`Products request failed with HTTP ${response.status}`)
+        }
+        const products = await response.json()
+        if (!Array.isArray(products)) {
+          throw new Error('Products response was not an array')
+        }
+        this.products = products
+        this.Active = 0
+        this.notActive = 0
+        for (const product of products) {
+          if (product.active) {
+            this.Active++
+          } else {
+            this.notActive++
+          }
+        }
+      } catch (error) {
+        console.error('Admin product loading failed:', error)
+        this.$nuxt.$emit('showErrorAlert', 'خطا در دریافت اطلاعات محصولات')
+      }
+    }
+
     this.$nuxt.$on('updateProductCount', async () => {
-      this.products = await fetch(
-        `${process.env.server_URL}/api/products`
-      ).then(async (res) => await res.json())
-      this.Active = 0
-      this.notActive = 0
-      count(this)
+      await refreshProducts()
     })
     this.$nuxt.$on('showLoading', async (state) => {
       this.showOverLay = state
@@ -160,23 +183,24 @@ export default {
       alert(state)
     })
 
-
-    this.Users = await fetch(
-      `${process.env.server_URL}/api/getAllUsers`
-    ).then(async (res) => await res.json())
-    function count(th) {
-      for (let i = 0; i < th.products.length; i++) {
-        if (th.products[i].active) {
-          th.Active++
-        } else {
-          th.notActive++
-        }
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/getAllUsers`
+      )
+      if (!response.ok) {
+        throw new Error(`Users request failed with HTTP ${response.status}`)
       }
+      const users = await response.json()
+      if (!Array.isArray(users)) {
+        throw new Error('Users response was not an array')
+      }
+      this.Users = users
+    } catch (error) {
+      console.error('Admin user loading failed:', error)
+      this.$nuxt.$emit('showErrorAlert', 'خطا در دریافت اطلاعات کاربران')
     }
-    this.products = await fetch(
-      `${process.env.server_URL}/api/products`
-    ).then(async (res) => await res.json())
-    count(this)
+
+    await refreshProducts()
     async function check_login(app) {
       const response = await fetch(
         `${process.env.server_URL}/account/user`,
