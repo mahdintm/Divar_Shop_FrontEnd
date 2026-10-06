@@ -9,8 +9,8 @@ export default {
     },
   },
   server: {
-    host: 'localhost',
-    port: '3000', // optional
+    host: process.env.HOST || 'localhost',
+    port: process.env.PORT || 3000,
   },
   ssr: false,
   env: {
