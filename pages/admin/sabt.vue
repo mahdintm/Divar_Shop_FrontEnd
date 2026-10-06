@@ -283,9 +283,16 @@ export default {
     },
   },
   async mounted() {
-    this.catergory = await fetch(`${process.env.server_URL}/api/category`).then(
-      (res) => res.json()
-    )
+    try {
+      const response = await fetch(`${process.env.server_URL}/api/category`)
+      if (!response.ok) {
+        throw new Error(`Category request failed with HTTP ${response.status}`)
+      }
+      this.catergory = await response.json()
+    } catch (error) {
+      console.error("Admin form initialization failed:", error)
+      alert("بارگذاری اطلاعات دسته‌بندی با خطا مواجه شد")
+    }
   },
 }
 </script>
