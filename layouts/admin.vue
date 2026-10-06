@@ -85,7 +85,7 @@ export default {
     NavBar_PC,
     NavBar_Mobile,
   },
-  async async beforeCreate() {
+  async beforeCreate() {
     try {
       const response = await fetch(`${process.env.server_URL}/account/isUser`, {
         headers: { 'Content-Type': 'application/json' },
