@@ -283,13 +283,26 @@ export default {
     },
   },
   async mounted() {
-    this.catergory = await fetch(`${process.env.server_URL}/api/category`).then(
-      (res) => res.json()
-    )
-    this.adsData = await fetch(
-      `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
-    ).then((res) => res.json())
-    this.ImageInsertInWeb = this.adsData.imgs
+    try {
+      const categoryResponse = await fetch(`${process.env.server_URL}/api/category`)
+      if (!categoryResponse.ok) {
+        throw new Error(`Category request failed with HTTP ${categoryResponse.status}`)
+      }
+      const categories = await categoryResponse.json()
+      const productResponse = await fetch(
+        `${process.env.server_URL}/api/product?id=${this.$route.query.id}`
+      )
+      if (!productResponse.ok) {
+        throw new Error(`Product request failed with HTTP ${productResponse.status}`)
+      }
+      const product = await productResponse.json()
+      this.catergory = categories
+      this.adsData = product
+      this.ImageInsertInWeb = product.imgs
+    } catch (error) {
+      console.error("Admin form initialization failed:", error)
+      alert("بارگذاری اطلاعات آگهی با خطا مواجه شد")
+    }
   },
 }
 </script>
