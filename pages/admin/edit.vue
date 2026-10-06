@@ -223,39 +223,62 @@ export default {
       }
     },
     async SubmitAdvertising() {
-      if (
-        this.adsData.options[0] &&
-        this.adsData.category_id &&
-        this.adsData.code &&
-        this.adsData.description &&
-        this.adsData.price &&
-        this.adsData.title
-      ) {
-        for await (const file of this.ImageFiles) {
-          var data = new FormData()
-          data.append('files', file, file.name)
-          await fetch(`${process.env.server_cdn_URL}/upload`, {
-            method: 'POST',
-            headers: {},
-            body: data,
-          }).then(async (res) => {
-            let a = await res.json()
-            this.adsData.imgs.push(
-              `${process.env.server_cdn_URL}/upload/${a.name}`
+      try {
+        if (
+          this.adsData.options[0] &&
+          this.adsData.category_id &&
+          this.adsData.code &&
+          this.adsData.description &&
+          this.adsData.price &&
+          this.adsData.title
+        ) {
+          for await (const file of this.ImageFiles) {
+            var data = new FormData()
+            data.append('files', file, file.name)
+            const response = await fetch(
+              `${process.env.server_cdn_URL}/upload`,
+              {
+                method: 'POST',
+                headers: {},
+                body: data,
+              }
             )
-          })
+            if (!response.ok) {
+              throw new Error(`Image upload failed with HTTP ${response.status}`)
+            }
+            const result = await response.json()
+            if (!result.name) {
+              throw new Error('Image upload response did not include a file name')
+            }
+            this.adsData.imgs.push(
+              `${process.env.server_cdn_URL}/upload/${result.name}`
+            )
+          }
+          this.adsData.date = Date.now()
+          const response = await fetch(
+            `${process.env.server_URL}/api/postEdit`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.adsData),
+            }
+          )
+          if (!response.ok) {
+            throw new Error(
+              `Advertising edit failed with HTTP ${response.status}`
+            )
+          }
+          const result = await response.json()
+          if (!result.id) {
+            throw new Error('Advertising edit response did not include an id')
+          }
+          await this.$router.push(`/Product?id=${result.id}`)
+        } else {
+          alert('لطفا فرم را پر کنید')
         }
-        this.adsData.date = Date.now()
-        await fetch(`${process.env.server_URL}/api/postEdit`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.adsData),
-        }).then(async (res) => {
-          let a = await res.json()
-          await this.$router.push(`/Product?id=${a.id}`)
-        })
-      } else {
-        alert('لطفا فرم را پر کنید')
+      } catch (error) {
+        console.error('Advertising edit failed:', error)
+        alert('ویرایش آگهی با خطا مواجه شد')
       }
     },
   },
