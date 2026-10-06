@@ -106,6 +106,7 @@ export default {
     return {
       username: '',
       password: '',
+      isSubmitting: false,
     }
   },
 
@@ -139,25 +140,34 @@ export default {
           .getElementById('AlertInputPasswordBox')
           .classList.add('Active')
 
-      document
-        .getElementById('LoginButtonInLoginPage')
-        .setAttribute('disable', '')
-      await fetch(`${process.env.server_URL}/account/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          username: this.username,
-          password: this.password,
-        }),
-      }).then(async (res) => {
-        let respo = await res.json()
-        if (respo.status) {
+      if (this.isSubmitting) return
+      this.isSubmitting = true
+
+      try {
+        const response = await fetch(`${process.env.server_URL}/account/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password,
+          }),
+        })
+        if (!response.ok) {
+          throw new Error(`Login request failed with HTTP ${response.status}`)
+        }
+        const result = await response.json()
+        if (result.status === true) {
           await this.$router.push('/')
         } else {
           this.ShowDangerAlert()
         }
-      })
+      } catch (error) {
+        console.error('Login request failed:', error)
+        this.ShowDangerAlert()
+      } finally {
+        this.isSubmitting = false
+      }
     },
   },
 }
