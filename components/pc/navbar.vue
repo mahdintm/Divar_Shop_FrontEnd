@@ -280,10 +280,22 @@ export default {
     },
   },
   async mounted() {
-    this.myuser = await fetch(`${process.env.server_URL}/account/isUser`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    }).then((res) => res.json())
+    try {
+      const response = await fetch(`${process.env.server_URL}/account/isUser`, {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      })
+      if (response.status === 401) {
+        this.myuser = ''
+      } else if (!response.ok) {
+        throw new Error(`Authentication request failed with HTTP ${response.status}`)
+      } else {
+        this.myuser = await response.json()
+      }
+    } catch (error) {
+      console.error('Navbar user loading failed:', error)
+      this.myuser = ''
+    }
     // document
     //   .getElementById('SettingIcon')
     //   .addEventListener('mouseenter', () => {
