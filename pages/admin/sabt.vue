@@ -18,7 +18,7 @@
             <input
               type="file"
               id="InputImageInSubmitAdvertising"
-              accept="image/*"
+              accept="image/jpeg,image/png,image/gif,image/webp"
               v-on:input="previewImage"
             />
             <div
@@ -217,9 +217,21 @@ export default {
     },
     previewImage(element) {
       if (element.srcElement.files.length > 0) {
-        const imageSrc = URL.createObjectURL(element.srcElement.files[0])
+        const file = element.srcElement.files[0]
+        const supportedTypes = [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/webp",
+        ]
+        if (!supportedTypes.includes(file.type)) {
+          alert("فرمت تصویر پشتیبانی نمی‌شود. فقط JPEG، PNG، GIF و WebP مجاز هستند")
+          element.srcElement.value = ""
+          return
+        }
+        const imageSrc = URL.createObjectURL(file)
         this.ImageInsertInWeb.push(imageSrc)
-        this.ImageFiles.push(element.srcElement.files[0])
+        this.ImageFiles.push(file)
       }
     },
     async SubmitAdvertising() {
