@@ -69,3 +69,10 @@ The backend and CDN service URLs can be overridden through environment variables
 The application is configured to use the Divar Shop BackEnd and CDN services through the URLs defined in `nuxt.config.js`.
 
 This project uses Nuxt 2 with Vue 2.
+
+## Server configuration
+
+The Nuxt server address can be overridden through environment variables:
+
+- `HOST` — server host. Default: `localhost`
+- `PORT` — server port. Default: `3000`
