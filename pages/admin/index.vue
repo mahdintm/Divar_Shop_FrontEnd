@@ -416,13 +416,24 @@ export default {
       date_.setHours(time.hours)
       date_.setMinutes(time.minutes)
       date_.setSeconds(time.seconds)
-      this.TimeRegister.start = date_.getTime()
-      let response = await fetch(
-        `${
-          process.env.server_URL
-        }/api/setRegisterTime_Start?Time=${date_.getTime()}`
-      )
-      this.$bvModal.hide('bv-modal-Setting_Start_register')
+      try {
+        const response = await fetch(
+          `${
+            process.env.server_URL
+          }/api/setRegisterTime_Start?Time=${date_.getTime()}`
+        )
+        if (!response.ok) {
+          throw new Error(`Register start time update failed with HTTP ${response.status}`)
+        }
+        this.TimeRegister.start = date_.getTime()
+        this.$bvModal.hide('bv-modal-Setting_Start_register')
+      } catch (error) {
+        console.error('Register start time update failed:', error)
+        this.$nuxt.$emit(
+          'showErrorAlert',
+          'ذخیره زمان شروع مزایده با خطا مواجه شد.'
+        )
+      }
     },
     onContext_end_time_register(ctx) {
       this.End_Timecontext = ctx
@@ -437,27 +448,49 @@ export default {
       date_.setHours(time.hours)
       date_.setMinutes(time.minutes)
       date_.setSeconds(time.seconds)
-      this.TimeRegister.end = date_.getTime()
-      let response = await fetch(
-        `${
-          process.env.server_URL
-        }/api/setRegisterTime_End?Time=${date_.getTime()}`
-      )
-      this.$bvModal.hide('bv-modal-Setting_End_register')
+      try {
+        const response = await fetch(
+          `${
+            process.env.server_URL
+          }/api/setRegisterTime_End?Time=${date_.getTime()}`
+        )
+        if (!response.ok) {
+          throw new Error(`Register end time update failed with HTTP ${response.status}`)
+        }
+        this.TimeRegister.end = date_.getTime()
+        this.$bvModal.hide('bv-modal-Setting_End_register')
+      } catch (error) {
+        console.error('Register end time update failed:', error)
+        this.$nuxt.$emit(
+          'showErrorAlert',
+          'ذخیره زمان پایان مزایده با خطا مواجه شد.'
+        )
+      }
     },
     async MozaiedeRun() {
       this.$nuxt.$emit('showLoading', true)
-      let response = await fetch(
-        `${process.env.server_URL}/api/RunMozaiede`
-      ).then(async (res) => res.json())
-      if (response[0]) {
-        this.$nuxt.$emit('showLoading', false)
-      } else {
-        this.$nuxt.$emit('showLoading', false)
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/RunMozaiede`
+        )
+        if (!response.ok) {
+          throw new Error(`Auction request failed with HTTP ${response.status}`)
+        }
+        const result = await response.json()
+        if (!Array.isArray(result) || result[0] !== true) {
+          this.$nuxt.$emit(
+            'showErrorAlert',
+            'اجرای مزایده با خطای سمت سرور مواجه شد.'
+          )
+        }
+      } catch (error) {
+        console.error('Auction request failed:', error)
         this.$nuxt.$emit(
           'showErrorAlert',
-          `مشکلی در سمت سرور وجود دارد لطفا با ادمین تماس بگیرید.\n${response[1]}`
+          'اجرای مزایده با خطا مواجه شد. لطفا دوباره تلاش کنید.'
         )
+      } finally {
+        this.$nuxt.$emit('showLoading', false)
       }
     },
   },
