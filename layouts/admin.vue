@@ -85,16 +85,28 @@ export default {
     NavBar_PC,
     NavBar_Mobile,
   },
-  async beforeCreate() {
-    let user = await fetch(`${process.env.server_URL}/account/isUser`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    }).then((res) => res.json())
-    if (user.acl != 1) {
+  async async beforeCreate() {
+    try {
+      const response = await fetch(`${process.env.server_URL}/account/isUser`, {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      })
+      if (!response.ok) {
+        await this.$router.push('/')
+        await this.$nuxt.reload()
+        return
+      }
+      const user = await response.json()
+      if (Number(user.acl) === 1) {
+        this.myuser = user
+        return
+      }
       await this.$router.push('/')
       await this.$nuxt.reload()
-    } else {
-      this.myuser = user
+    } catch (error) {
+      console.error('Admin authorization failed:', error)
+      await this.$router.push('/')
+      await this.$nuxt.reload()
     }
   },
   head() {
