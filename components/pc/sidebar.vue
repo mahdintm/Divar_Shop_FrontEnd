@@ -219,20 +219,44 @@ import SideBarItem from '@/components/pc/sidebarItems.vue'
 export default {
   data() {
     return {
-      items: '',
+      items: [],
       myuser: '',
     }
   },
   name: 'SideBar_PC',
   components: { SideBarItem },
   async mounted() {
-    this.items = await fetch(`${process.env.server_URL}/api/sidebar`).then(
-      (res) => res.json()
-    )
-    this.myuser = await fetch(`${process.env.server_URL}/account/isUser`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    }).then((res) => res.json())
+    try {
+      const response = await fetch(`${process.env.server_URL}/api/sidebar`)
+      if (!response.ok) {
+        throw new Error(`Sidebar request failed with HTTP ${response.status}`)
+      }
+      const items = await response.json()
+      if (!Array.isArray(items)) {
+        throw new Error('Sidebar response was not an array')
+      }
+      this.items = items
+    } catch (error) {
+      console.error('Sidebar data loading failed:', error)
+      this.items = []
+    }
+
+    try {
+      const response = await fetch(`${process.env.server_URL}/account/isUser`, {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      })
+      if (response.status === 401) {
+        this.myuser = ''
+      } else if (!response.ok) {
+        throw new Error(`Authentication request failed with HTTP ${response.status}`)
+      } else {
+        this.myuser = await response.json()
+      }
+    } catch (error) {
+      console.error('Sidebar user loading failed:', error)
+      this.myuser = ''
+    }
   },
   methods: {
     async allads() {
