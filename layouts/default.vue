@@ -49,20 +49,39 @@ export default {
     NavBar_Mobile,
   },
   async mounted() {
-    async function check_login(app) {
-      const response = await fetch(
-        `${process.env.server_URL}/account/user`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include',
+    const check_login = async (app) => {
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/account/user`,
+          {
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+          }
+        )
+
+        if (response.status === 401 || !response.ok) {
+          app.auth = false
+          if (app.$route.path !== '/login') {
+            await app.$router.push('/login')
+          }
+          return
         }
-      )
-      const content = await response.json()
-      if (content.auth == false) {
+
+        const content = await response.json()
+        if (content.auth == false) {
+          app.auth = false
+          if (app.$route.path !== '/login') {
+            await app.$router.push('/login')
+          }
+        } else {
+          app.auth = true
+        }
+      } catch (error) {
+        console.error('Authentication polling failed:', error)
         app.auth = false
-        await app.$router.push('/login')
-      } else {
-        app.auth = true
+        if (app.$route.path !== '/login') {
+          await app.$router.push('/login')
+        }
       }
     }
     this.$nuxt.$on('logout', async () => {
@@ -80,12 +99,21 @@ export default {
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
 
-    check_login(this)
-    setInterval(async () => {
-      if (this.auth) {
-        await check_login(this)
-      }
-    }, 5000)
+    await check_login(this)
+    if (!this.login_check_interval) {
+      this.login_check_interval = setInterval(async () => {
+        if (this.auth) {
+          await check_login(this)
+        }
+      }, 5000)
+    }
+  },
+
+  beforeDestroy() {
+    if (this.login_check_interval) {
+      clearInterval(this.login_check_interval)
+      this.login_check_interval = false
+    }
   },
 }
 </script>
