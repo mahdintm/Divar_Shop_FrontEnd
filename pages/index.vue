@@ -69,6 +69,31 @@ export default {
       localStorage.setItem('req', 'true')
       this.$bvModal.hide('modal-center')
     },
+    handleSetFilters(f) {
+      let products = this.content_itemm.filter((p) => {
+        if (f.s) {
+          if (isNaN(f.s)) {
+            return (
+              p.title.toLowerCase().indexOf(f.s) >= 0 ||
+              p.description.toLowerCase().indexOf(f.s) >= 0
+            )
+          } else {
+            return p.code.toString().match(f.s)
+          }
+        } else {
+          return p
+        }
+      })
+      this.filteredProducts = products.sort(() => Math.random() - 0.5)
+    },
+    handleSetCategories(f) {
+      let products = this.content_itemm.filter((p) => p.category_id == f)
+      this.filteredProducts = products.sort(() => Math.random() - 0.5)
+    },
+    handleClearCategories() {
+      let products = this.content_itemm.sort(() => Math.random() - 0.5)
+      this.filteredProducts = products
+    },
   },
   async mounted() {
     try {
@@ -89,37 +114,20 @@ export default {
       this.content_itemm = []
       this.filteredProducts = []
     }
-    this.$nuxt.$on('set-filters', (f) => {
-      let products = this.content_itemm.filter((p) => {
-        if (f.s) {
-          if (isNaN(f.s)) {
-            return (
-              p.title.toLowerCase().indexOf(f.s) >= 0 ||
-              p.description.toLowerCase().indexOf(f.s) >= 0
-            )
-          } else {
-            return p.code.toString().match(f.s)
-          }
-        } else {
-          return p
-        }
-      })
-      this.filteredProducts = products.sort(() => Math.random() - 0.5)
-    })
-    this.$nuxt.$on('set-categories', (f) => {
-      let products = this.content_itemm.filter((p) => p.category_id == f)
-      this.filteredProducts = products.sort(() => Math.random() - 0.5)
-    })
-    this.$nuxt.$on('no-set-categories', (f) => {
-      let products = this.content_itemm.sort(() => Math.random() - 0.5)
-      this.filteredProducts = products
-    })
+    this.$nuxt.$on('set-filters', this.handleSetFilters)
+    this.$nuxt.$on('set-categories', this.handleSetCategories)
+    this.$nuxt.$on('no-set-categories', this.handleClearCategories)
     if ((await this.$route.query.set_categories) != undefined) {
       await this.$nuxt.$emit('set-categories', this.$route.query.set_categories)
     }
     if (localStorage.getItem('req') != 'true') {
       this.$bvModal.show('modal-center')
     }
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('set-filters', this.handleSetFilters)
+    this.$nuxt.$off('set-categories', this.handleSetCategories)
+    this.$nuxt.$off('no-set-categories', this.handleClearCategories)
   },
 }
 </script>
