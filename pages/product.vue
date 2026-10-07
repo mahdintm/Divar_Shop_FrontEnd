@@ -252,25 +252,45 @@ export default {
         }
     },
     async registerProduct() {
-      let response = await fetch(
-        `${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
-      )
-      const content = await response.json()
-      if (content.res) {
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
+        )
+        if (!response.ok) {
+          throw new Error(`Register product request failed with HTTP ${response.status}`)
+        }
+        const content = await response.json()
+        if (content.res !== true) {
+          throw new Error('Register product request returned an unsuccessful result')
+        }
         this.userRegiter = true
         this.$bvModal.hide('bv-modal-Register-Product')
         window.location.reload(true)
+      } catch (error) {
+        console.error('Register product request failed:', error)
+        alert('ثبت پیشنهاد با خطا مواجه شد')
       }
     },
     async disregisterProduct() {
-      let response = await fetch(
-        `${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
-      )
-      const content = await response.json()
-      if (content.res) {
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+        )
+        if (!response.ok) {
+          throw new Error(
+            `Remove registration request failed with HTTP ${response.status}`
+          )
+        }
+        const content = await response.json()
+        if (content.res !== true) {
+          throw new Error('Remove registration request returned an unsuccessful result')
+        }
         this.userRegiter = false
         this.$bvModal.hide('bv-modal-Register-Product')
         window.location.reload(true)
+      } catch (error) {
+        console.error('Remove registration request failed:', error)
+        alert('حذف پیشنهاد با خطا مواجه شد')
       }
     },
   },
