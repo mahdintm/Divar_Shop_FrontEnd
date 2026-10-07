@@ -294,6 +294,13 @@ export default {
       }
     },
   },
+  beforeDestroy() {
+    this.ImageInsertInWeb.forEach((image) => {
+      if (typeof image === 'string' && image.startsWith('blob:')) {
+        URL.revokeObjectURL(image)
+      }
+    })
+  },
   async mounted() {
     try {
       const categoryResponse = await fetch(`${process.env.server_URL}/api/category`)
