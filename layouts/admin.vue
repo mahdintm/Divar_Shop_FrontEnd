@@ -142,6 +142,11 @@ export default {
       Active: 0,
       notActive: 0,
       Users: [],
+      adminEventHandlers: {
+        updateProductCount: null,
+        showLoading: null,
+        showErrorAlert: null,
+      },
     }
   },
   async mounted() {
@@ -173,15 +178,25 @@ export default {
       }
     }
 
-    this.$nuxt.$on('updateProductCount', async () => {
+    this.adminEventHandlers.updateProductCount = async () => {
       await refreshProducts()
-    })
-    this.$nuxt.$on('showLoading', async (state) => {
+    }
+    this.adminEventHandlers.showLoading = (state) => {
       this.showOverLay = state
-    })
-    this.$nuxt.$on('showErrorAlert', async (state) => {
+    }
+    this.adminEventHandlers.showErrorAlert = (state) => {
       alert(state)
-    })
+    }
+
+    this.$nuxt.$on(
+      'updateProductCount',
+      this.adminEventHandlers.updateProductCount
+    )
+    this.$nuxt.$on('showLoading', this.adminEventHandlers.showLoading)
+    this.$nuxt.$on(
+      'showErrorAlert',
+      this.adminEventHandlers.showErrorAlert
+    )
 
     try {
       const response = await fetch(
@@ -265,6 +280,18 @@ export default {
     if (this.login_check_interval) {
       clearInterval(this.login_check_interval)
       this.login_check_interval = false
+    }
+    if (this.adminEventHandlers.updateProductCount) {
+      this.$nuxt.$off(
+        'updateProductCount',
+        this.adminEventHandlers.updateProductCount
+      )
+    }
+    if (this.adminEventHandlers.showLoading) {
+      this.$nuxt.$off('showLoading', this.adminEventHandlers.showLoading)
+    }
+    if (this.adminEventHandlers.showErrorAlert) {
+      this.$nuxt.$off('showErrorAlert', this.adminEventHandlers.showErrorAlert)
     }
   },
 }
