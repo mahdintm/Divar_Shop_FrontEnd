@@ -12,15 +12,40 @@ export default {
   components: { Content_Item_registration },
   data() {
     return {
-      content_item: '',
+      content_item: [],
     }
   },
-  async mounted() { },
-  async computed() { },
-  async watch() {
-    this.content_item = await fetch(
-      `${process.env.server_URL}/api/products?category=${this.$route.query.id}`
-    ).then((res) => res.json())
+  methods: {
+    async loadProducts() {
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/products?category=${this.$route.query.id}`
+        )
+        if (!response.ok) {
+          throw new Error(
+            `Category products request failed with HTTP ${response.status}`
+          )
+        }
+        const products = await response.json()
+        if (!Array.isArray(products)) {
+          throw new Error('Category products response was not an array')
+        }
+        this.content_item = products
+      } catch (error) {
+        console.error('Category products loading failed:', error)
+        this.content_item = []
+      }
+    },
+  },
+  async mounted() {
+    await this.loadProducts()
+  },
+  watch: {
+    '$route.query.id': {
+      async handler() {
+        await this.loadProducts()
+      },
+    },
   },
 }
 </script>
