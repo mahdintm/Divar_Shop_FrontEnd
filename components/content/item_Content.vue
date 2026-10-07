@@ -34,15 +34,37 @@ export default {
   },
   data() {
     return {
-      register_COUNT: {},
+      register_COUNT: {
+        count: 0,
+      },
       default_no_photo: `${process.env.server_cdn_URL}/private/img/no-photo.png`,
     }
   },
   name: 'Content_Item',
   async mounted() {
-    this.register_COUNT = await fetch(
-      `${process.env.server_URL}/api/count_product_register?productid=${this.link}`
-    ).then((res) => res.json())
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/count_product_register?productid=${this.link}`
+      )
+      if (!response.ok) {
+        throw new Error(
+          `Product registration count request failed with HTTP ${response.status}`
+        )
+      }
+      const result = await response.json()
+      const normalizedCount = Number(result?.count)
+      if (!Number.isFinite(normalizedCount) || normalizedCount < 0) {
+        throw new Error('Product registration count response was invalid')
+      }
+      this.register_COUNT = {
+        count: normalizedCount,
+      }
+    } catch (error) {
+      console.error('Product registration count loading failed:', error)
+      this.register_COUNT = {
+        count: 0,
+      }
+    }
   },
   props: [
     'title_',
