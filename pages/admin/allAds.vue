@@ -132,10 +132,27 @@ export default {
           active: element.active,
         }
         for await (const element__ of element.registrations) {
-          let userd = await fetch(
-            `${process.env.server_URL}/api/user?id=${element__.id}`
-          ).then(async (res) => await res.json())
-          switch (i) {
+          const registrationIndex = i
+          i++
+          let userd
+          try {
+            const response = await fetch(
+              `${process.env.server_URL}/api/user?id=${element__.id}`
+            )
+            if (!response.ok) {
+              throw new Error(
+                `User lookup failed with HTTP ${response.status}`
+              )
+            }
+            userd = await response.json()
+            if (!userd || typeof userd !== 'object' || Array.isArray(userd)) {
+              throw new Error('User lookup returned an invalid response')
+            }
+          } catch (error) {
+            console.error('Admin export user lookup failed:', error)
+            continue
+          }
+          switch (registrationIndex) {
             case 0:
               d__['oneـperson'] = {
                 email: await userd.email,
@@ -161,7 +178,6 @@ export default {
               }
               break
           }
-          i++
         }
         data.push(d__)
       }
