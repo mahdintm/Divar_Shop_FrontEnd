@@ -13,13 +13,16 @@ export default {
   data() {
     return {
       content_item: [],
+      productsRequestId: 0,
     }
   },
   methods: {
     async loadProducts() {
+      const requestId = ++this.productsRequestId
+      const categoryId = this.$route.query.id
       try {
         const response = await fetch(
-          `${process.env.server_URL}/api/products?category=${this.$route.query.id}`
+          `${process.env.server_URL}/api/products?category=${categoryId}`
         )
         if (!response.ok) {
           throw new Error(
@@ -30,8 +33,14 @@ export default {
         if (!Array.isArray(products)) {
           throw new Error('Category products response was not an array')
         }
+        if (requestId !== this.productsRequestId) {
+          return
+        }
         this.content_item = products
       } catch (error) {
+        if (requestId !== this.productsRequestId) {
+          return
+        }
         console.error('Category products loading failed:', error)
         this.content_item = []
       }
