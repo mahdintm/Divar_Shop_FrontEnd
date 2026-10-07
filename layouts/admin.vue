@@ -202,19 +202,39 @@ export default {
 
     await refreshProducts()
     async function check_login(app) {
-      const response = await fetch(
-        `${process.env.server_URL}/account/user`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include',
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/account/user`,
+          {
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+          }
+        )
+
+        if (!response.ok) {
+          app.auth = false
+          if (app.$route.path !== '/login') {
+            await app.$router.push('/login')
+          }
+          return
         }
-      )
-      const content = await response.json()
-      if (content.auth == false) {
-        app.auth = false
-        await app.$router.push('/login')
-      } else {
+
+        const content = await response.json()
+        if (content.auth == false) {
+          app.auth = false
+          if (app.$route.path !== '/login') {
+            await app.$router.push('/login')
+          }
+          return
+        }
+
         app.auth = true
+      } catch (error) {
+        console.error('Admin session check failed:', error)
+        app.auth = false
+        if (app.$route.path !== '/login') {
+          await app.$router.push('/login')
+        }
       }
     }
     this.$nuxt.$on('logout', async () => {
@@ -232,12 +252,20 @@ export default {
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
 
-    check_login(this)
-    setInterval(async () => {
-      if (this.auth) {
-        await check_login(this)
-      }
-    }, 5000)
+    await check_login(this)
+    if (!this.login_check_interval) {
+      this.login_check_interval = setInterval(async () => {
+        if (this.auth) {
+          await check_login(this)
+        }
+      }, 5000)
+    }
+  },
+  beforeDestroy() {
+    if (this.login_check_interval) {
+      clearInterval(this.login_check_interval)
+      this.login_check_interval = false
+    }
   },
 }
 </script>
