@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       default_profile: `${process.env.server_cdn_URL}/private/img/user.png`,
-      user: '',
+      user: {},
       linkUser: '',
     }
   },
@@ -19,10 +19,26 @@ export default {
   computed: {},
   watch: {},
   async mounted() {
-    this.user = await fetch(
-      `${process.env.server_URL}/api/user?id=${this.id}`
-    ).then((res) => res.json())
     this.linkUser = `ShowUser?id=${this.id}`
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/user?id=${this.id}`
+      )
+      if (response.status === 404) {
+        return
+      }
+      if (!response.ok) {
+        throw new Error(`User request failed with HTTP ${response.status}`)
+      }
+      const user = await response.json()
+      if (!user || typeof user !== 'object' || Array.isArray(user)) {
+        throw new Error('User response was not a valid object')
+      }
+      this.user = user
+    } catch (error) {
+      console.error('User card lookup failed:', error)
+      this.user = {}
+    }
   },
   props: ['id'],
 }
