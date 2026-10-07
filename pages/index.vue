@@ -56,8 +56,8 @@ export default {
   components: { Content_Item_registration },
   data() {
     return {
-      content_itemm: '',
-      filteredProducts: '',
+      content_itemm: [],
+      filteredProducts: [],
       filters: {
         s: '',
       },
@@ -71,13 +71,24 @@ export default {
     },
   },
   async mounted() {
-    this.content_item = await fetch(
-      `${process.env.server_URL}/api/products`
-    ).then(async (res) => {
-      let a = await res.json()
-      this.filteredProducts = a.sort(() => Math.random() - 0.5)
-      this.content_itemm = a.sort(() => Math.random() - 0.5)
-    })
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/products`
+      )
+      if (!response.ok) {
+        throw new Error(`Homepage products request failed with HTTP ${response.status}`)
+      }
+      const products = await response.json()
+      if (!Array.isArray(products)) {
+        throw new Error('Homepage products response was not an array')
+      }
+      this.content_itemm = [...products]
+      this.filteredProducts = [...products].sort(() => Math.random() - 0.5)
+    } catch (error) {
+      console.error('Homepage product loading failed:', error)
+      this.content_itemm = []
+      this.filteredProducts = []
+    }
     this.$nuxt.$on('set-filters', (f) => {
       let products = this.content_itemm.filter((p) => {
         if (f.s) {
