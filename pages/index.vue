@@ -93,7 +93,7 @@ export default {
       this.filteredProducts = products.sort(() => Math.random() - 0.5)
     },
     handleClearCategories() {
-      let products = this.content_itemm.sort(() => Math.random() - 0.5)
+      let products = [...this.content_itemm].sort(() => Math.random() - 0.5)
       this.filteredProducts = products
     },
   },
