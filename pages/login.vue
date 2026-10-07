@@ -107,6 +107,7 @@ export default {
       username: '',
       password: '',
       isSubmitting: false,
+      dangerAlertTimer: null,
     }
   },
 
@@ -119,9 +120,19 @@ export default {
       else document.getElementById('PasswordInput').type = 'password'
     },
     ShowDangerAlert() {
-      document.getElementById('DangerModalBox').classList.add('Active')
-      setTimeout(() => {
-        document.getElementById('DangerModalBox').classList.remove('Active')
+      const dangerModal = document.getElementById('DangerModalBox')
+      if (!dangerModal) return
+
+      dangerModal.classList.add('Active')
+      if (this.dangerAlertTimer) {
+        clearTimeout(this.dangerAlertTimer)
+      }
+      this.dangerAlertTimer = setTimeout(() => {
+        const currentDangerModal = document.getElementById('DangerModalBox')
+        if (currentDangerModal) {
+          currentDangerModal.classList.remove('Active')
+        }
+        this.dangerAlertTimer = null
       }, 3000)
     },
     async submit() {
@@ -169,6 +180,12 @@ export default {
         this.isSubmitting = false
       }
     },
+  },
+  beforeDestroy() {
+    if (this.dangerAlertTimer) {
+      clearTimeout(this.dangerAlertTimer)
+      this.dangerAlertTimer = null
+    }
   },
 }
 </script>
