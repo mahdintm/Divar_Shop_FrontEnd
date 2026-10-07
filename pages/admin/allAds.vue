@@ -112,7 +112,11 @@ export default {
       if (!response.ok) {
         throw new Error(`Product list request failed with HTTP ${response.status}`)
       }
-      this.items = await response.json()
+      const products = await response.json()
+      if (!Array.isArray(products)) {
+        throw new Error('Product list response was not an array')
+      }
+      this.items = products
     } catch (error) {
       console.error('Admin ad loading failed:', error)
       alert('بارگذاری آگهی‌ها با خطا مواجه شد')
