@@ -389,7 +389,7 @@ export default {
   },
   data() {
     return {
-      items: '',
+      items: [],
       TimeRegister: [],
       Start_TimeVmodel: '',
       Start_DateVmodel: '',
@@ -496,30 +496,73 @@ export default {
   },
 
   async mounted() {
-    this.items = await fetch(`${process.env.server_URL}/api/products`).then(
-      async (res) => res.json()
-    )
-    this.TimeRegister = await fetch(
-      `${process.env.server_URL}/api/getRegisterTime`
-    ).then(async (res) => res.json())
-    this.Start_TimeVmodel = `${new Date(
-      this.TimeRegister.start
-    ).getHours()}:${new Date(this.TimeRegister.start).getMinutes()}:${new Date(
-      this.TimeRegister.start
-    ).getSeconds()}`
-    this.Start_DateVmodel = `${new Date(
-      this.TimeRegister.start
-    ).getFullYear()}-${
-      new Date(this.TimeRegister.start).getMonth() + 1
-    }-${new Date(this.TimeRegister.start).getDate()}`
-    this.End_TimeVmodel = `${new Date(
-      this.TimeRegister.end
-    ).getHours()}:${new Date(this.TimeRegister.end).getMinutes()}:${new Date(
-      this.TimeRegister.end
-    ).getSeconds()}`
-    this.End_DateVmodel = `${new Date(this.TimeRegister.end).getFullYear()}-${
-      new Date(this.TimeRegister.end).getMonth() + 1
-    }-${new Date(this.TimeRegister.end).getDate()}`
+    try {
+      const productsResponse = await fetch(
+        `${process.env.server_URL}/api/products`
+      )
+      if (!productsResponse.ok) {
+        throw new Error(
+          `Admin product list request failed with HTTP ${productsResponse.status}`
+        )
+      }
+      const products = await productsResponse.json()
+      if (!Array.isArray(products)) {
+        throw new Error('Admin product list response was not an array')
+      }
+      this.items = products
+    } catch (error) {
+      console.error('Admin dashboard product loading failed:', error)
+      this.items = []
+      this.$nuxt.$emit(
+        'showErrorAlert',
+        'خطا در دریافت اطلاعات آگهی‌ها'
+      )
+    }
+
+    try {
+      const timeResponse = await fetch(
+        `${process.env.server_URL}/api/getRegisterTime`
+      )
+      if (!timeResponse.ok) {
+        throw new Error(
+          `Register time request failed with HTTP ${timeResponse.status}`
+        )
+      }
+      const timeRegister = await timeResponse.json()
+      if (
+        !timeRegister ||
+        typeof timeRegister !== 'object' ||
+        !Number.isFinite(Number(timeRegister.start)) ||
+        !Number.isFinite(Number(timeRegister.end))
+      ) {
+        throw new Error('Register time response was invalid')
+      }
+      this.TimeRegister = timeRegister
+      this.Start_TimeVmodel = `${new Date(
+        this.TimeRegister.start
+      ).getHours()}:${new Date(this.TimeRegister.start).getMinutes()}:${new Date(
+        this.TimeRegister.start
+      ).getSeconds()}`
+      this.Start_DateVmodel = `${new Date(
+        this.TimeRegister.start
+      ).getFullYear()}-${
+        new Date(this.TimeRegister.start).getMonth() + 1
+      }-${new Date(this.TimeRegister.start).getDate()}`
+      this.End_TimeVmodel = `${new Date(
+        this.TimeRegister.end
+      ).getHours()}:${new Date(this.TimeRegister.end).getMinutes()}:${new Date(
+        this.TimeRegister.end
+      ).getSeconds()}`
+      this.End_DateVmodel = `${new Date(this.TimeRegister.end).getFullYear()}-${
+        new Date(this.TimeRegister.end).getMonth() + 1
+      }-${new Date(this.TimeRegister.end).getDate()}`
+    } catch (error) {
+      console.error('Admin dashboard register time loading failed:', error)
+      this.$nuxt.$emit(
+        'showErrorAlert',
+        'خطا در دریافت زمان مزایده'
+      )
+    }
   },
 }
 </script>
