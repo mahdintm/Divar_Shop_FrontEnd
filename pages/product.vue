@@ -342,7 +342,13 @@ export default {
       this.FirstImgMain =
         this.item.imgs.length > 0 ? this.item.imgs[0] : this.default_no_photo
 
+      const visitedCategoryIds = new Set()
       const loadCategoryParents = async (categoryId) => {
+        if (visitedCategoryIds.has(categoryId)) {
+          throw new Error('Category hierarchy contains a cycle')
+        }
+        visitedCategoryIds.add(categoryId)
+
         const response = await fetch(
           `${process.env.server_URL}/api/category?id=${categoryId}`
         )
