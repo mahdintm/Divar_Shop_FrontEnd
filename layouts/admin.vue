@@ -243,7 +243,7 @@ export default {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       })
-      $nuxt.$off('logout')
+      this.$nuxt.$off('logout')
       await this.$router.push('/login')
       window.location.reload(true)
     })
