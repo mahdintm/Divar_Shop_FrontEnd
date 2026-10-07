@@ -307,6 +307,16 @@ export default {
         throw new Error(`Product request failed with HTTP ${productResponse.status}`)
       }
       const product = await productResponse.json()
+      if (
+        !product ||
+        typeof product !== 'object' ||
+        Array.isArray(product) ||
+        !Array.isArray(product.imgs) ||
+        !Array.isArray(product.options) ||
+        !Array.isArray(product.registrations)
+      ) {
+        throw new Error('Product response had an invalid shape')
+      }
       this.item = product
 
       const categoryResponse = await fetch(
