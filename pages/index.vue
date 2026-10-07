@@ -70,15 +70,17 @@ export default {
       this.$bvModal.hide('modal-center')
     },
     handleSetFilters(f) {
+      const searchTerm = String(f?.s ?? '')
       let products = this.content_itemm.filter((p) => {
-        if (f.s) {
-          if (isNaN(f.s)) {
+        if (searchTerm) {
+          if (isNaN(searchTerm)) {
+            const normalizedSearchTerm = searchTerm.toLowerCase()
             return (
-              p.title.toLowerCase().indexOf(f.s) >= 0 ||
-              p.description.toLowerCase().indexOf(f.s) >= 0
+              p.title.toLowerCase().indexOf(normalizedSearchTerm) >= 0 ||
+              p.description.toLowerCase().indexOf(normalizedSearchTerm) >= 0
             )
           } else {
-            return p.code.toString().match(f.s)
+            return p.code.toString().match(searchTerm)
           }
         } else {
           return p
