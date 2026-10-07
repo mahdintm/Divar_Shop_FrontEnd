@@ -77,9 +77,27 @@ export default {
     }
   },
   async mounted() {
-    this.items = await fetch(`${process.env.server_URL}/api/getAllUsers`).then(
-      async (res) => await res.json()
-    )
+    try {
+      const response = await fetch(
+        `${process.env.server_URL}/api/getAllUsers`
+      )
+      if (!response.ok) {
+        throw new Error(
+          `Admin user list request failed with HTTP ${response.status}`
+        )
+      }
+      const users = await response.json()
+      if (!Array.isArray(users)) {
+        throw new Error('Admin user list response was not an array')
+      }
+      this.items = users
+    } catch (error) {
+      console.error('Admin user list loading failed:', error)
+      this.$nuxt.$emit(
+        'showErrorAlert',
+        'خطا در دریافت اطلاعات کاربران'
+      )
+    }
   },
   methods: {
     async test() {
