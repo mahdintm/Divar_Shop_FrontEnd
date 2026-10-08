@@ -147,6 +147,7 @@ export default {
         showLoading: null,
         showErrorAlert: null,
       },
+      logoutHandler: null,
     }
   },
   async mounted() {
@@ -252,16 +253,17 @@ export default {
         }
       }
     }
-    this.$nuxt.$on('logout', async () => {
+    this.logoutHandler = async () => {
       await fetch(`${process.env.server_URL}/account/logout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       })
-      this.$nuxt.$off('logout')
+      this.$nuxt.$off('logout', this.logoutHandler)
       await this.$router.push('/login')
       window.location.reload(true)
-    })
+    }
+    this.$nuxt.$on('logout', this.logoutHandler)
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
@@ -292,6 +294,10 @@ export default {
     }
     if (this.adminEventHandlers.showErrorAlert) {
       this.$nuxt.$off('showErrorAlert', this.adminEventHandlers.showErrorAlert)
+    }
+    if (this.logoutHandler) {
+      this.$nuxt.$off('logout', this.logoutHandler)
+      this.logoutHandler = null
     }
   },
 }
