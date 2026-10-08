@@ -398,7 +398,11 @@ export default {
       if (!registrationsResponse.ok) {
         throw new Error(`Registrations request failed with HTTP ${registrationsResponse.status}`)
       }
-      this.item.registrations = await registrationsResponse.json()
+      const registrations = await registrationsResponse.json()
+      if (!Array.isArray(registrations)) {
+        throw new Error('Registrations response was not an array')
+      }
+      this.item.registrations = registrations
     } catch (error) {
       console.error('Product page initialization failed:', error)
       alert('بارگذاری آگهی با خطا مواجه شد')
