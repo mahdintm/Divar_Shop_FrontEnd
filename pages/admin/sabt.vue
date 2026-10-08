@@ -307,7 +307,11 @@ export default {
       if (!response.ok) {
         throw new Error(`Category request failed with HTTP ${response.status}`)
       }
-      this.catergory = await response.json()
+      const categories = await response.json()
+      if (!Array.isArray(categories)) {
+        throw new Error('Category response was not an array')
+      }
+      this.catergory = categories
     } catch (error) {
       console.error("Admin form initialization failed:", error)
       alert("بارگذاری اطلاعات دسته‌بندی با خطا مواجه شد")
