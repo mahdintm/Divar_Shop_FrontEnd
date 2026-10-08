@@ -194,7 +194,10 @@ export default {
     async change(status, id) {
       try {
         const response = await fetch(
-          `${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`
+          `${process.env.server_URL}/api/changeStatusPost?id=${id}&status=${status}`,
+          {
+            credentials: 'include',
+          }
         )
         if (!response.ok) {
           throw new Error(
@@ -215,7 +218,10 @@ export default {
       if (confirm('Press a button!')) {
         try {
           const response = await fetch(
-            `${process.env.server_URL}/api/deletePost?id=${id}`
+            `${process.env.server_URL}/api/deletePost?id=${id}`,
+            {
+              credentials: 'include',
+            }
           )
           if (!response.ok) {
             throw new Error(
