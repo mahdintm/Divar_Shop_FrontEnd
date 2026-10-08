@@ -254,7 +254,10 @@ export default {
     async registerProduct() {
       try {
         const response = await fetch(
-          `${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`
+          `${process.env.server_URL}/api/RegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}&User_Price=${this.UserPrice}`,
+          {
+            credentials: 'include',
+          }
         )
         if (!response.ok) {
           throw new Error(`Register product request failed with HTTP ${response.status}`)
@@ -274,7 +277,10 @@ export default {
     async disregisterProduct() {
       try {
         const response = await fetch(
-          `${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+          `${process.env.server_URL}/api/removeRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`,
+          {
+            credentials: 'include',
+          }
         )
         if (!response.ok) {
           throw new Error(
@@ -375,7 +381,10 @@ export default {
 
       if (this.myuser && this.myuser.id) {
         const registrationResponse = await fetch(
-          `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`
+          `${process.env.server_URL}/api/checkRegisterProduct?Product_id=${this.item.id}&User_id=${this.myuser.id}`,
+          {
+            credentials: 'include',
+          }
         )
         if (!registrationResponse.ok) {
           throw new Error(`Registration status request failed with HTTP ${registrationResponse.status}`)
