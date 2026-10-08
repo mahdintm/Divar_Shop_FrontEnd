@@ -420,7 +420,8 @@ export default {
         const response = await fetch(
           `${
             process.env.server_URL
-          }/api/setRegisterTime_Start?Time=${date_.getTime()}`
+          }/api/setRegisterTime_Start?Time=${date_.getTime()}`,
+          { credentials: 'include' }
         )
         if (!response.ok) {
           throw new Error(`Register start time update failed with HTTP ${response.status}`)
@@ -452,7 +453,8 @@ export default {
         const response = await fetch(
           `${
             process.env.server_URL
-          }/api/setRegisterTime_End?Time=${date_.getTime()}`
+          }/api/setRegisterTime_End?Time=${date_.getTime()}`,
+          { credentials: 'include' }
         )
         if (!response.ok) {
           throw new Error(`Register end time update failed with HTTP ${response.status}`)
