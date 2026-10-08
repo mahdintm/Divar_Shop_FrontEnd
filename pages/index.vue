@@ -72,15 +72,21 @@ export default {
     handleSetFilters(f) {
       const searchTerm = String(f?.s ?? '')
       let products = this.content_itemm.filter((p) => {
+        if (!p || typeof p !== 'object') {
+          return false
+        }
         if (searchTerm) {
           if (isNaN(searchTerm)) {
             const normalizedSearchTerm = searchTerm.toLowerCase()
+            const title = typeof p.title === 'string' ? p.title : ''
+            const description =
+              typeof p.description === 'string' ? p.description : ''
             return (
-              p.title.toLowerCase().indexOf(normalizedSearchTerm) >= 0 ||
-              p.description.toLowerCase().indexOf(normalizedSearchTerm) >= 0
+              title.toLowerCase().indexOf(normalizedSearchTerm) >= 0 ||
+              description.toLowerCase().indexOf(normalizedSearchTerm) >= 0
             )
           } else {
-            return p.code.toString().match(searchTerm)
+            return String(p.code ?? '').match(searchTerm)
           }
         } else {
           return p
