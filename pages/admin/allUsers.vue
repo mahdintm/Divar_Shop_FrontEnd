@@ -79,7 +79,8 @@ export default {
   async mounted() {
     try {
       const response = await fetch(
-        `${process.env.server_URL}/api/getAllUsers`
+        `${process.env.server_URL}/api/getAllUsers`,
+        { credentials: 'include' }
       )
       if (!response.ok) {
         throw new Error(
