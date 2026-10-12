@@ -124,66 +124,58 @@ export default {
   },
   methods: {
     async test() {
+      let usersById
+      try {
+        const response = await fetch(
+          `${process.env.server_URL}/api/getAllUsers`,
+          { credentials: 'include' }
+        )
+        if (!response.ok) {
+          throw new Error(`Admin user list request failed with HTTP ${response.status}`)
+        }
+        const users = await response.json()
+        if (!Array.isArray(users)) {
+          throw new Error('Admin user list response was not an array')
+        }
+        usersById = new Map(
+          users
+            .filter((user) => user && typeof user === 'object')
+            .map((user) => [String(user.id), user])
+        )
+      } catch (error) {
+        console.error('Admin export user list loading failed:', error)
+        alert('دریافت اطلاعات کاربران برای خروجی اکسل با خطا مواجه شد')
+        return
+      }
+
       const data = []
-      let i = 0
-      for await (const element of this.items) {
-        i = 0
-        let d__ = {
+      for (const element of this.items) {
+        const row = {
           id: element.id,
           title: element.title,
           price: element.price,
           code: element.code,
           active: element.active,
         }
-        for await (const element__ of element.registrations) {
-          const registrationIndex = i
-          i++
-          let userd
-          try {
-            const response = await fetch(
-              `${process.env.server_URL}/api/user?id=${element__.id}`
-            )
-            if (!response.ok) {
-              throw new Error(
-                `User lookup failed with HTTP ${response.status}`
-              )
-            }
-            userd = await response.json()
-            if (!userd || typeof userd !== 'object' || Array.isArray(userd)) {
-              throw new Error('User lookup returned an invalid response')
-            }
-          } catch (error) {
-            console.error('Admin export user lookup failed:', error)
-            continue
+        const registrations = Array.isArray(element.registrations)
+          ? element.registrations
+          : []
+
+        registrations.slice(0, 4).forEach((registration, index) => {
+          const user = usersById.get(String(registration?.id))
+          if (!user) return
+          const fields = [
+            'oneـperson',
+            'secondـperson',
+            'thridـperson',
+            'fourthـperson',
+          ]
+          row[fields[index]] = {
+            email: user.email,
+            price: registration.price,
           }
-          switch (registrationIndex) {
-            case 0:
-              d__['oneـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 1:
-              d__['secondـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 2:
-              d__['thridـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-            case 3:
-              d__['fourthـperson'] = {
-                email: await userd.email,
-                price: element__.price,
-              }
-              break
-          }
-        }
-        data.push(d__)
+        })
+        data.push(row)
       }
 
       const fileName = `Export_${process.env.APP_NAME}_${Date.now()}`
