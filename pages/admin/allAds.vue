@@ -208,6 +208,12 @@ export default {
         if (result.res !== true) {
           throw new Error('Change status request returned an unsuccessful result')
         }
+        const product = this.items.find(
+          (item) => String(item.id) === String(id)
+        )
+        if (product) {
+          product.active = status
+        }
         this.$root.$emit('updateProductCount')
       } catch (error) {
         console.error('Admin ad status change failed:', error)
