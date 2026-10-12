@@ -171,6 +171,7 @@
         <div
           class="AddToCategoryBottunBox"
           style="background-color: #a7211b; color: white"
+          :aria-disabled="isSubmitting"
           @click="SubmitAdvertising"
         >
           <lord-icon
@@ -178,7 +179,7 @@
             src="https://cdn.lordicon.com/ynwbvguu.json"
             trigger="morph"
           ></lord-icon>
-          <span>ثبت نهایی</span>
+          <span>{{ isSubmitting ? 'در حال ثبت...' : 'ثبت نهایی' }}</span>
         </div>
       </div>
     </div>
@@ -192,6 +193,7 @@ export default {
       catergory: [],
       ImageInsertInWeb: [],
       ImageFiles: [],
+      isSubmitting: false,
       adsData: {
         category_id: '2',
         title: '',
@@ -235,6 +237,8 @@ export default {
       }
     },
     async SubmitAdvertising() {
+      if (this.isSubmitting) return
+      this.isSubmitting = true
       try {
         if (
           this.adsData.options[0] &&
@@ -292,6 +296,8 @@ export default {
       } catch (error) {
         console.error('Advertising edit failed:', error)
         alert('ویرایش آگهی با خطا مواجه شد')
+      } finally {
+        this.isSubmitting = false
       }
     },
   },
