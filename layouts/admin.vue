@@ -201,7 +201,8 @@ export default {
 
     try {
       const response = await fetch(
-        `${process.env.server_URL}/api/getAllUsers`
+        `${process.env.server_URL}/api/getAllUsers`,
+        { credentials: 'include' }
       )
       if (!response.ok) {
         throw new Error(`Users request failed with HTTP ${response.status}`)
